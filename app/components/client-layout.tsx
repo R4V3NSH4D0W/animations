@@ -1,15 +1,17 @@
 "use client";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import SplashScreen from "./shared/splash-screen";
 import SmoothScrollWrapper from "./shared/smooth-scroll-wrapper";
 import Navbar from "./navigation/navbar";
+import {
+  PageTransitionProvider,
+  usePageTransition,
+} from "../hooks/use-page-transition";
+import PageTransitionSplash from "./shared/page-transition-splash";
 
-export default function ClientLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+function ClientLayoutContent({ children }: { children: React.ReactNode }) {
   const [splashComplete, setSplashComplete] = useState(false);
+  const { isTransitioning } = usePageTransition();
 
   return (
     <>
@@ -18,11 +20,13 @@ export default function ClientLayout({
         <div className="text-white text-6xl font-bold">LUXSTORE</div>
       </SplashScreen>
 
+      <PageTransitionSplash isTransitioning={isTransitioning} />
+
       {/* Only render content after splash is complete */}
       {splashComplete && (
         <>
           <Navbar />
-          <SmoothScrollWrapper speed={1.2}>
+          <SmoothScrollWrapper>
             <div style={{ opacity: 1, transition: "opacity 0.2s" }}>
               {children}
             </div>
@@ -30,5 +34,17 @@ export default function ClientLayout({
         </>
       )}
     </>
+  );
+}
+
+export default function ClientLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  return (
+    <PageTransitionProvider>
+      <ClientLayoutContent>{children}</ClientLayoutContent>
+    </PageTransitionProvider>
   );
 }

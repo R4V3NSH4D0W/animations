@@ -1,6 +1,8 @@
+"use client";
 import AboutSection from "./components/home/about-section";
+import CaseStudies from "./components/home/case-studies";
+import ZAnimation from "./components/home/z-animation";
 import PhysicsText from "./components/shared/physics-text";
-import ScrollReveal from "./components/shared/scroll-reveal";
 import ViewReveal from "./components/shared/view-reveal";
 
 function page() {
@@ -21,16 +23,18 @@ function page() {
         </div>
 
         <PhysicsText
-          text="LUXSTORE"
+          text="BEAUTY"
           gravity={1}
           containerWidth="100%"
-          className="text-[280px] font-extrabold -mt-[250px] min-h-[calc(100%+140px)]"
+          className="text-[280px] font-extrabold -mt-[220px] min-h-[calc(100%+140px)]"
           dropDelay={0}
           restitution={0.2}
           startPosition={{ x: 0.1, y: 0 }}
         />
       </div>
       <AboutSection />
+      <ZAnimation />
+      <CaseStudies />
 
       {/* <ViewReveal
         size="xl"

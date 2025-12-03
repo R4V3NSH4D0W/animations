@@ -150,6 +150,6 @@ body {
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-gray-100 font-light text-foreground ;
   }
 }
