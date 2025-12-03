@@ -1,5 +1,5 @@
 "use client";
-import { useWorldTime } from "@/app/hooks/use-time";
+import { useWorldTime } from "@/hooks/use-time";
 import { Clock9 } from "lucide-react";
 import React from "react";
 

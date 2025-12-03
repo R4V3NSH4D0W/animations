@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { recklessNeue } from "./lib/fonts";
-import ClientLayout from "./components/client-layout";
+import { recklessNeue } from "../lib/fonts";
+import ClientLayout from "../components/client-layout";
 
 export const metadata: Metadata = {
   title: "Create Next App",

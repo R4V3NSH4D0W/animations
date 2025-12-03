@@ -5,7 +5,7 @@ import AnimatedClock from "../shared/animated-clock";
 import HoverFlip from "../shared/hover-flip";
 import Shuffle from "../shared/shuffle-text";
 import ViewReveal from "../shared/view-reveal";
-import { usePageTransition } from "@/app/hooks/use-page-transition";
+import { usePageTransition } from "@/hooks/use-page-transition";
 
 const navItems = [
   { name: "About", href: "/about" },

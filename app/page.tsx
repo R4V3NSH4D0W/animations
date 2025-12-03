@@ -1,9 +1,8 @@
-"use client";
-import AboutSection from "./components/home/about-section";
-import CaseStudies from "./components/home/case-studies";
-import ZAnimation from "./components/home/z-animation";
-import PhysicsText from "./components/shared/physics-text";
-import ViewReveal from "./components/shared/view-reveal";
+import AboutSection from "../components/home/about-section";
+import CaseStudies from "../components/home/case-studies";
+import ZAnimation from "../components/home/z-animation";
+import PhysicsText from "../components/shared/physics-text";
+import ViewReveal from "../components/shared/view-reveal";
 
 function page() {
   return (

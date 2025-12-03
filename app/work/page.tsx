@@ -1,7 +1,7 @@
 import React from "react";
-import PhysicsText from "../components/shared/physics-text";
-import ViewReveal from "../components/shared/view-reveal";
-import FolderStructure from "../components/home/folder-structure";
+import PhysicsText from "../../components/shared/physics-text";
+import ViewReveal from "../../components/shared/view-reveal";
+import FolderStructure from "../../components/home/folder-structure";
 
 function Page() {
   return (

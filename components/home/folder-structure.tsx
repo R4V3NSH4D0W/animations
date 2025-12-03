@@ -3,7 +3,7 @@ import React, { useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/all";
 import { useGSAP } from "@gsap/react";
-import DiagonalShape from "@/app/lib/diagonal-shape";
+import DiagonalShape from "@/lib/diagonal-shape";
 import { ArrowRight } from "lucide-react";
 import Marquee from "react-fast-marquee";
 import FeaturedWork from "../work/featured-work";
