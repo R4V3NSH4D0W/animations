@@ -24,6 +24,7 @@ function page() {
         <PhysicsText
           text="BEAUTY"
           gravity={1}
+          startDelay={1300}
           containerWidth="100%"
           className="text-[280px] font-extrabold -mt-[220px] min-h-[calc(100%+140px)]"
           dropDelay={0}

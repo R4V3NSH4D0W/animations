@@ -4,10 +4,12 @@ import { gsap } from "gsap";
 
 interface PageTransitionSplashProps {
   isTransitioning: boolean;
+  text?: string;
 }
 
 export default function PageTransitionSplash({
   isTransitioning,
+  text = "Loading...",
 }: PageTransitionSplashProps) {
   useEffect(() => {
     const blackPanel = document.getElementById("transition-splash-black");
@@ -22,30 +24,19 @@ export default function PageTransitionSplash({
 
       const tl = gsap.timeline();
 
-      // Step 1: Black panel slides down
+      // Step 1: Black panel slides down and fills screen
       tl.to(blackPanel, {
         y: "0%",
-        duration: 0.7,
+        duration: 0.4,
         ease: "power3.inOut",
       });
 
-      // Step 2: White panel follows
-      tl.to(
-        whitePanel,
-        {
-          y: "0%",
-          duration: 0.7,
-          ease: "power3.inOut",
-        },
-        "-=0.4"
-      );
-
-      // Step 3: After navigation, slide both panels down to reveal page
-      tl.to([blackPanel, whitePanel], {
+      // Step 2: Black panel stays showing quote, then slides down
+      tl.to(blackPanel, {
         y: "100%",
         duration: 0.8,
         ease: "power3.inOut",
-        delay: 0.3,
+        delay: 0.5, // Hold black panel with quote
       });
     }
   }, [isTransitioning]);
@@ -65,7 +56,9 @@ export default function PageTransitionSplash({
         id="transition-splash-black"
         className="absolute inset-0 bg-black flex items-center justify-center z-20"
       >
-        <div className="text-white text-6xl font-bold">PORTFOLIO</div>
+        <div className="text-white uppercase text-4xl font-bold text-center px-8 max-w-3xl">
+          {text}
+        </div>
       </div>
     </div>
   );

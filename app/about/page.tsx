@@ -21,7 +21,7 @@ function Page() {
     });
 
     // Animate cards in sequence: Experience -> Skill Set -> Detail
-    const tl = gsap.timeline({ delay: 0.5 });
+    const tl = gsap.timeline({ delay: 1.4 });
     tl.to(experienceRef.current, {
       y: 0,
       opacity: 1,

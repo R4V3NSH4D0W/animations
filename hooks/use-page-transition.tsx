@@ -27,11 +27,8 @@ export function PageTransitionProvider({
       setIsTransitioning(true);
       setIsPageReady(false);
 
-      // Wait for panels to cover screen before navigating
-      setTimeout(() => {
-        console.log("Navigating to:", href);
-        router.push(href);
-      }, 1000); // Time for cover animation
+      // Navigate immediately - content will be hidden by white background
+      router.push(href);
     },
     [router]
   );

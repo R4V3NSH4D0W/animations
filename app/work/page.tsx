@@ -32,6 +32,7 @@ function Page() {
         <PhysicsText
           text="WORKS"
           gravity={1}
+          startDelay={1300}
           containerWidth="100%"
           className=" text-[270px] 2xl:text-[300px] font-extrabold -mt-[220px] min-h-[calc(100%+140px)]"
           dropDelay={200}

@@ -33,6 +33,8 @@ interface PhysicsTextProps {
   startPosition?: { x: number; y: number };
   /** Delay in milliseconds between each letter drop (default: 100) */
   dropDelay?: number;
+  /** Initial delay in milliseconds before animation starts (default: 0) */
+  startDelay?: number;
 }
 
 const PhysicsText: React.FC<PhysicsTextProps> = ({
@@ -51,11 +53,13 @@ const PhysicsText: React.FC<PhysicsTextProps> = ({
   density = 0.001,
   startPosition = { x: 0.5, y: 0 },
   dropDelay = 500,
+  startDelay = 0,
 }) => {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const textRef = useRef<HTMLDivElement | null>(null);
   const canvasContainerRef = useRef<HTMLDivElement | null>(null);
   const [effectStarted, setEffectStarted] = useState(false);
+  const [isReady, setIsReady] = useState(false);
 
   // Split text into spans
   useEffect(() => {
@@ -71,8 +75,22 @@ const PhysicsText: React.FC<PhysicsTextProps> = ({
     textRef.current.innerHTML = newHTML;
   }, [text]);
 
+  // Handle initial delay for all triggers
+  useEffect(() => {
+    if (startDelay > 0) {
+      const delayTimer = setTimeout(() => {
+        setIsReady(true);
+      }, startDelay);
+      return () => clearTimeout(delayTimer);
+    } else {
+      setIsReady(true);
+    }
+  }, [startDelay]);
+
   // Handle triggers
   useEffect(() => {
+    if (!isReady) return;
+
     if (trigger === "auto") {
       setEffectStarted(true);
       return;
@@ -90,7 +108,7 @@ const PhysicsText: React.FC<PhysicsTextProps> = ({
       observer.observe(containerRef.current);
       return () => observer.disconnect();
     }
-  }, [trigger]);
+  }, [trigger, isReady]);
 
   // Matter.js effect
   useEffect(() => {
@@ -263,7 +281,11 @@ const PhysicsText: React.FC<PhysicsTextProps> = ({
   ]);
 
   const handleTrigger = () => {
-    if (!effectStarted && (trigger === "click" || trigger === "hover")) {
+    if (
+      !effectStarted &&
+      (trigger === "click" || trigger === "hover") &&
+      isReady
+    ) {
       setEffectStarted(true);
     }
   };
@@ -275,6 +297,8 @@ const PhysicsText: React.FC<PhysicsTextProps> = ({
       style={{
         width: containerWidth,
         overflow: "visible",
+        opacity: isReady ? 1 : 0,
+        transition: "opacity 0.3s",
       }}
       onClick={trigger === "click" ? handleTrigger : undefined}
       onMouseEnter={trigger === "hover" ? handleTrigger : undefined}
