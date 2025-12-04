@@ -43,7 +43,6 @@ function Page() {
       <FolderStructure />
 
       <Archive />
-      <Slogan />
     </main>
   );
 }

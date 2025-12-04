@@ -4,24 +4,30 @@ import { SectionHeader } from "./SectionHeader";
 import { BORDER_CLASSES } from "./constants";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
+import Link from "next/link";
 
-const InfoRow = ({
-  label,
-  value,
-  bordered = true,
-}: {
+type InfoRowProps = {
   label: string;
   value: string;
+  href?: string;
   bordered?: boolean;
-}) => (
+};
+
+const InfoRow = ({ label, value, href, bordered = true }: InfoRowProps) => (
   <div
     className={cn(
-      "grid grid-cols-2 items-center  gap-5 px-5 py-3",
-      bordered && BORDER_CLASSES + " border-b"
+      "grid grid-cols-2 items-center gap-5 px-5 py-3",
+      bordered && `${BORDER_CLASSES} border-b`
     )}
   >
-    <span className="text-2xl ">{label}</span>
-    <span className="text-base font-light break-all">{value}</span>
+    <span className="text-2xl">{label}</span>
+    {href ? (
+      <Link href={href} className="text-base font-light break-all ">
+        {value}
+      </Link>
+    ) : (
+      <span className="text-base font-light break-all">{value}</span>
+    )}
   </div>
 );
 
@@ -53,7 +59,7 @@ function DetailSection() {
               <span className=" text-4xl mb-10 font-medium">R4V3NSH4DOW</span>
               <div className=" w-[400px] h-[250px] relative">
                 <Image
-                  src="https://i.pinimg.com/736x/eb/ba/5a/ebba5a627c9b9e7d458a243ae807add9.jpg"
+                  src="https://i.pinimg.com/736x/93/6e/84/936e845973e45635a71cc4efaf11d97d.jpg"
                   alt="Profile Image"
                   fill
                   className=" object-cover"
@@ -82,7 +88,12 @@ function DetailSection() {
 
           <InfoRow label="Email" value="Lenishmagar@gmail.com" bordered />
           <InfoRow label="Instagram" value="@Lenishmagar" bordered />
-          <InfoRow label="LinkedIn" value="@Lenishmagar" bordered={false} />
+          <InfoRow
+            label="LinkedIn"
+            href="https://www.linkedin.com/in/lenish-yesmali-magar-a8a980282/"
+            value="linkedin.com/in/lenish-yesmali-magar"
+            bordered={false}
+          />
         </div>
         <div className={cn("border-l flex justify-center ", BORDER_CLASSES)} />
 

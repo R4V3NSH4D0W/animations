@@ -1,6 +1,7 @@
 "use client";
 import { createContext, useContext, useState, useCallback } from "react";
 import { useRouter } from "next/navigation";
+import { ScrollSmoother } from "gsap/ScrollSmoother";
 
 interface PageTransitionContextType {
   isTransitioning: boolean;
@@ -27,7 +28,15 @@ export function PageTransitionProvider({
       setIsTransitioning(true);
       setIsPageReady(false);
 
-      // Navigate immediately - content will be hidden by white background
+      // Scroll to top using ScrollSmoother or fallback to window
+      const smoother = ScrollSmoother.get();
+      if (smoother) {
+        smoother.scrollTo(0, false); // Instant scroll to top
+      } else {
+        window.scrollTo(0, 0);
+      }
+
+      // Navigate immediately - content will be hidden by background
       router.push(href);
     },
     [router]

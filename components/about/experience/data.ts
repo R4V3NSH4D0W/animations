@@ -8,8 +8,7 @@ export const experiences: Experience[] = [
     company: "R4V3N Technologies",
     position: "Frontend Engineer",
     image:
-      "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=400&h=300&fit=crop",
-    description: "Leading frontend development for enterprise applications",
+     "https://i.pinimg.com/736x/11/50/10/1150106db13b0cae280f5165a8632b71.jpg",
     details:
       "Developed scalable React applications, mentored junior developers, and implemented CI/CD pipelines.",
   },
@@ -19,8 +18,7 @@ export const experiences: Experience[] = [
     company: "NextGen Solutions",
     position: "UI/UX Designer",
     image:
-      "https://images.unsplash.com/photo-1559028012-481c04fa702d?w=400&h=300&fit=crop",
-    description: "Designed user-centered digital experiences",
+"https://i.pinimg.com/736x/d1/3c/7e/d13c7ef085a3c777ad3dc2949a9aec81.jpg",
     details:
       "Created design systems, conducted user research, and collaborated with development teams.",
   },
@@ -30,8 +28,7 @@ export const experiences: Experience[] = [
     company: "Tech Innovations Pvt Ltd",
     position: "Full Stack Developer",
     image:
-      "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=400&h=300&fit=crop",
-    description: "Built end-to-end web applications",
+"https://i.pinimg.com/736x/5c/30/6e/5c306e71eea40ad8729d3545bb69b8c4.jpg",
     details:
       "Worked with Node.js, React, and PostgreSQL to deliver full-stack solutions.",
   },
@@ -41,8 +38,7 @@ export const experiences: Experience[] = [
     company: "Creative Labs",
     position: "Intern Developer",
     image:
-      "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=400&h=300&fit=crop",
-    description: "Gained hands-on development experience",
+   "https://i.pinimg.com/736x/ae/1f/15/ae1f15afb031ef0eb771a81eb5c77e28.jpg",
     details:
       "Assisted in web development projects and learned industry best practices.",
   },
@@ -52,8 +48,7 @@ export const experiences: Experience[] = [
     company: "Startup Hub",
     position: "Junior Frontend Engineer",
     image:
-      "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=400&h=300&fit=crop",
-    description: "Started career in web development",
+   "https://i.pinimg.com/736x/0f/6c/c8/0f6cc807ab60aa6b0bfad6eb44b0c930.jpg",
     details:
       "Built responsive user interfaces using HTML, CSS, JavaScript, and React.",
   },
@@ -67,8 +62,7 @@ export const education: Education[] = [
     school: "Kathmandu University",
     degree: "Bachelor of Computer Engineering",
     image:
-      "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=400&h=300&fit=crop",
-    description: "Comprehensive engineering education",
+ "https://i.pinimg.com/736x/56/99/4a/56994a0411c3d74c82f5d97152eae0e5.jpg",
     details:
       "Studied data structures, algorithms, software engineering, and web technologies. GPA: 3.8/4.0",
   },
@@ -78,8 +72,7 @@ export const education: Education[] = [
     school: "St. Xavier's College, Kathmandu",
     degree: "Higher Secondary Education (Science)",
     image:
-      "https://images.unsplash.com/photo-1562774053-701939374585?w=400&h=300&fit=crop",
-    description: "Science stream with focus on mathematics",
+   "https://i.pinimg.com/736x/00/df/0e/00df0e280c5d81c8c38d7689ccd9991f.jpg",
     details:
       "Completed higher secondary education with physics, chemistry, and mathematics.",
   },
@@ -89,8 +82,7 @@ export const education: Education[] = [
     school: "Greenfield Secondary School",
     degree: "Secondary Education (Science)",
     image:
-      "https://images.unsplash.com/photo-1546410531-bb4caa6b424d?w=400&h=300&fit=crop",
-    description: "Foundation in sciences and mathematics",
+    "https://i.pinimg.com/736x/e5/de/c7/e5dec7aa2453bc7cbd9abd9a8bcd64fa.jpg",
     details:
       "Completed secondary education with distinction in science subjects.",
   },
@@ -103,8 +95,7 @@ export const achievements: Achievement[] = [
     title: "Best Innovation Award",
     organization: "Tech Summit Asia",
     image:
-      "https://images.unsplash.com/photo-1567427017947-545c5f8d16ad?w=400&h=300&fit=crop",
-    description: "Recognized for innovative AI solution",
+     "https://i.pinimg.com/736x/c4/c0/2a/c4c02ada4728b3baf4cd4bda92dfbedd.jpg",
     details:
       "Developed an AI-powered tool that improved productivity by 40% across teams.",
   },
@@ -113,8 +104,7 @@ export const achievements: Achievement[] = [
     title: "Outstanding Developer of the Year",
     organization: "Dev Community Nepal",
     image:
-      "https://images.unsplash.com/photo-1579165466741-7f35e4755660?w=400&h=300&fit=crop",
-    description: "Community recognition for technical contributions",
+     "https://i.pinimg.com/736x/fb/22/c5/fb22c5f9594bdbfabc9c10d742e97b47.jpg",
     details:
       "Awarded for contributions to open source and mentoring junior developers.",
   },
@@ -123,8 +113,7 @@ export const achievements: Achievement[] = [
     title: "First Place - Hackathon 2022",
     organization: "Code For Change",
     image:
-      "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=400&h=300&fit=crop",
-    description: "Winner of 24-hour coding challenge",
+    "https://i.pinimg.com/736x/f8/fe/04/f8fe04978f53e4491828db7be3b15dcb.jpg",
     details:
       "Built a social impact platform connecting volunteers with NGOs in 24 hours.",
   },
@@ -133,8 +122,7 @@ export const achievements: Achievement[] = [
     title: "Excellence in Web Development",
     organization: "Web Developers Association",
     image:
-      "https://images.unsplash.com/photo-1593642532842-98d0fd5ebc1a?w=400&h=300&fit=crop",
-    description: "Excellence in modern web technologies",
+"https://i.pinimg.com/736x/96/fe/e3/96fee308a0617e70adcc9d1a150ea895.jpg",
     details:
       "Recognized for exceptional skills in React, Next.js, and modern web architecture.",
   },
@@ -143,8 +131,7 @@ export const achievements: Achievement[] = [
     title: "Dean's List",
     organization: "Kathmandu University",
     image:
-      "https://images.unsplash.com/photo-1513542789411-b6a5d4f31634?w=400&h=300&fit=crop",
-    description: "Academic excellence recognition",
+   "https://i.pinimg.com/736x/fa/d0/e2/fad0e2ef7bae852efa26cacd5329336f.jpg",
     details: "Maintained GPA above 3.8 throughout the academic year.",
   },
 ];
@@ -156,8 +143,7 @@ export const recognitions: Recognition[] = [
     award: "Top Contributor Badge",
     issuedBy: "GitHub",
     image:
-      "https://images.unsplash.com/photo-1618401471353-b98afee0b2eb?w=400&h=300&fit=crop",
-    description: "Top open source contributor",
+  'https://i.pinimg.com/736x/67/d5/de/67d5deb0a676fc6467ec67c51e27d2a1.jpg',
     details:
       "Contributed to over 50 open source projects with 1000+ commits in 2024.",
   },
@@ -166,8 +152,7 @@ export const recognitions: Recognition[] = [
     award: "Certificate of Excellence",
     issuedBy: "Frontend Masters",
     image:
-      "https://images.unsplash.com/photo-1573164713988-8665fc963095?w=400&h=300&fit=crop",
-    description: "Completed advanced frontend courses",
+    "https://i.pinimg.com/736x/f1/8b/d1/f18bd1dbf886fbb72dd77b2434c436ee.jpg",
     details:
       "Mastered advanced React patterns, TypeScript, and performance optimization.",
   },
@@ -176,8 +161,7 @@ export const recognitions: Recognition[] = [
     award: "Community Leader Award",
     issuedBy: "React Nepal",
     image:
-      "https://images.unsplash.com/photo-1556761175-b413da4baf72?w=400&h=300&fit=crop",
-    description: "Leading React community in Nepal",
+  "https://i.pinimg.com/736x/8b/bb/3b/8bbb3b01aea7b295a1dadfbd5418bb5b.jpg",
     details: "Organized meetups, workshops, and mentored 100+ developers.",
   },
   {
@@ -185,8 +169,7 @@ export const recognitions: Recognition[] = [
     award: "Best UI/UX Design",
     issuedBy: "Design Awards 2022",
     image:
-      "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=400&h=300&fit=crop",
-    description: "Excellence in user interface design",
+      "https://i.pinimg.com/1200x/b6/21/d6/b621d670540256ec37f74cc8f62ed073.jpg",
     details:
       "Awarded for exceptional UI design that improved user engagement by 60%.",
   },
@@ -195,8 +178,7 @@ export const recognitions: Recognition[] = [
     award: "Outstanding Volunteer",
     issuedBy: "Tech For Good Nepal",
     image:
-      "https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=400&h=300&fit=crop",
-    description: "Tech volunteer for social causes",
+   "https://i.pinimg.com/736x/ef/c1/ad/efc1ad0d7e01cc39246ca7c539d769b4.jpg",
     details:
       "Volunteered 200+ hours building tech solutions for non-profit organizations.",
   },

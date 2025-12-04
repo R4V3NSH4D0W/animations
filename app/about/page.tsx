@@ -52,7 +52,7 @@ function Page() {
 
   const handleExperienceClick = () => {
     const viewportWidth = window.innerWidth;
-    const slideDistance = viewportWidth - 80;
+    const slideDistance = viewportWidth - 58;
 
     if (activeCard === "experience") {
       // Return to original state
@@ -82,7 +82,7 @@ function Page() {
 
   const handleSkillsetClick = () => {
     const viewportWidth = window.innerWidth;
-    const slideDistance = viewportWidth - 80;
+    const slideDistance = viewportWidth - 58;
 
     if (activeCard === "skillset") {
       // Return to original state
@@ -127,7 +127,7 @@ function Page() {
 
   const handleDetailClick = () => {
     const viewportWidth = window.innerWidth;
-    const slideDistance = viewportWidth - 80;
+    const slideDistance = viewportWidth - 58;
 
     if (activeCard === "detail") {
       // Return to original state
@@ -164,7 +164,7 @@ function Page() {
   };
 
   return (
-    <main className="my-20">
+    <main className="py-20">
       <div className=" flex mb-10 text-8xl gap-20 mx-10 ">
         <span>About</span>
         <span>Me</span>

@@ -89,7 +89,7 @@ const ExperienceCard = () => {
   ];
 
   return (
-    <div className="w-[98%] bg-[#D9D9D9] rounded-lg flex overflow-hidden shadow-lg transform transition-transform duration-300 hover:-translate-y-10">
+    <div className="w-[98%] bg-gray-200/30 rounded-lg flex overflow-hidden shadow-lg transform transition-transform duration-300 hover:-translate-y-10">
       <div className="grid grid-cols-[30px_0.4fr_1fr_30px] w-full">
         {/* Header Section */}
         <div

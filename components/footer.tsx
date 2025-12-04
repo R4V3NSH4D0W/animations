@@ -3,6 +3,7 @@ import React from "react";
 import { Copyright } from "lucide-react";
 import { ArrowRight } from "lucide-react";
 import { useGsapLineReveal } from "@/components/shared/useGsapLineReveal";
+import Slogan from "./work/slogan";
 
 function Footer() {
   const lineRef = useGsapLineReveal({
@@ -18,6 +19,7 @@ function Footer() {
 
   return (
     <footer className=" mx-10 flex flex-col">
+      <Slogan />
       <div
         ref={lineRef}
         className="w-full border-[0.1px] border-black overflow-hidden"

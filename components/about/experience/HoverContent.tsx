@@ -16,7 +16,7 @@ export const HoverContent = ({
   hoverContentRef,
 }: HoverContentProps) => (
   <div
-    className="sticky top-4 p-2 max-h-[calc(100vh-2rem)] overflow-y-auto"
+    className="sticky top-[20%] p-2 max-h-[calc(100vh-2rem)] overflow-y-auto"
     ref={hoverContentRef}
   >
     {hoveredItem ? (
