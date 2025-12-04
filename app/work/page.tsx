@@ -2,6 +2,8 @@ import React from "react";
 import PhysicsText from "../../components/shared/physics-text";
 import ViewReveal from "../../components/shared/view-reveal";
 import FolderStructure from "../../components/home/folder-structure";
+import Archive from "@/components/work/archive";
+import Slogan from "@/components/work/slogan";
 
 function Page() {
   return (
@@ -38,6 +40,9 @@ function Page() {
         />
       </div>
       <FolderStructure />
+
+      <Archive />
+      <Slogan />
     </main>
   );
 }

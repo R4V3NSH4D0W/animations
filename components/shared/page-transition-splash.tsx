@@ -65,7 +65,7 @@ export default function PageTransitionSplash({
         id="transition-splash-black"
         className="absolute inset-0 bg-black flex items-center justify-center z-20"
       >
-        <div className="text-white text-6xl font-bold">LUXSTORE</div>
+        <div className="text-white text-6xl font-bold">PORTFOLIO</div>
       </div>
     </div>
   );

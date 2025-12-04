@@ -31,7 +31,7 @@ function FolderStructure() {
         ...scrollTriggerConfig,
         trigger: firstRef.current,
         start: "top 10%",
-        end: () => `+=${window.innerHeight * 2}`, // stays pinned for 2 screen heights
+        end: () => `+=${window.innerHeight * 3}`, // stays pinned for 3 screen heights
         pin: true,
         pinSpacing: false,
         // markers: true,
@@ -42,7 +42,7 @@ function FolderStructure() {
         ...scrollTriggerConfig,
         trigger: secondRef.current,
         start: "top 10%",
-        end: () => `+=${window.innerHeight}`, // stays pinned for 1 screen height
+        end: () => `+=${window.innerHeight * 2}`, // stays pinned for 2 screen heights
         pin: true,
         pinSpacing: false,
         // markers: true,
@@ -53,9 +53,9 @@ function FolderStructure() {
         ...scrollTriggerConfig,
         trigger: thirdRef.current,
         start: "top 10%",
-        end: "bottom top",
+        end: () => `+=${window.innerHeight}`,
         pin: true,
-        pinSpacing: false,
+        // pinSpacing: false, // allow normal scroll after
         // markers: true,
       });
     },
@@ -120,7 +120,7 @@ function FolderStructure() {
         ref={thirdRef}
         className=" w-full h-screen z-20 relative bg-purple-100 "
       >
-        <div className=" flex flex-row absolute -top-9 left-[52%]">
+        <div className=" flex flex-row absolute -top-9 left-[50%]">
           <div className=" h-10 w-[400px] flex items-center justify-center bg-purple-100">
             <span className=" uppercase font-medium">Featured Work 3</span>
           </div>

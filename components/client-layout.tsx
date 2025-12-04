@@ -8,6 +8,7 @@ import {
   usePageTransition,
 } from "../hooks/use-page-transition";
 import PageTransitionSplash from "./shared/page-transition-splash";
+import Footer from "./footer";
 
 function ClientLayoutContent({ children }: { children: React.ReactNode }) {
   const [splashComplete, setSplashComplete] = useState(false);
@@ -17,7 +18,7 @@ function ClientLayoutContent({ children }: { children: React.ReactNode }) {
     <>
       <SplashScreen duration={2000} onComplete={() => setSplashComplete(true)}>
         {/* Optional: Add logo or text on black screen */}
-        <div className="text-white text-6xl font-bold">LUXSTORE</div>
+        <div className="text-white text-6xl font-bold">PORTFOLIO</div>
       </SplashScreen>
 
       <PageTransitionSplash isTransitioning={isTransitioning} />
@@ -30,6 +31,7 @@ function ClientLayoutContent({ children }: { children: React.ReactNode }) {
             <div style={{ opacity: 1, transition: "opacity 0.2s" }}>
               {children}
             </div>
+            <Footer />
           </SmoothScrollWrapper>
         </>
       )}

@@ -28,7 +28,7 @@ export default function Navbar() {
     <div className="flex fixed top-0 left-0 right-0 z-9999 flex-row justify-between items-center p-5 ">
       <div onClick={() => handleNavClick("/")} className="cursor-pointer">
         <Shuffle
-          text="Luxstore"
+          text="PORTFOLIO"
           shuffleDirection="right"
           duration={0.5}
           animationMode="evenodd"
