@@ -34,22 +34,8 @@ function ClientLayoutContent({ children }: { children: React.ReactNode }) {
     }
   };
 
-  // Mark page as ready after content is rendered and images/resources loaded
-  useEffect(() => {
-    if (splashComplete && !isTransitioning) {
-      return; // No transition in progress
-    }
-
-    if (isTransitioning) {
-      // Wait for content to be ready
-      const timer = setTimeout(() => {
-        // You can add more sophisticated checks here (images loaded, etc.)
-        markPageReady();
-      }, 100); // Small delay to ensure DOM is rendered
-
-      return () => clearTimeout(timer);
-    }
-  }, [isTransitioning, splashComplete, markPageReady]);
+  // This effect is no longer needed - route change detection moved to context
+  // The context will call markPageReady() when pathname actually changes
 
   return (
     <>

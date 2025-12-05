@@ -1,6 +1,12 @@
 "use client";
-import { createContext, useContext, useState, useCallback } from "react";
-import { useRouter } from "next/navigation";
+import {
+  createContext,
+  useContext,
+  useState,
+  useCallback,
+  useEffect,
+} from "react";
+import { useRouter, usePathname } from "next/navigation";
 import { ScrollSmoother } from "gsap/ScrollSmoother";
 
 interface PageTransitionContextType {
@@ -20,13 +26,22 @@ export function PageTransitionProvider({
 }) {
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [isPageReady, setIsPageReady] = useState(false);
+  const [targetPath, setTargetPath] = useState<string | null>(null);
   const router = useRouter();
+  const pathname = usePathname();
 
   const navigateWithTransition = useCallback(
     (href: string) => {
+      // Prevent multiple rapid navigations
+      if (isTransitioning) {
+        console.log("Navigation already in progress, ignoring");
+        return;
+      }
+
       console.log("Starting transition to:", href);
       setIsTransitioning(true);
       setIsPageReady(false);
+      setTargetPath(href);
 
       // Scroll to top using ScrollSmoother or fallback to window
       const smoother = ScrollSmoother.get();
@@ -39,7 +54,7 @@ export function PageTransitionProvider({
       // Navigate immediately - content will be hidden by background
       router.push(href);
     },
-    [router]
+    [router, isTransitioning]
   );
 
   const markPageReady = useCallback(() => {
@@ -49,8 +64,21 @@ export function PageTransitionProvider({
     setTimeout(() => {
       console.log("Transition complete");
       setIsTransitioning(false);
-    }, 1500); // Time for reveal animation
+      setTargetPath(null);
+    }, 1700); // Match actual animation duration (0.4 + 0.5 + 0.8 = 1.7s)
   }, []);
+
+  // Detect when route actually changes and mark page ready
+  useEffect(() => {
+    if (targetPath && pathname === targetPath) {
+      console.log("Route changed to target:", pathname);
+      // Route has changed, wait a bit for content to render
+      const timer = setTimeout(() => {
+        markPageReady();
+      }, 100);
+      return () => clearTimeout(timer);
+    }
+  }, [pathname, targetPath, markPageReady]);
 
   return (
     <PageTransitionContext.Provider

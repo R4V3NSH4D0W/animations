@@ -17,12 +17,14 @@ export default function PageTransitionSplash({
 
     if (!blackPanel || !whitePanel) return;
 
+    let tl: gsap.core.Timeline | null = null;
+
     if (isTransitioning) {
       // Start: panels above viewport
       gsap.set(blackPanel, { y: "-100%" });
       gsap.set(whitePanel, { y: "-100%" });
 
-      const tl = gsap.timeline();
+      tl = gsap.timeline();
 
       // Step 1: Black panel slides down and fills screen
       tl.to(blackPanel, {
@@ -36,9 +38,16 @@ export default function PageTransitionSplash({
         y: "100%",
         duration: 0.8,
         ease: "power3.inOut",
-        delay: 0.5, // Hold black panel with quote
+        delay: 0.8, // Hold black panel with quote
       });
     }
+
+    // Cleanup to prevent memory leaks
+    return () => {
+      if (tl) {
+        tl.kill();
+      }
+    };
   }, [isTransitioning]);
 
   if (!isTransitioning) return null;
