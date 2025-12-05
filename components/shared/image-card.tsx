@@ -1,6 +1,4 @@
 import Image from "next/image";
-import React from "react";
-import HoverFlip from "./hover-flip";
 
 interface ImageCardProps {
   imageURL: string;
@@ -22,9 +20,9 @@ function ImageCard({ imageURL, title, launch }: ImageCardProps) {
       <div className=" flex items-center flex-col justify-center gap-2">
         <span className=" font-bold text-xs">{title}</span>
         <span className=" text-xl">{launch}</span>
-        <HoverFlip>
+        {/* <HoverFlip>
           <span className=" text-xs font-medium">View More</span>
-        </HoverFlip>
+        </HoverFlip> */}
       </div>
     </div>
   );

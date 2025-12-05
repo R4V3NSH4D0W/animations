@@ -25,7 +25,7 @@ function page() {
         </div>
 
         <PhysicsText
-          text="MOTION"
+          text="DESIGN"
           letterSpacing={10}
           gravity={1}
           enableGyro={true}

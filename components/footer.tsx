@@ -81,7 +81,7 @@ function Footer() {
             <span className="text-sm">Contact</span>
           </div>
           <div className="flex flex-col gap-1">
-            <span className="uppercase font-bold text-xs mb-2">Follow Us</span>
+            <span className="uppercase font-bold text-xs mb-2">Follow Me</span>
             <span className="text-sm">Instagram</span>
             <span className="text-sm">LinkedIn</span>
             <span className="text-sm">Twitter</span>
@@ -96,7 +96,7 @@ function Footer() {
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6 md:mb-10">
         <span className="flex items-center gap-1 text-xs sm:text-sm">
           <Copyright size={16} className="inline-block flex-shrink-0" />
-          2024 R4V3N. All rights reserved.
+          2024 Lenish. All rights reserved.
         </span>
         <div className="flex flex-col sm:flex-row gap-3 sm:gap-5 uppercase text-xs sm:text-sm">
           <span>Privacy Policy</span>

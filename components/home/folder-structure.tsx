@@ -37,7 +37,7 @@ function FolderStructure() {
       ScrollTrigger.create({
         ...scrollTriggerConfig,
         trigger: firstRef.current,
-        start: "top 11%",
+        start: "top 11.8%",
         end: () => `+=${window.innerHeight * 2}`,
         pin: true,
         pinSpacing: false,
@@ -47,7 +47,7 @@ function FolderStructure() {
       ScrollTrigger.create({
         ...scrollTriggerConfig,
         trigger: secondRef.current,
-        start: "top 11%",
+        start: "top 11.8%",
         end: () => `+=${window.innerHeight * 1}`,
         pin: true,
         pinSpacing: false,

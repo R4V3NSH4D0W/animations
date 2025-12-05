@@ -13,7 +13,7 @@ import gsap from "gsap/all";
 const navItems = [
   { name: "About", href: "/about" },
   // { name: "Services", href: "/services" },
-  // { name: "Experties", href: "/experties" },
+  { name: "Experties", href: "/experties" },
   { name: "Works", href: "/works" },
   { name: "Contact", href: "/contact" },
 ];
@@ -213,7 +213,7 @@ export default function Navbar() {
       {/* Mobile Menu Dropdown */}
       <div
         ref={mobileMenuRef}
-        className="fixed top-0 left-0 right-0 bg-white overflow-hidden lg:hidden"
+        className="fixed top-0 left-0 right-0 bg-gray-100 overflow-hidden lg:hidden"
         style={{
           height: 0,
           opacity: 0,

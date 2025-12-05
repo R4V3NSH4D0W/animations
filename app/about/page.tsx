@@ -181,7 +181,7 @@ function Page() {
         <div
           ref={skillsetRef}
           onClick={handleSkillsetClick}
-          className="absolute top-[8%] sm:top-[10%] w-full cursor-pointer"
+          className="absolute top-[8%] sm:top-[10%] max-sm:w-full cursor-pointer"
         >
           <SkillSetCard />
         </div>

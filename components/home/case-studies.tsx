@@ -1,7 +1,7 @@
 "use client";
 
 import { ArrowRight } from "lucide-react";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import ImageCard from "../shared/image-card";
 import {
   Carousel,
@@ -9,25 +9,27 @@ import {
   CarouselItem,
   type CarouselApi,
 } from "@/components/ui/carousel";
+import { useCursor } from "../wrappers/cursor-wrapper";
+import { useCursorEffect } from "@/hooks/use-cursor-effect";
 
 const data = [
   {
     imageURL:
-      "https://i.pinimg.com/736x/55/c4/d0/55c4d0f567c9f938bf719d6390975a89.jpg",
-    title: "Jillan Dempsey",
-    launch: "FLYK Trick MAscara Prodcut Launch",
+      "https://i.pinimg.com/736x/56/ad/87/56ad87a78a95729abf04f56a14b379eb.jpg",
+    title: "E-Commerce Platform",
+    launch: "Fashion Store Growth",
   },
   {
     imageURL:
       "https://i.pinimg.com/736x/97/da/a0/97daa081bff94a6b032e1538b0407f12.jpg",
-    title: "D.S. & Durga",
-    launch: "Bistro Waters Fragnance Prodcut Launch",
+    title: "Fintech Dashboard",
+    launch: "Data Visualization",
   },
   {
     imageURL:
       "https://i.pinimg.com/1200x/b1/2a/4b/b12a4bd6a36f48c14157e595992d1a46.jpg",
-    title: "TM Micro",
-    launch: "Aire IQ Hair Dryer Launch",
+    title: "Portfolio v1",
+    launch: "Experimental Design",
   },
 ];
 
@@ -45,11 +47,14 @@ function CaseStudies() {
     });
   }, [api]);
 
+  const firstItemRef = useRef<HTMLDivElement>(null);
+  useCursorEffect(firstItemRef, "middleFinger");
+
   return (
     <section className="flex flex-col mx-4 sm:mx-6 md:mx-8 lg:mx-10 my-8 sm:my-10 md:my-12 lg:my-16">
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 sm:gap-0">
         <span className="text-xs sm:text-sm font-medium uppercase">
-          Case Studies
+          Recent Works
         </span>
         <div className="flex flex-row items-center gap-3 sm:gap-5 cursor-pointer hover:gap-4 sm:hover:gap-6 transition-all">
           <span className="uppercase text-xs sm:text-sm">View More Work</span>
@@ -102,12 +107,13 @@ function CaseStudies() {
       {/* Desktop Grid */}
       <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 md:gap-10 mt-6 sm:mt-8 md:mt-10">
         {data.map((item, index) => (
-          <ImageCard
-            key={index}
-            imageURL={item.imageURL}
-            title={item.title}
-            launch={item.launch}
-          />
+          <div key={index} ref={index === 0 ? firstItemRef : null}>
+            <ImageCard
+              imageURL={item.imageURL}
+              title={item.title}
+              launch={item.launch}
+            />
+          </div>
         ))}
       </div>
     </section>

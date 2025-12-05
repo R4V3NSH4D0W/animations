@@ -10,6 +10,7 @@ import {
 } from "../hooks/use-page-transition";
 import PageTransitionSplash from "./shared/page-transition-splash";
 import Footer from "./footer";
+import { CursorProvider } from "./wrappers/cursor-wrapper";
 
 function ClientLayoutContent({ children }: { children: React.ReactNode }) {
   const [splashComplete, setSplashComplete] = useState(false);
@@ -52,28 +53,30 @@ function ClientLayoutContent({ children }: { children: React.ReactNode }) {
       {/* Only render content after splash is complete */}
       {splashComplete && (
         <>
-          <Navbar />
-          <SmoothScrollWrapper>
-            <div
-              style={{
-                position: "relative",
-              }}
-            >
-              {/* Temporary background during transition */}
-              {isTransitioning && (
-                <div
-                  className="bg-gray-100"
-                  style={{
-                    position: "fixed",
-                    inset: 0,
-                    zIndex: 9998,
-                  }}
-                />
-              )}
-              {children}
-            </div>
-            <Footer />
-          </SmoothScrollWrapper>
+          <CursorProvider>
+            <Navbar />
+            <SmoothScrollWrapper>
+              <div
+                style={{
+                  position: "relative",
+                }}
+              >
+                {/* Temporary background during transition */}
+                {isTransitioning && (
+                  <div
+                    className="bg-gray-100"
+                    style={{
+                      position: "fixed",
+                      inset: 0,
+                      zIndex: 9998,
+                    }}
+                  />
+                )}
+                {children}
+              </div>
+              <Footer />
+            </SmoothScrollWrapper>
+          </CursorProvider>
         </>
       )}
     </>

@@ -13,7 +13,7 @@ function Page() {
           <ViewReveal revealAfter={1} startHidden enableBlur={false}>
             <div className="flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-4">
               <span className="uppercase text-xs sm:text-sm font-bold">
-                (Our Work)
+                (MY WORKS)
               </span>
               <span className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-[78px] leading-tight">
                 Code Meets Creativity,

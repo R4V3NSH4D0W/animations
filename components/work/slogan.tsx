@@ -29,6 +29,7 @@ function Slogan() {
           <span>Instagram</span>
           <span>LinkedIn</span>
           <span>Resume</span>
+          <span className=" hidden xl:block" />
         </div>
         <h5 className="w-full lg:-mt-15 whitespace-nowrap uppercase text-center font-bold text-[16vw] leading-tight">
           PORTFOLIO
