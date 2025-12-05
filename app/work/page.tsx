@@ -36,7 +36,7 @@ function Page() {
           containerWidth="100%"
           className=" text-[270px] 2xl:text-[300px] font-extrabold -mt-[220px] min-h-[calc(100%+140px)]"
           dropDelay={200}
-          restitution={0.2}
+          restitution={0.6}
           startPosition={{ x: 0.1, y: 0 }}
         />
       </div>

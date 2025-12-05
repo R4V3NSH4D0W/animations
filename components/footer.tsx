@@ -4,6 +4,7 @@ import { Copyright } from "lucide-react";
 import { ArrowRight } from "lucide-react";
 import { useGsapLineReveal } from "@/components/shared/useGsapLineReveal";
 import Slogan from "./work/slogan";
+import { useNavigation } from "@/hooks/use-navigation";
 
 function Footer() {
   const lineRef = useGsapLineReveal({
@@ -17,16 +18,23 @@ function Footer() {
     delay: 0.8,
   });
 
+  const firstLineRef = useGsapLineReveal({
+    fromWidth: 0,
+    toWidth: "100%",
+    delay: 0.8,
+  });
+  const { navigate } = useNavigation();
+
   return (
     <footer className=" mx-10 flex flex-col">
       <Slogan />
       <div
-        ref={lineRef}
-        className="w-full border-[0.1px] border-black overflow-hidden"
+        ref={firstLineRef}
+        className=" w-full border-[0.2px] border-black my-10"
       />
-      <Link className=" mt-5" href="/">
+      <div className=" mt-5 cursor-pointer" onClick={() => navigate("/")}>
         Home
-      </Link>
+      </div>
       <span className=" mt-10 text-6xl">
         Don&apos;t Miss A Thing <br /> With R4V3NSH4D0W
       </span>

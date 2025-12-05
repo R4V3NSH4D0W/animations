@@ -27,6 +27,8 @@ function ClientLayoutContent({ children }: { children: React.ReactNode }) {
         return "Where creativity meets excellence";
       case "/services":
         return "Transforming visions into reality";
+      case "/contact":
+        return "Let's create something together";
       default:
         return "Welcome";
     }

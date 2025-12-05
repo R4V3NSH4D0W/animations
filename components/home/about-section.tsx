@@ -1,10 +1,12 @@
-import React from "react";
+"use client";
 import ScrollReveal from "../shared/scroll-reveal";
 import Image from "next/image";
 import AnimateIn from "../shared/animate-in";
 import { ArrowRight } from "lucide-react";
+import { useNavigation } from "@/hooks/use-navigation";
 
 function AboutSection() {
+  const { navigate } = useNavigation();
   return (
     <section className="mx-10 mb-20 space-y-10">
       <div className="flex justify-between items-center ">
@@ -24,14 +26,17 @@ function AboutSection() {
               mass: 0.5,
             }}
           >
-            Social is the world your brand lives in, where content, commerce,
-            and influence intersect. At OGAKI, we build social-first ecosystems
-            powered by the creators, experts, and tastemakers who shape beauty -
-            helping prestige beauty brands grow without compromising what makes
-            them distinct.
+            I craft digital experiences that move and breathe, blending design,
+            motion, and interaction into seamless, engaging interfaces. My work
+            is driven by curiosity and attention to detail — turning ideas into
+            interactive, memorable experiences that feel alive on the modern
+            web.
           </ScrollReveal>
-          <div className=" flex items-center gap-2">
-            <span className=" uppercase">About Us</span>
+          <div
+            className="flex items-center cursor-pointer gap-2"
+            onClick={() => navigate("/about")}
+          >
+            <span className="uppercase">About Me</span>
             <ArrowRight size={16} />
           </div>
         </div>
@@ -40,7 +45,7 @@ function AboutSection() {
         <div className="flex-1 max-w-[500px]">
           <AnimateIn direction="up" resetOnExit blur>
             <Image
-              src="https://i.pinimg.com/1200x/73/41/ec/7341ece999e68cdc829c888fd735820b.jpg"
+              src="https://i.pinimg.com/736x/ec/df/b7/ecdfb7ec2403345b6a53c1255dcc1060.jpg"
               alt="About Image"
               width={500}
               height={500}

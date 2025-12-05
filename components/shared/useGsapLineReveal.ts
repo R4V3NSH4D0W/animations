@@ -1,7 +1,9 @@
 "use client";
-import { useRef, useEffect } from "react";
+import { useRef } from "react";
+import { usePathname } from "next/navigation";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/all";
+import { useGSAP } from "@gsap/react";
 gsap.registerPlugin(ScrollTrigger);
 
 interface GsapLineRevealOptions {
@@ -11,6 +13,9 @@ interface GsapLineRevealOptions {
   ease?: string;
   triggerOffset?: string;
   delay?: number;
+  backgroundColor?: string;
+  height?: string;
+  opacity?: number;
 }
 
 export function useGsapLineReveal({
@@ -20,17 +25,40 @@ export function useGsapLineReveal({
   ease = "power3.out",
   triggerOffset = "top 90%",
   delay = 0,
+  backgroundColor = "currentColor",
+  height = "1px",
+  opacity = 1,
 }: GsapLineRevealOptions = {}) {
   const ref = useRef<HTMLDivElement>(null);
+  const pathname = usePathname();
+  const animationRef = useRef<gsap.core.Tween | null>(null);
 
-  useEffect(() => {
+  useGSAP(() => {
     const el = ref.current;
     if (!el) return;
-    gsap.fromTo(
+
+    // Kill existing animation if any
+    if (animationRef.current) {
+      animationRef.current.kill();
+      if (animationRef.current.scrollTrigger) {
+        animationRef.current.scrollTrigger.kill();
+      }
+    }
+
+    // Apply static styles
+    if (backgroundColor) el.style.backgroundColor = backgroundColor;
+    if (height) el.style.height = height;
+
+    // Reset to initial state
+    gsap.set(el, { width: fromWidth, opacity: 0 });
+
+    // Create new animation
+    animationRef.current = gsap.fromTo(
       el,
-      { width: fromWidth },
+      { width: fromWidth, opacity: 0 },
       {
         width: toWidth,
+        opacity,
         duration,
         ease,
         delay,
@@ -41,10 +69,16 @@ export function useGsapLineReveal({
         },
       }
     );
+
     return () => {
-      ScrollTrigger.getAll().forEach((st) => st.kill());
+      if (animationRef.current) {
+        animationRef.current.kill();
+        if (animationRef.current.scrollTrigger) {
+          animationRef.current.scrollTrigger.kill();
+        }
+      }
     };
-  }, [fromWidth, toWidth, duration, ease, triggerOffset]);
+  }, { dependencies: [pathname, fromWidth, toWidth, duration, ease, triggerOffset, delay, backgroundColor, height, opacity], scope: ref });
 
   return ref;
 }

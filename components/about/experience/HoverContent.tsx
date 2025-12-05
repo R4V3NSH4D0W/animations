@@ -20,7 +20,7 @@ export const HoverContent = ({
     ref={hoverContentRef}
   >
     {hoveredItem ? (
-      <div className="flex flex-col gap-2 bg-[#D9D9D9] rounded px-4">
+      <div className="flex flex-col gap-2 bg-gray-200/20 rounded px-4">
         {hoveredItem.image && (
           <div className="h-[300px] w-full relative">
             <Image

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { recklessNeue } from "../lib/fonts";
 import ClientLayout from "../components/client-layout";
-import { Caveat } from "next/font/google";
+import { Caveat, Lora } from "next/font/google";
 
 export const metadata: Metadata = {
   title: "Portfolio - R4V3NSH4DOW",
@@ -14,6 +14,11 @@ const caveat = Caveat({
   weight: ["400", "500", "600", "700"],
   variable: "--font-caveat",
 });
+const lora = Lora({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-lora",
+});
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -22,7 +27,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${recklessNeue.variable} ${caveat.variable} antialiased`}
+        className={`${recklessNeue.variable} ${caveat.variable} ${lora.variable} antialiased`}
       >
         <ClientLayout>{children}</ClientLayout>
       </body>

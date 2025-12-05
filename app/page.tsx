@@ -8,26 +8,25 @@ function page() {
   return (
     <div className="flex flex-col h-full w-full">
       <div className="relative  h-screen">
-        <div className="absolute right-[2%] top-[10%] w-3xl">
+        <div className="absolute right-[2%] top-[25%] w-3xl">
           <ViewReveal revealAfter={1} startHidden enableBlur={false}>
             <div className="flex items-center space-x-4">
-              <span className="uppercase font-bold text-sm">(We are)</span>
-              <span className="text-[78px]">The Social-first</span>
+              <span className="uppercase font-bold text-sm">(I craft)</span>
+              <span className="text-[68px]">Experiences that Move</span>
             </div>
-            <div className="text-[78px] leading-tight">
-              <div>agency for prestige</div>
-              <div>beauty.</div>
+            <div className="text-[68px] leading-tight">
+              <div>with subtle emotion.</div>
             </div>
           </ViewReveal>
         </div>
 
         <PhysicsText
-          text="BEAUTY"
+          text="MOTION"
+          letterSpacing={10}
           gravity={1}
           startDelay={1300}
           containerWidth="100%"
-          className="text-[280px] font-extrabold -mt-[220px] min-h-[calc(100%+140px)]"
-          dropDelay={0}
+          className="text-[270px] font-extrabold -mt-[220px] min-h-[calc(100%+140px)]"
           restitution={0.2}
           startPosition={{ x: 0.1, y: 0 }}
         />
@@ -35,21 +34,6 @@ function page() {
       <AboutSection />
       <ZAnimation />
       <CaseStudies />
-
-      {/* <ViewReveal
-        size="xl"
-        align="center"
-        threshold={0.3}
-        staggerDelay={0.08}
-        enableBlur={true}
-        once={true}
-        yOffset={30}
-      >
-        Your text content here
-      </ViewReveal> */}
-      {/* <ScrollReveal size="xl" align="center" variant="primary">
-        Large centered heading with primary color
-      </ScrollReveal> */}
     </div>
   );
 }

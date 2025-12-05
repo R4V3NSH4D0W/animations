@@ -35,6 +35,12 @@ interface PhysicsTextProps {
   dropDelay?: number;
   /** Initial delay in milliseconds before animation starts (default: 0) */
   startDelay?: number;
+  /** Horizontal spacing between letters in pixels (default: 0, uses natural width) */
+  letterSpacing?: number;
+  /** Prevent letters from rotating during animation (default: false) */
+  preventRotation?: boolean;
+  /** Allow users to drag and interact with letters (default: false) */
+  allowDrag?: boolean;
 }
 
 const PhysicsText: React.FC<PhysicsTextProps> = ({
@@ -52,8 +58,11 @@ const PhysicsText: React.FC<PhysicsTextProps> = ({
   angularVelocity = 0,
   density = 0.001,
   startPosition = { x: 0.5, y: 0 },
-  dropDelay = 500,
+  dropDelay = 0,
   startDelay = 0,
+  letterSpacing = 0,
+  preventRotation = false,
+  allowDrag = false,
 }) => {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const textRef = useRef<HTMLDivElement | null>(null);
@@ -114,7 +123,8 @@ const PhysicsText: React.FC<PhysicsTextProps> = ({
   useEffect(() => {
     if (!effectStarted) return;
 
-    const { Engine, Render, World, Bodies, Runner } = Matter;
+    const { Engine, Render, World, Bodies, Runner, Mouse, MouseConstraint } =
+      Matter;
     if (!containerRef.current || !canvasContainerRef.current) return;
 
     const containerRect = containerRef.current.getBoundingClientRect();
@@ -137,9 +147,9 @@ const PhysicsText: React.FC<PhysicsTextProps> = ({
       },
     });
 
-    // Make canvas non-interactive
+    // Make canvas interactive only if drag is enabled
     if (render.canvas) {
-      render.canvas.style.pointerEvents = "none";
+      render.canvas.style.pointerEvents = allowDrag ? "auto" : "none";
     }
 
     const boundaryOptions = {
@@ -182,33 +192,54 @@ const PhysicsText: React.FC<PhysicsTextProps> = ({
     const startX = width * startPosition.x;
     const startY = height * startPosition.y;
 
-    const letterBodies = [...letterSpans].map((elem, i) => {
+    // First pass: measure letter widths
+    const letterWidths = [...letterSpans].map((elem) => {
       const rect = elem.getBoundingClientRect();
-      // Each letter starts at its own horizontal position
-      const x = startX + i * rect.width;
+      return rect.width;
+    });
+
+    const letterBodies = [...letterSpans].map((elem, i) => {
+      // Calculate x position based on cumulative widths to maintain order
+      let cumulativeWidth = 0;
+      for (let j = 0; j < i; j++) {
+        cumulativeWidth += letterWidths[j] + letterSpacing;
+      }
+      const x = startX + cumulativeWidth;
       const y = startY;
 
-      // Create body with tight collision bounds
-      const body = Bodies.rectangle(x, y, rect.width, rect.height, {
-        render: { fillStyle: "transparent" },
-        restitution,
-        frictionAir,
-        friction,
-        density,
-        slop: 0, // No collision tolerance for precise touching
-        // Start with bodies sleeping (inactive)
-        isSleeping: true,
-      });
+      // Create body with rotation settings
+      const body = Bodies.rectangle(
+        x,
+        y,
+        letterWidths[i],
+        elem.getBoundingClientRect().height,
+        {
+          render: { fillStyle: "transparent" },
+          restitution,
+          frictionAir,
+          friction,
+          density,
+          slop: 0, // No collision tolerance for precise touching
+          // Start with bodies sleeping (inactive)
+          isSleeping: true,
+          // Prevent rotation if enabled
+          ...(preventRotation && { inertia: Infinity }),
+        }
+      );
 
       // Set initial velocity and angular velocity
       Matter.Body.setVelocity(body, {
         x: initialVelocity.x + (Math.random() - 0.5) * 2,
         y: initialVelocity.y,
       });
-      Matter.Body.setAngularVelocity(
-        body,
-        angularVelocity + (Math.random() - 0.5) * 0.02
-      );
+
+      // Only set angular velocity if rotation is allowed
+      if (!preventRotation) {
+        Matter.Body.setAngularVelocity(
+          body,
+          angularVelocity + (Math.random() - 0.5) * 0.02
+        );
+      }
 
       return { elem, body };
     });
@@ -230,6 +261,25 @@ const PhysicsText: React.FC<PhysicsTextProps> = ({
       ceiling,
       ...letterBodies.map((lb) => lb.body),
     ]);
+
+    // Add mouse constraint for dragging if enabled
+    let mouseConstraint: Matter.MouseConstraint | null = null;
+    if (allowDrag && render.canvas) {
+      const mouse = Mouse.create(render.canvas);
+      mouseConstraint = MouseConstraint.create(engine, {
+        mouse: mouse,
+        constraint: {
+          stiffness: 0.2,
+          render: {
+            visible: false,
+          },
+        },
+      });
+      World.add(engine.world, mouseConstraint);
+
+      // Keep the mouse in sync with rendering
+      render.mouse = mouse;
+    }
 
     // Wake up letters one by one with delay
     letterBodies.forEach(({ body }, i) => {
@@ -257,6 +307,9 @@ const PhysicsText: React.FC<PhysicsTextProps> = ({
     return () => {
       Render.stop(render);
       Runner.stop(runner);
+      if (mouseConstraint) {
+        World.remove(engine.world, mouseConstraint);
+      }
       if (render.canvas && canvasContainerRef.current) {
         canvasContainerRef.current.removeChild(render.canvas);
       }
@@ -278,6 +331,7 @@ const PhysicsText: React.FC<PhysicsTextProps> = ({
     startPosition.x,
     startPosition.y,
     dropDelay,
+    allowDrag,
   ]);
 
   const handleTrigger = () => {

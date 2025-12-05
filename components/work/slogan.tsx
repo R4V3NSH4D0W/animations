@@ -1,10 +1,27 @@
-import React from "react";
+import { usePathname } from "next/navigation";
 
 function Slogan() {
+  const pathname = usePathname();
+
+  if (pathname === "/contact") return;
+
+  const getSloganText = () => {
+    switch (pathname) {
+      case "/about":
+        return "Passionate Developer & Creative Problem Solver";
+      case "/work":
+        return "Building Digital Products That Make a Difference";
+      case "/services":
+        return "Expert Solutions for Modern Web Development";
+      default:
+        return "Crafting Fast, Beautiful, and Scalable Web Experiences";
+    }
+  };
+
   return (
     <div className=" flex flex-col w-full py-20  items-center ">
       <h2 className=" text-center font-medium  text-5xl w-4xl">
-        Crafting Fast, Beautiful, and Scalable Web Experiences
+        {getSloganText()}
       </h2>
       <div className=" flex flex-col">
         <div className="flex flex-row justify-between uppercase mt-20 mx-10 items-center">
