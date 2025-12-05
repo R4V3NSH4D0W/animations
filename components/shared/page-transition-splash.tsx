@@ -20,21 +20,21 @@ export default function PageTransitionSplash({
     let tl: gsap.core.Timeline | null = null;
 
     if (isTransitioning) {
-      // Start: panels above viewport
+      // Start: white panel visible immediately to cover content, black panel above viewport
+      gsap.set(whitePanel, { y: "0%", opacity: 1 });
       gsap.set(blackPanel, { y: "-100%" });
-      gsap.set(whitePanel, { y: "-100%" });
 
       tl = gsap.timeline();
 
-      // Step 1: Black panel slides down and fills screen
+      // Step 1: Black panel slides down immediately over white background
       tl.to(blackPanel, {
         y: "0%",
         duration: 0.4,
         ease: "power3.inOut",
       });
 
-      // Step 2: Black panel stays showing quote, then slides down
-      tl.to(blackPanel, {
+      // Step 2: Black panel stays showing quote, then both slide down together
+      tl.to([blackPanel, whitePanel], {
         y: "100%",
         duration: 0.8,
         ease: "power3.inOut",
@@ -57,7 +57,7 @@ export default function PageTransitionSplash({
       {/* White Panel - Behind */}
       <div
         id="transition-splash-white"
-        className="absolute inset-0 bg-white z-10"
+        className="absolute inset-0 bg-gray-100 z-10"
       />
 
       {/* Black Panel - Front */}
