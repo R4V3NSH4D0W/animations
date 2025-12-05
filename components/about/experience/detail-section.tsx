@@ -63,7 +63,7 @@ function DetailSection() {
               </span>
               <div className="w-full sm:w-[300px] md:w-[350px] lg:w-[400px] h-[200px] sm:h-[220px] md:h-[250px] relative">
                 <Image
-                  src="https://i.pinimg.com/736x/93/6e/84/936e845973e45635a71cc4efaf11d97d.jpg"
+                  src="https://i.pinimg.com/736x/26/76/bc/2676bccd41d36f4b45af4872ccebc360.jpg"
                   alt="Profile Image"
                   fill
                   className="object-cover"

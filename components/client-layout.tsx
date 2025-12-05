@@ -23,7 +23,7 @@ function ClientLayoutContent({ children }: { children: React.ReactNode }) {
         return "Beauty in every detail";
       case "/about":
         return "Crafting experiences, building brands";
-      case "/work":
+      case "/works":
         return "Where creativity meets excellence";
       case "/services":
         return "Transforming visions into reality";
