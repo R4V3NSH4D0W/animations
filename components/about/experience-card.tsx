@@ -89,18 +89,18 @@ const ExperienceCard = () => {
   ];
 
   return (
-    <div className="w-[98%] bg-gray-200/30 rounded-lg flex overflow-hidden shadow-lg transform transition-transform duration-300 hover:-translate-y-10">
-      <div className="grid grid-cols-[30px_0.4fr_1fr_30px] w-full">
+    <div className=" w-full lg:w-[98%] bg-gray-200/30 rounded-lg flex overflow-hidden shadow-lg transform transition-transform duration-300 hover:-translate-y-10">
+      <div className="grid grid-cols-[30px_1fr_30px] md:grid-cols-[30px_0.4fr_1fr_30px] w-full">
         {/* Header Section */}
         <div
           className={`p-2 border-r border-b flex items-center justify-center ${BORDER_CLASSES}`}
         >
           <CornerDot />
         </div>
-        <div className={`border-b border-r ${BORDER_CLASSES}`}>
+        <div className={`border-b lg:border-r ${BORDER_CLASSES}`}>
           <SectionLabel label="About" />
         </div>
-        <div className={`border-b ${BORDER_CLASSES}`}>
+        <div className={`border-b hidden md:block ${BORDER_CLASSES}`}>
           <SectionHeader title="experiences" className=" mt-2" />
         </div>
         <div
@@ -113,7 +113,9 @@ const ExperienceCard = () => {
         >
           <CornerDot />
         </div>
-        <div className={`border-r ${BORDER_CLASSES} relative overflow-hidden`}>
+        <div
+          className={`border-r hidden md:block ${BORDER_CLASSES} relative overflow-hidden`}
+        >
           <HoverContent
             hoveredItem={hoveredItem}
             hoverContentRef={hoverContentRef}
@@ -166,7 +168,7 @@ const ExperienceCard = () => {
         >
           <CornerDot />
         </div>
-        <div className={`border-t border-r ${BORDER_CLASSES}`}>
+        <div className={`border-t hidden md:block border-r ${BORDER_CLASSES}`}>
           <SectionLabel label="About" />
         </div>
         <div className={`border-t ${BORDER_CLASSES}`}>

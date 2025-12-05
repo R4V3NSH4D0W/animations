@@ -5,6 +5,7 @@ import React from "react";
 import { gsap } from "gsap";
 import DetailSection from "@/components/about/experience/detail-section";
 import { useGSAP } from "@gsap/react";
+import { useMedia } from "react-use";
 
 function Page() {
   const experienceRef = React.useRef<HTMLDivElement>(null);
@@ -12,6 +13,9 @@ function Page() {
   const detailRef = React.useRef<HTMLDivElement>(null);
   const [activeCard, setActiveCard] = React.useState<string | null>(null);
 
+  const isMobile = useMedia("(max-width: 768px)", true);
+
+  const howMuchSide = isMobile ? 34 : 58;
   // Initial entrance animation
   useGSAP(() => {
     // Set initial state: all cards below and hidden
@@ -52,7 +56,7 @@ function Page() {
 
   const handleExperienceClick = () => {
     const viewportWidth = window.innerWidth;
-    const slideDistance = viewportWidth - 58;
+    const slideDistance = viewportWidth - howMuchSide;
 
     if (activeCard === "experience") {
       // Return to original state
@@ -82,7 +86,7 @@ function Page() {
 
   const handleSkillsetClick = () => {
     const viewportWidth = window.innerWidth;
-    const slideDistance = viewportWidth - 58;
+    const slideDistance = viewportWidth - howMuchSide;
 
     if (activeCard === "skillset") {
       // Return to original state
@@ -126,9 +130,6 @@ function Page() {
   };
 
   const handleDetailClick = () => {
-    const viewportWidth = window.innerWidth;
-    const slideDistance = viewportWidth - 58;
-
     if (activeCard === "detail") {
       // Return to original state
       gsap.to([skillsetRef.current, detailRef.current], {
@@ -164,8 +165,8 @@ function Page() {
   };
 
   return (
-    <main className="py-20">
-      <div className=" flex mb-10 text-8xl gap-20 mx-10 ">
+    <main className="py-16 md:py-20 overflow-hidden">
+      <div className="flex flex-row mb-6 sm:mb-8 md:mb-10 text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl gap-4 sm:gap-8 md:gap-12 lg:gap-20 mx-4 sm:mx-6 md:mx-8 lg:mx-10">
         <span>About</span>
         <span>Me</span>
       </div>
@@ -180,14 +181,14 @@ function Page() {
         <div
           ref={skillsetRef}
           onClick={handleSkillsetClick}
-          className="absolute top-[10%] cursor-pointer"
+          className="absolute top-[8%] sm:top-[10%] w-full cursor-pointer"
         >
           <SkillSetCard />
         </div>
         <div
           ref={detailRef}
           onClick={handleDetailClick}
-          className="absolute top-[30%] cursor-pointer"
+          className="absolute top-[20%] sm:top-[25%] md:top-[30%] cursor-pointer"
         >
           <DetailSection />
         </div>

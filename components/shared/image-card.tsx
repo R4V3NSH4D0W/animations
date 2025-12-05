@@ -11,7 +11,7 @@ interface ImageCardProps {
 function ImageCard({ imageURL, title, launch }: ImageCardProps) {
   return (
     <div className=" flex flex-col gap-5 group cursor-pointer">
-      <div className=" relative h-[650px] w-full overflow-hidden">
+      <div className=" relative  h-[400px] md:h-[650px] w-full overflow-hidden">
         <Image
           src={imageURL}
           alt={title}

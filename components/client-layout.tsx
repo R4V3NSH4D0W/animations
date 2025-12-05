@@ -10,6 +10,7 @@ import {
 } from "../hooks/use-page-transition";
 import PageTransitionSplash from "./shared/page-transition-splash";
 import Footer from "./footer";
+import ViewportRefresh from "./layout/viewport-refresh";
 
 function ClientLayoutContent({ children }: { children: React.ReactNode }) {
   const [splashComplete, setSplashComplete] = useState(false);
@@ -53,6 +54,7 @@ function ClientLayoutContent({ children }: { children: React.ReactNode }) {
 
   return (
     <>
+      <ViewportRefresh />
       <SplashScreen duration={1200} onComplete={() => setSplashComplete(true)}>
         {/* Optional: Add logo or text on black screen */}
         <div className="text-white text-6xl font-bold">PORTFOLIO</div>

@@ -41,6 +41,12 @@ interface PhysicsTextProps {
   preventRotation?: boolean;
   /** Allow users to drag and interact with letters (default: false) */
   allowDrag?: boolean;
+  /** Enable gyroscope control on mobile devices (default: false) */
+  enableGyro?: boolean;
+  /** Sensitivity multiplier for gyro tilt (default: 1, higher = more sensitive) */
+  gyroSensitivity?: number;
+  /** Maximum gravity strength when tilting device (default: 2) */
+  gyroMaxGravity?: number;
 }
 
 const PhysicsText: React.FC<PhysicsTextProps> = ({
@@ -63,12 +69,18 @@ const PhysicsText: React.FC<PhysicsTextProps> = ({
   letterSpacing = 0,
   preventRotation = false,
   allowDrag = false,
+  enableGyro = false,
+  gyroSensitivity = 1,
+  gyroMaxGravity = 2,
 }) => {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const textRef = useRef<HTMLDivElement | null>(null);
   const canvasContainerRef = useRef<HTMLDivElement | null>(null);
+  const engineRef = useRef<Matter.Engine | null>(null);
   const [effectStarted, setEffectStarted] = useState(false);
   const [isReady, setIsReady] = useState(false);
+  const [gyroActive, setGyroActive] = useState(false);
+  const [gyroDebug, setGyroDebug] = useState({ x: 0, y: 0 });
 
   // Split text into spans
   useEffect(() => {
@@ -95,6 +107,63 @@ const PhysicsText: React.FC<PhysicsTextProps> = ({
       setIsReady(true);
     }
   }, [startDelay]);
+
+  // Check for gyroscope support (Android only)
+  useEffect(() => {
+    if (!enableGyro) return;
+
+    const checkGyroSupport = () => {
+      if (typeof window === "undefined") return;
+
+      // Check if DeviceOrientationEvent exists
+      if (window.DeviceOrientationEvent) {
+        setGyroActive(true);
+        console.log("✓ Gyroscope enabled");
+      } else {
+        console.log("✗ DeviceOrientation not supported");
+      }
+    };
+
+    checkGyroSupport();
+  }, [enableGyro]);
+
+  // Gyroscope event listener (Android) - Remove engineRef from dependencies
+  useEffect(() => {
+    if (!enableGyro || !gyroActive) return;
+
+    const handleOrientation = (event: DeviceOrientationEvent) => {
+      // Check engine inside handler
+      if (!engineRef.current) return;
+
+      // beta: front-to-back tilt (-180 to 180)
+      // gamma: left-to-right tilt (-90 to 90)
+      const beta = event.beta ?? 0;
+      const gamma = event.gamma ?? 0;
+
+      // Normalize values (-1 to 1)
+      const normalizedBeta = Math.max(-1, Math.min(1, beta / 90));
+      const normalizedGamma = Math.max(-1, Math.min(1, gamma / 90));
+
+      // Apply gyro to gravity
+      const gravityX = normalizedGamma * gyroMaxGravity * gyroSensitivity;
+      const gravityY =
+        gravity + normalizedBeta * gyroMaxGravity * gyroSensitivity;
+
+      if (engineRef.current) {
+        engineRef.current.world.gravity.x = gravityX;
+        engineRef.current.world.gravity.y = gravityY;
+      }
+
+      // Update debug display
+      setGyroDebug({ x: gravityX, y: gravityY });
+    };
+
+    window.addEventListener("deviceorientation", handleOrientation, true);
+
+    return () => {
+      window.removeEventListener("deviceorientation", handleOrientation, true);
+    };
+  }, [enableGyro, gyroActive, gravity, gyroSensitivity, gyroMaxGravity]);
 
   // Handle triggers
   useEffect(() => {
@@ -135,6 +204,7 @@ const PhysicsText: React.FC<PhysicsTextProps> = ({
     const engine = Engine.create();
     engine.world.gravity.y = gravity;
     engine.enableSleeping = false;
+    engineRef.current = engine;
 
     const render = Render.create({
       element: canvasContainerRef.current,
@@ -188,24 +258,86 @@ const PhysicsText: React.FC<PhysicsTextProps> = ({
     if (!textRef.current) return;
     const letterSpans = textRef.current.querySelectorAll("span");
 
-    // Calculate starting position
-    const startX = width * startPosition.x;
-    const startY = height * startPosition.y;
-
     // First pass: measure letter widths
     const letterWidths = [...letterSpans].map((elem) => {
       const rect = elem.getBoundingClientRect();
       return rect.width;
     });
 
-    const letterBodies = [...letterSpans].map((elem, i) => {
-      // Calculate x position based on cumulative widths to maintain order
-      let cumulativeWidth = 0;
-      for (let j = 0; j < i; j++) {
-        cumulativeWidth += letterWidths[j] + letterSpacing;
+    // Calculate total width of all letters including spacing
+    const totalTextWidth = letterWidths.reduce((sum, width, i) => {
+      return sum + width + (i < letterWidths.length - 1 ? letterSpacing : 0);
+    }, 0);
+
+    // Calculate how many letters can fit per row
+    const availableWidth = width - 20; // 10px padding on each side
+    let rows: number[][] = []; // Array of arrays, each containing letter indices for that row
+    let currentRow: number[] = [];
+    let currentRowWidth = 0;
+
+    // Group letters into rows based on available width
+    letterWidths.forEach((letterWidth, i) => {
+      const widthNeeded =
+        letterWidth + (currentRow.length > 0 ? letterSpacing : 0);
+
+      if (currentRowWidth + widthNeeded <= availableWidth) {
+        // Letter fits in current row
+        currentRow.push(i);
+        currentRowWidth += widthNeeded;
+      } else {
+        // Start a new row
+        if (currentRow.length > 0) {
+          rows.push(currentRow);
+        }
+        currentRow = [i];
+        currentRowWidth = letterWidth;
       }
-      const x = startX + cumulativeWidth;
-      const y = startY;
+    });
+
+    // Add the last row
+    if (currentRow.length > 0) {
+      rows.push(currentRow);
+    }
+
+    const startY = height * startPosition.y;
+    const rowHeight = letterSpans[0]?.getBoundingClientRect().height || 100;
+    const rowSpacing = 20; // Space between rows
+
+    const letterBodies = [...letterSpans].map((elem, i) => {
+      // Find which row this letter belongs to
+      let rowIndex = 0;
+      let positionInRow = 0;
+
+      for (let r = 0; r < rows.length; r++) {
+        const indexInRow = rows[r].indexOf(i);
+        if (indexInRow !== -1) {
+          rowIndex = r;
+          positionInRow = indexInRow;
+          break;
+        }
+      }
+
+      // Calculate width of current row
+      const currentRowLetters = rows[rowIndex];
+      const rowWidth = currentRowLetters.reduce((sum, idx, pos) => {
+        return (
+          sum +
+          letterWidths[idx] +
+          (pos < currentRowLetters.length - 1 ? letterSpacing : 0)
+        );
+      }, 0);
+
+      // Center the row
+      const rowStartX = Math.max(10, (width - rowWidth) / 2);
+
+      // Calculate x position within the row
+      let cumulativeWidth = 0;
+      for (let j = 0; j < positionInRow; j++) {
+        cumulativeWidth += letterWidths[currentRowLetters[j]] + letterSpacing;
+      }
+
+      const x = rowStartX + cumulativeWidth;
+      const y = startY + rowIndex * (rowHeight + rowSpacing);
 
       // Create body with rotation settings
       const body = Bodies.rectangle(
@@ -219,10 +351,8 @@ const PhysicsText: React.FC<PhysicsTextProps> = ({
           frictionAir,
           friction,
           density,
-          slop: 0, // No collision tolerance for precise touching
-          // Start with bodies sleeping (inactive)
+          slop: 0,
           isSleeping: true,
-          // Prevent rotation if enabled
           ...(preventRotation && { inertia: Infinity }),
         }
       );
@@ -233,7 +363,6 @@ const PhysicsText: React.FC<PhysicsTextProps> = ({
         y: initialVelocity.y,
       });
 
-      // Only set angular velocity if rotation is allowed
       if (!preventRotation) {
         Matter.Body.setAngularVelocity(
           body,
@@ -241,7 +370,7 @@ const PhysicsText: React.FC<PhysicsTextProps> = ({
         );
       }
 
-      return { elem, body };
+      return { elem, body, rowIndex };
     });
 
     // Position spans absolutely with no pointer events
@@ -276,16 +405,22 @@ const PhysicsText: React.FC<PhysicsTextProps> = ({
         },
       });
       World.add(engine.world, mouseConstraint);
-
-      // Keep the mouse in sync with rendering
       render.mouse = mouse;
     }
 
-    // Wake up letters one by one with delay
-    letterBodies.forEach(({ body }, i) => {
+    // Wake up letters row by row with delay
+    // Calculate max letters per row for timing
+    const maxLettersInRow = Math.max(...rows.map((row) => row.length));
+    const rowDelay = maxLettersInRow * dropDelay; // Delay between rows
+
+    letterBodies.forEach(({ body, rowIndex }, i) => {
+      // Calculate delay: row delay + position within row delay
+      const positionInRow = rows[rowIndex].indexOf(i);
+      const totalDelay = rowIndex * rowDelay + positionInRow * dropDelay;
+
       setTimeout(() => {
         Matter.Sleeping.set(body, false);
-      }, i * dropDelay);
+      }, totalDelay);
     });
 
     const runner = Runner.create();
@@ -315,6 +450,7 @@ const PhysicsText: React.FC<PhysicsTextProps> = ({
       }
       World.clear(engine.world, false);
       Engine.clear(engine);
+      engineRef.current = null;
     };
   }, [
     effectStarted,
@@ -347,7 +483,7 @@ const PhysicsText: React.FC<PhysicsTextProps> = ({
   return (
     <div
       ref={containerRef}
-      className={`relative z-1 h-full  pt-8 ${className}`}
+      className={`relative z-1 h-full pt-8 ${className}`}
       style={{
         width: containerWidth,
         overflow: "visible",
@@ -357,7 +493,17 @@ const PhysicsText: React.FC<PhysicsTextProps> = ({
       onClick={trigger === "click" ? handleTrigger : undefined}
       onMouseEnter={trigger === "hover" ? handleTrigger : undefined}
     >
-      <div ref={textRef} className="inline-block " />
+      {/* Debug indicator with gyro values */}
+      {/* {enableGyro && gyroActive && (
+        <div className="fixed bottom-4 right-4 z-9999 px-3 py-2 bg-green-500/90 text-white rounded-lg text-xs font-semibold shadow-lg">
+          📱 Gyro Active
+          <div className="text-[10px] mt-1 opacity-90">
+            X: {gyroDebug.x.toFixed(2)} | Y: {gyroDebug.y.toFixed(2)}
+          </div>
+        </div>
+      )} */}
+
+      <div ref={textRef} className="inline-block" />
       <div
         className="absolute top-0 left-0 z-0"
         ref={canvasContainerRef}

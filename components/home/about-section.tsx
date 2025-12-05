@@ -8,17 +8,17 @@ import { useNavigation } from "@/hooks/use-navigation";
 function AboutSection() {
   const { navigate } = useNavigation();
   return (
-    <section className="mx-10 mb-20 space-y-10">
-      <div className="flex justify-between items-center ">
+    <section className="mx-4 sm:mx-6 md:mx-8 lg:mx-10 mb-12 sm:mb-16 md:mb-20 space-y-6 sm:space-y-8 md:space-y-10">
+      <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-8 lg:gap-12">
         {/* Left: Text */}
-        <div className="flex-1 max-w-[60%]">
+        <div className="flex-1 w-full lg:max-w-[60%]">
           <ScrollReveal
             enableBlur={true}
             baseOpacity={0.05}
             baseRotation={0}
             blurStrength={6}
             staggerDelay={0.1}
-            textClassName="font-light"
+            textClassName="font-light text-base md:text-lg"
             size="lg"
             springConfig={{
               damping: 15,
@@ -33,7 +33,7 @@ function AboutSection() {
             web.
           </ScrollReveal>
           <div
-            className="flex items-center cursor-pointer gap-2"
+            className="flex items-center cursor-pointer gap-2 mt-4 sm:mt-6 text-sm sm:text-base hover:gap-3 transition-all"
             onClick={() => navigate("/about")}
           >
             <span className="uppercase">About Me</span>
@@ -42,14 +42,14 @@ function AboutSection() {
         </div>
 
         {/* Right: Image */}
-        <div className="flex-1 max-w-[500px]">
+        <div className="flex-1 w-full lg:max-w-[500px]">
           <AnimateIn direction="up" resetOnExit blur>
             <Image
               src="https://i.pinimg.com/736x/ec/df/b7/ecdfb7ec2403345b6a53c1255dcc1060.jpg"
               alt="About Image"
               width={500}
               height={500}
-              className="object-cover w-[500px] h-[500px]"
+              className="object-cover w-full h-auto md:max-w-[400px] lg:max-w-[500px] aspect-square mx-auto lg:mx-0"
             />
           </AnimateIn>
         </div>

@@ -26,29 +26,32 @@ function Footer() {
   const { navigate } = useNavigation();
 
   return (
-    <footer className=" mx-10 flex flex-col">
+    <footer className="mx-4 sm:mx-6 md:mx-8 lg:mx-10 flex flex-col">
       <Slogan />
       <div
         ref={firstLineRef}
-        className=" w-full border-[0.2px] border-black my-10"
+        className="w-full border-[0.2px] border-black my-6 md:my-10"
       />
-      <div className=" mt-5 cursor-pointer" onClick={() => navigate("/")}>
+      <div
+        className="mt-3 md:mt-5 cursor-pointer"
+        onClick={() => navigate("/")}
+      >
         Home
       </div>
-      <span className=" mt-10 text-6xl">
+      <span className="mt-6 md:mt-10 text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-tight">
         Don&apos;t Miss A Thing <br /> With R4V3NSH4D0W
       </span>
-      <div className=" grid grid-cols-2 my-10">
-        <div className=" flex flex-col">
-          <div className="relative w-2/3">
-            <label className=" text-xs font-semibold">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-0 my-6 md:my-10">
+        <div className="flex flex-col">
+          <div className="relative w-full lg:w-2/3">
+            <label className="text-xs font-semibold">
               EXPERT INSIGHTS DIRECT TO YOUR INBOX
             </label>
-            <div className=" relative">
+            <div className="relative">
               <input
                 type="text"
                 placeholder="Enter your email"
-                className="mt-2 p-2 w-full pr-10 focus:outline-none"
+                className="mt-2 p-2 w-full pr-10 focus:outline-none bg-transparent"
                 style={{ border: "none" }}
               />
               <div
@@ -60,40 +63,42 @@ function Footer() {
               </span>
             </div>
           </div>
-          <div className=" flex flex-col mt-10">
-            <label className=" text-xs uppercase font-semibold">
+          <div className="flex flex-col mt-6 md:mt-10">
+            <label className="text-xs uppercase font-semibold">
               get in touch
             </label>
-            <span className=" mt-2 text-xl">lenishmagar@gmail.com</span>
+            <span className="mt-2 text-lg sm:text-xl break-all">
+              lenishmagar@gmail.com
+            </span>
           </div>
         </div>
-        <div className=" flex justify-between uppercase mt-10">
-          <div className=" flex flex-col">
-            <span className=" uppercase font-bold text-xs mb-2">Portfolio</span>
-            <span>About</span>
-            <span>Services</span>
-            <span>Work</span>
-            <span>Contact</span>
+        <div className="flex flex-row justify-between sm:justify-start sm:gap-16 lg:justify-between uppercase mt-0 lg:mt-10">
+          <div className="flex flex-col gap-1">
+            <span className="uppercase font-bold text-xs mb-2">Portfolio</span>
+            <span className="text-sm">About</span>
+            <span className="text-sm">Services</span>
+            <span className="text-sm">Work</span>
+            <span className="text-sm">Contact</span>
           </div>
-          <div className=" flex flex-col">
-            <span className=" uppercase font-bold text-xs mb-2">Follow Us</span>
-            <span>Instagram</span>
-            <span>LinkedIn</span>
-            <span>Twitter</span>
-            <span>Facebook</span>
+          <div className="flex flex-col gap-1">
+            <span className="uppercase font-bold text-xs mb-2">Follow Us</span>
+            <span className="text-sm">Instagram</span>
+            <span className="text-sm">LinkedIn</span>
+            <span className="text-sm">Twitter</span>
+            <span className="text-sm">Facebook</span>
           </div>
         </div>
       </div>
       <div
         ref={lineRef}
-        className=" w-full border-[0.2px] border-black my-10"
+        className="w-full border-[0.2px] border-black my-6 md:my-10"
       />
-      <div className=" flex flex-row justify-between items-center mb-10">
-        <span className="flex items-center gap-1">
-          <Copyright size={16} className="inline-block" />
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6 md:mb-10">
+        <span className="flex items-center gap-1 text-xs sm:text-sm">
+          <Copyright size={16} className="inline-block flex-shrink-0" />
           2024 R4V3N. All rights reserved.
         </span>
-        <div className=" flex space-x-5 uppercase">
+        <div className="flex flex-col sm:flex-row gap-3 sm:gap-5 uppercase text-xs sm:text-sm">
           <span>Privacy Policy</span>
           <span>Terms of Service</span>
         </div>

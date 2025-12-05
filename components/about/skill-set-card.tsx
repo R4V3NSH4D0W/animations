@@ -76,7 +76,7 @@ const GridLists = ({
 
 function SkillSetCard() {
   return (
-    <section className="   w-[700px] bg-yellow-300 rounded-lg  shadow-lg transform transition-transform duration-300 hover:-translate-y-10">
+    <section className="   w-full md:w-[700px] bg-yellow-300 rounded-lg  shadow-lg transform transition-transform duration-300 hover:-translate-y-10">
       <div className=" grid grid-cols-[30px_1fr_30px]">
         {/* Header start */}
         <div className=" border-b border-r flex justify-center items-center border-dotted border-black">
@@ -97,13 +97,18 @@ function SkillSetCard() {
           <CornerDot />
         </div>
         <div className=" flex w-full flex-col">
-          <span className={cn(" border-b p-2 text-4xl", BORDER_CLASSES)}>
+          <span
+            className={cn(" border-b p-2 text-2xl md:text-4xl", BORDER_CLASSES)}
+          >
             Skill Sets
           </span>
           {skillSets.map((skill, idx) => (
             <div
               key={idx}
-              className={cn(" p-2 text-3xl border-b", BORDER_CLASSES)}
+              className={cn(
+                " p-2 text-xl md:text-3xl border-b",
+                BORDER_CLASSES
+              )}
             >
               <span>{String(idx + 1).padStart(2, "0")}</span>
               <span className=" ml-4">{skill}</span>
