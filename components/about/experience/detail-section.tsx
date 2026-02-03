@@ -5,6 +5,7 @@ import { BORDER_CLASSES } from "./constants";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
+import { aboutPageData } from "@/data/site-data";
 
 type InfoRowProps = {
   label: string;
@@ -17,7 +18,7 @@ const InfoRow = ({ label, value, href, bordered = true }: InfoRowProps) => (
   <div
     className={cn(
       "grid grid-cols-1 sm:grid-cols-2 items-start sm:items-center gap-2 sm:gap-5 px-3 sm:px-4 md:px-5 py-2 sm:py-3",
-      bordered && `${BORDER_CLASSES} border-b`
+      bordered && `${BORDER_CLASSES} border-b`,
     )}
   >
     <span className="text-lg sm:text-xl md:text-2xl font-medium sm:font-normal">
@@ -49,7 +50,7 @@ function DetailSection() {
         <div
           className={cn(
             "border-r flex flex-col justify-evenly items-center",
-            BORDER_CLASSES
+            BORDER_CLASSES,
           )}
         >
           <CornerDot />
@@ -59,11 +60,11 @@ function DetailSection() {
           <div className="flex flex-col md:flex-row gap-3 sm:gap-4 md:gap-5 p-3 sm:p-4 md:p-5">
             <div className="flex flex-col">
               <span className="text-2xl sm:text-3xl md:text-4xl mb-4 sm:mb-6 md:mb-10 font-medium">
-                R4V3NSH4DOW
+                {aboutPageData.profile.name}
               </span>
               <div className="w-full sm:w-[300px] md:w-[350px] lg:w-[400px] h-[200px] sm:h-[220px] md:h-[250px] relative">
                 <Image
-                  src="https://i.pinimg.com/736x/26/76/bc/2676bccd41d36f4b45af4872ccebc360.jpg"
+                  src={aboutPageData.profile.image}
                   alt="Profile Image"
                   fill
                   className="object-cover"
@@ -71,31 +72,26 @@ function DetailSection() {
               </div>
             </div>
             <p className="text-base sm:text-lg font-caveat leading-relaxed">
-              I am a passionate Frontend Engineer who enjoys turning ideas into
-              clean, functional, and visually engaging digital experiences. I
-              love working at the intersection of design and technology—crafting
-              interfaces that feel intuitive, fast, and delightful to use.
-              <br />
-              <br />
-              Over the years, I've gained experience in modern frontend
-              ecosystems, building scalable UI systems, and writing
-              maintainable, high-quality code. I enjoy solving problems,
-              exploring new technologies, and continuously refining my craft.
-              When I'm not coding, I'm learning, experimenting, and working on
-              personal projects that inspire me.
-              <br />
-              <br />I believe good design brings clarity, and good code brings
-              reliability. My goal is to create products that are not only
-              beautiful, but also meaningful, accessible, and impactful.
+              {aboutPageData.profile.bio.map((paragraph, idx) => (
+                <React.Fragment key={idx}>
+                  {paragraph}
+                  <br />
+                  <br />
+                </React.Fragment>
+              ))}
             </p>
           </div>
 
-          <InfoRow label="Email" value="Lenishmagar@gmail.com" bordered />
-          <InfoRow label="Instagram" value="@Lenishmagar" bordered />
+          <InfoRow label="Email" value={aboutPageData.profile.email} bordered />
+          <InfoRow
+            label="Instagram"
+            value={aboutPageData.profile.instagram}
+            bordered
+          />
           <InfoRow
             label="LinkedIn"
-            href="https://www.linkedin.com/in/lenish-yesmali-magar-a8a980282/"
-            value="linkedin.com/in/lenish-yesmali-magar"
+            href={aboutPageData.profile.linkedin.href}
+            value={aboutPageData.profile.linkedin.text}
             bordered={false}
           />
         </div>

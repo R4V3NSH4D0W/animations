@@ -21,6 +21,7 @@ import { SectionHeader } from "./experience/SectionHeader";
 import { DataTable } from "./experience/DataTable";
 import { HoverContent } from "./experience/HoverContent";
 import { CornerDot } from "./experience/ConerDot";
+import { aboutPageData } from "@/data/site-data";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -52,7 +53,7 @@ const ExperienceCard = () => {
   }, []);
 
   const handleHover = (
-    item: Experience | Education | Achievement | Recognition | null
+    item: Experience | Education | Achievement | Recognition | null,
   ) => {
     if (item && "image" in item) {
       setHoveredItem({
@@ -126,7 +127,7 @@ const ExperienceCard = () => {
             Experiences
           </span>
           <DataTable
-            data={experiences}
+            data={aboutPageData.experiences}
             columns={["Year", "Company", "Position"]}
             renderRow={renderExperienceRow}
             onHover={handleHover}
@@ -136,7 +137,7 @@ const ExperienceCard = () => {
             Education
           </span>
           <DataTable
-            data={education}
+            data={aboutPageData.education as Education[]}
             columns={["Year", "School", "Degree"]}
             renderRow={renderEducationRow}
             onHover={handleHover}
@@ -145,7 +146,7 @@ const ExperienceCard = () => {
             Achivements
           </span>
           <DataTable
-            data={achievements}
+            data={aboutPageData.achievements}
             columns={["Year", "Title", "Organization"]}
             renderRow={renderAchivementRow}
             onHover={handleHover}
@@ -154,7 +155,7 @@ const ExperienceCard = () => {
             Recognition
           </span>
           <DataTable
-            data={recognitions}
+            data={aboutPageData.recognitions}
             columns={["Year", "Award", "Issued By"]}
             renderRow={rendeReconizationRow}
             onHover={handleHover}

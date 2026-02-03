@@ -4,30 +4,9 @@ import { SectionHeader } from "./experience/SectionHeader";
 
 import { cn } from "@/lib/utils";
 import { CornerDot } from "./experience/ConerDot";
+import { aboutPageData } from "@/data/site-data";
 
-const skillSets = [
-  "JavaScript",
-  "TypeScript",
-  "React",
-  "Next.js",
-  "Node.js",
-  "Express",
-  "MongoDB",
-  "GraphQL",
-];
-const softwareList: string[] = [
-  "Adobe Photoshop",
-  "Figma",
-  "Visual Studio Code",
-  "GitHub",
-  "Slack",
-  "Jira",
-  "Notion",
-  "Postman",
-  "Docker",
-  "Microsoft Excel",
-];
-const languages: string[] = ["English", "Hindi", "Nepali", "Spanish"];
+// Data removed, now using site-data.ts
 
 interface GridListsProps {
   title: string;
@@ -62,7 +41,7 @@ const GridLists = ({
                 "p-2 text-sm ",
                 BORDER_CLASSES,
                 idx % columns !== columns - 1 ? "border-r" : "",
-                !isLastRow ? "border-b" : ""
+                !isLastRow ? "border-b" : "",
               )}
             >
               {item}
@@ -90,7 +69,7 @@ function SkillSetCard() {
         <div
           className={cn(
             "border-r flex flex-col justify-evenly items-center ",
-            BORDER_CLASSES
+            BORDER_CLASSES,
           )}
         >
           <CornerDot />
@@ -102,20 +81,24 @@ function SkillSetCard() {
           >
             Skill Sets
           </span>
-          {skillSets.map((skill, idx) => (
+          {aboutPageData.skills.skillSets.map((skill, idx) => (
             <div
               key={idx}
               className={cn(
                 " p-2 text-xl md:text-3xl border-b",
-                BORDER_CLASSES
+                BORDER_CLASSES,
               )}
             >
               <span>{String(idx + 1).padStart(2, "0")}</span>
               <span className=" ml-4">{skill}</span>
             </div>
           ))}
-          <GridLists title="Software" lists={softwareList} />
-          <GridLists title="Languages" lists={languages} ignoreLastBorderB />
+          <GridLists title="Software" lists={aboutPageData.skills.software} />
+          <GridLists
+            title="Languages"
+            lists={aboutPageData.skills.languages}
+            ignoreLastBorderB
+          />
         </div>
         <div className={cn("border-l flex justify-center ", BORDER_CLASSES)} />
 

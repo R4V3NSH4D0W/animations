@@ -3,7 +3,7 @@ import PhysicsText from "../../components/shared/physics-text";
 import ViewReveal from "../../components/shared/view-reveal";
 import FolderStructure from "../../components/home/folder-structure";
 import Archive from "@/components/work/archive";
-import Slogan from "@/components/work/slogan";
+import { worksPageData } from "@/data/site-data";
 
 function Page() {
   return (
@@ -13,28 +13,27 @@ function Page() {
           <ViewReveal revealAfter={1} startHidden enableBlur={false}>
             <div className="flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-4">
               <span className="uppercase text-xs sm:text-sm font-bold">
-                (MY WORKS)
+                {worksPageData.tagline}
               </span>
               <span className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-[78px] leading-tight">
-                Code Meets Creativity,
+                {worksPageData.headingLine1}
               </span>
             </div>
             <div className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-[78px] leading-tight mt-1 sm:mt-0">
-              Seamless & Interactive.
+              {worksPageData.headingLine2}
             </div>
           </ViewReveal>
         </div>
         <div className="absolute bottom-[32%] sm:bottom-[30%] md:bottom-[32%] right-[5%] sm:right-[4%] md:right-[3%] w-[90%] sm:w-[500px] md:w-[600px]">
           <ViewReveal revealAfter={2.5} startHidden enableBlur={false}>
             <p className="text-sm sm:text-base md:text-lg lg:text-xl uppercase font-medium">
-              Developing Next.js projects with React, TypeScript, GSAP, and
-              modern web tools for dynamic, engaging user experiences.
+              {worksPageData.description}
             </p>
           </ViewReveal>
         </div>
 
         <PhysicsText
-          text="WORKS"
+          text={worksPageData.physicsText}
           letterSpacing={10}
           gravity={1}
           enableGyro={true}

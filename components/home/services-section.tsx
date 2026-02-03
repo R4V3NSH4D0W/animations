@@ -131,14 +131,12 @@ export default function ServicesSection() {
         {/* Header */}
         <div ref={headerRef} className="mb-16 sm:mb-20">
           <span className="tagline uppercase text-xs sm:text-sm font-bold text-gray-400 block mb-4">
-            {servicesData.tagline}
+            (What I Do)
           </span>
           <h2 className="title text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-light leading-tight">
-            {servicesData.heading}
+            Services
             <br />
-            <span className="text-gray-400">
-              {servicesData.headingHighlight}
-            </span>
+            <span className="text-gray-400">& Expertise</span>
           </h2>
         </div>
 

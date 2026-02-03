@@ -7,7 +7,6 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ArrowRight } from "lucide-react";
-import { aboutData } from "@/data/site-data";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -80,25 +79,26 @@ function AboutSection() {
               ref={taglineRef}
               className="uppercase text-xs sm:text-sm font-bold text-gray-400 block mb-6"
             >
-              {aboutData.tagline}
+              (About Me)
             </span>
 
             <h2
               ref={headingRef}
               className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light leading-tight mb-8"
             >
-              {aboutData.heading}
+              Crafting Digital
               <br />
-              <span className="text-gray-400">
-                {aboutData.headingHighlight}
-              </span>
+              <span className="text-gray-400">Experiences</span>
             </h2>
 
             <p
               ref={textRef}
               className="text-gray-600 text-lg sm:text-xl leading-relaxed mb-8 max-w-xl"
             >
-              {aboutData.description}
+              I'm a Full-Stack Developer passionate about building modern web
+              and mobile applications. With expertise in React, Next.js, and
+              React Native, I transform complex problems into elegant,
+              performant solutions that users love.
             </p>
 
             <Link
@@ -118,7 +118,7 @@ function AboutSection() {
           <div ref={imageRef} className="relative">
             <div className="relative aspect-4/5 w-full max-w-md mx-auto lg:max-w-none">
               <Image
-                src={aboutData.image}
+                src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=2340&auto=format&fit=crop"
                 alt="Developer workspace"
                 fill
                 className="object-cover"
@@ -132,7 +132,12 @@ function AboutSection() {
 
         {/* Stats row */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mt-20 pt-12 border-t border-gray-200">
-          {aboutData.stats.map((stat) => (
+          {[
+            { value: "3+", label: "Years Experience" },
+            { value: "20+", label: "Projects Delivered" },
+            { value: "15+", label: "Happy Clients" },
+            { value: "99%", label: "Satisfaction Rate" },
+          ].map((stat) => (
             <div key={stat.label}>
               <span className="text-3xl sm:text-4xl md:text-5xl font-light">
                 {stat.value}

@@ -7,7 +7,7 @@ import Link from "next/link";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { projectsData } from "@/data/site-data";
+import { homeFeaturedProjects } from "@/data/home-data";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -100,14 +100,12 @@ function FeaturedProjects() {
         >
           <div>
             <span className="uppercase text-xs sm:text-sm font-bold text-gray-400 block mb-4">
-              {projectsData.tagline}
+              (Featured Projects)
             </span>
             <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-light leading-tight">
-              {projectsData.heading}
+              Selected
               <br />
-              <span className="text-gray-400">
-                {projectsData.headingHighlight}
-              </span>
+              <span className="text-gray-400">Work</span>
             </h2>
           </div>
           <Link
@@ -124,7 +122,7 @@ function FeaturedProjects() {
 
         {/* Projects Grid */}
         <div className="space-y-24 sm:space-y-32 md:space-y-40">
-          {projectsData.projects.map((project, index) => (
+          {homeFeaturedProjects.projects.map((project, index) => (
             <article
               key={project.id}
               ref={(el) => {
@@ -135,9 +133,19 @@ function FeaturedProjects() {
               }`}
             >
               {/* Image */}
-              <div
-                className={`project-image relative overflow-hidden group cursor-pointer ${
+              <Link
+                href={
+                  (project as any).status === "In Development"
+                    ? "#"
+                    : (project as any).link || `/works/${project.id}`
+                }
+                target={(project as any).link ? "_blank" : undefined}
+                className={`project-image relative overflow-hidden group cursor-pointer block ${
                   index % 2 === 1 ? "lg:order-2" : ""
+                } ${
+                  (project as any).status === "In Development"
+                    ? "pointer-events-none cursor-default"
+                    : ""
                 }`}
               >
                 <div className="relative h-[300px] sm:h-[400px] md:h-[500px] w-full overflow-hidden">
@@ -145,7 +153,7 @@ function FeaturedProjects() {
                     src={project.imageURL}
                     alt={project.title}
                     fill
-                    className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                    className="object-contain transition-transform duration-700 ease-out group-hover:scale-105"
                   />
                 </div>
                 {/* Hover overlay */}
@@ -156,7 +164,14 @@ function FeaturedProjects() {
                     </div>
                   </div>
                 </div>
-              </div>
+                {/* Status Badge on Image */}
+                {(project as any).status &&
+                  (project as any).status !== "Live" && (
+                    <div className="absolute top-4 left-4 bg-black/80 backdrop-blur-md text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider z-10">
+                      {(project as any).status}
+                    </div>
+                  )}
+              </Link>
 
               {/* Content */}
               <div
@@ -164,14 +179,33 @@ function FeaturedProjects() {
                   index % 2 === 1 ? "lg:order-1" : ""
                 }`}
               >
-                <div className="flex items-center gap-4 mb-4">
+                <div className="flex items-center gap-4 mb-4 flex-wrap">
                   <span className="text-xs text-gray-400 uppercase">
                     {project.year}
                   </span>
+
+                  {(project as any).type && (
+                    <>
+                      <span className="w-8 h-px bg-gray-300" />
+                      <span className="text-xs text-gray-500 font-medium uppercase tracking-wider">
+                        {(project as any).type}
+                      </span>
+                    </>
+                  )}
+
                   <span className="w-8 h-px bg-gray-300" />
                   <span className="text-xs text-gray-400 uppercase">
                     Project {String(index + 1).padStart(2, "0")}
                   </span>
+
+                  {(project as any).status === "Live" && (
+                    <>
+                      <span className="w-8 h-px bg-gray-300" />
+                      <span className="text-xs text-green-600 font-bold uppercase">
+                        Live
+                      </span>
+                    </>
+                  )}
                 </div>
 
                 <h3 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-light mb-4">
@@ -194,16 +228,37 @@ function FeaturedProjects() {
                   ))}
                 </div>
 
-                <Link
-                  href={`/works/${project.id}`}
-                  className="group inline-flex items-center gap-2 text-sm uppercase hover:gap-3 transition-all"
-                >
-                  <span>View Case Study</span>
-                  <ArrowRight
-                    size={14}
-                    className="group-hover:translate-x-1 transition-transform"
-                  />
-                </Link>
+                {(project as any).status === "In Development" ? (
+                  <div className="inline-flex items-center gap-2 text-sm uppercase text-gray-400 cursor-not-allowed">
+                    <span>In Development</span>
+                    <span className="text-[10px] px-2 py-0.5 border border-gray-300 rounded-full">
+                      Coming Soon
+                    </span>
+                  </div>
+                ) : (
+                  <Link
+                    href={(project as any).link || `/works/${project.id}`}
+                    target={(project as any).link ? "_blank" : undefined}
+                    className="group inline-flex items-center gap-2 text-sm uppercase hover:gap-3 transition-all"
+                  >
+                    <span>
+                      {(project as any).link
+                        ? "Visit Website"
+                        : "View Case Study"}
+                    </span>
+                    {(project as any).link ? (
+                      <ArrowUpRight
+                        size={14}
+                        className="group-hover:translate-x-1 transition-transform"
+                      />
+                    ) : (
+                      <ArrowRight
+                        size={14}
+                        className="group-hover:translate-x-1 transition-transform"
+                      />
+                    )}
+                  </Link>
+                )}
               </div>
             </article>
           ))}

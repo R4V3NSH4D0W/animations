@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import AnimatedClock from "../shared/animated-clock";
 import HoverFlip from "../shared/hover-flip";
-import Shuffle from "../shared/shuffle-text";
+
 import ViewReveal from "../shared/view-reveal";
 import { useNavigation } from "@/hooks/use-navigation";
 import { useWindowScroll } from "react-use";
@@ -137,24 +137,12 @@ export default function Navbar() {
       className="flex fixed top-0 left-0 right-0 z-50 flex-row justify-between items-center p-5 "
     >
       <Link href="/" className="cursor-pointer">
-        <Shuffle
-          text="PORTFOLIO"
-          shuffleDirection="right"
-          duration={0.5}
-          animationMode="evenodd"
-          shuffleTimes={2}
-          ease="power3.out"
-          stagger={0.05}
-          threshold={0.1}
-          triggerOnce={false}
-          triggerOnHover={true}
-          respectReducedMotion={true}
-          className="text-foreground uppercase font-extrabold"
-          style={{
-            fontSize: "1.5rem",
-            fontFamily: "inherit",
-          }}
-        />
+        <HoverFlip
+          flipDuration={500}
+          className="text-foreground uppercase font-extrabold text-2xl"
+        >
+          PORTFOLIO
+        </HoverFlip>
       </Link>
 
       <div className="hidden lg:block">

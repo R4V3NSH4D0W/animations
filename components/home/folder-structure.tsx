@@ -1,15 +1,14 @@
 "use client";
 import React, { useRef } from "react";
 import gsap from "gsap";
-import { ScrollTrigger } from "gsap/all";
+import { ScrollTrigger, ScrollToPlugin } from "gsap/all";
 import { useGSAP } from "@gsap/react";
 import DiagonalShape from "@/lib/diagonal-shape";
 import { ArrowRight } from "lucide-react";
-import Marquee from "react-fast-marquee";
 import FeaturedWork from "../work/featured-work";
 import { useMedia } from "react-use";
 
-gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
 function FolderStructure() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -69,7 +68,22 @@ function FolderStructure() {
       <div ref={firstRef}>
         <div className="hidden lg:block">
           <div className=" flex flex-row absolute -top-9  z-1 right-10">
-            <div className=" h-10 w-[300px] bg-black flex items-center px-2 ">
+            <div
+              className=" h-10 w-[300px] bg-black flex items-center px-2 cursor-pointer hover:bg-neutral-800 transition-colors"
+              onClick={() => {
+                const target = document.querySelector("#all-projects");
+                if (target) {
+                  gsap.to(window, {
+                    duration: 1.5,
+                    scrollTo: {
+                      y: target,
+                      offsetY: 20,
+                    },
+                    ease: "power3.inOut",
+                  });
+                }
+              }}
+            >
               <span className=" text-white uppercase">See All works</span>
               <ArrowRight className=" text-white ml-2" size={16} />
             </div>
@@ -84,15 +98,15 @@ function FolderStructure() {
             <DiagonalShape className="w-10 h-10 text-white " />
           </div>
           <FeaturedWork
-            title="Into the Abyss: 3D Character & Environment Animation"
+            title="Luxstore Dashboard"
             date="2025"
-            subTitle="3D TEACH WORK"
-            marquee="ANIMATION 3d React typescript next.js Gsap"
-            description="Developed a 3D animated character and environment with a deep-sea diver theme, executing the full 3D animation pipeline, including concept development, modeling, texturing, rigging, and animation."
-            mainImageURL="https://i.pinimg.com/1200x/68/75/95/68759538dfb2ec534800842bbd2b8369.jpg"
+            subTitle="ECOMMERCE ADMIN"
+            marquee="Next.js TypeScript Tailwind Shadcn React Query"
+            description="A comprehensive ecommerce dashboard application managing global state and providing administration capabilities."
+            mainImageURL="/assets/dashboard/dashboard-home.png"
             sideImageURLs={[
-              "https://i.pinimg.com/1200x/0e/31/59/0e31594f7e6b74bcce6e0fe720593e6e.jpg",
-              "https://i.pinimg.com/736x/2e/0b/d9/2e0bd91bef3c8cc83406f4f51b29edb5.jpg",
+              "/assets/dashboard/collection-dashboard.png",
+              "/assets/dashboard/dashboard-product.png",
             ]}
           />
         </div>
@@ -108,15 +122,15 @@ function FolderStructure() {
           <DiagonalShape className="w-10 h-10 text-orange-200 " />
         </div>
         <FeaturedWork
-          title="Galactic Odyssey: Sci-Fi Environment & Spaceship Design"
-          date="2024"
-          subTitle="SPACE THEME PROJECT"
-          marquee="3D Modeling Blender React Three.js Animation"
-          description="Created a futuristic galactic environment with spaceships, using Blender for modeling and texturing, and React Three.js for interactive display and animation."
-          mainImageURL="https://i.pinimg.com/736x/9c/a7/ab/9ca7abc9b83bff5645a3cef336f94f3c.jpg"
+          title="Luxstore Web Version"
+          date="2025"
+          subTitle="CONSUMER STOREFRONT"
+          marquee="Next.js 16 TypeScript GSAP Stripe Zustand"
+          description="The consumer-facing web storefront offering a premium user experience with smooth scrolling and sophisticated animations."
+          mainImageURL="/assets/web/web-home.png"
           sideImageURLs={[
-            "https://i.pinimg.com/1200x/e0/3e/64/e03e64e13070d12899133baa4c904412.jpg",
-            "https://i.pinimg.com/1200x/a7/6f/eb/a76febc8e216d534ac77a69f24178db2.jpg",
+            "/assets/web/web-all-product.png",
+            "/assets/web/Screenshot 2026-02-03 at 3.27.54 PM.png",
           ]}
         />
       </div>
@@ -131,16 +145,13 @@ function FolderStructure() {
           <DiagonalShape className="w-10 h-10 text-purple-100 " />
         </div>
         <FeaturedWork
-          title="Urban Vibes: Architectural Visualization"
-          date="2023"
-          subTitle="ARCHITECTURE PROJECT"
-          marquee="3D Rendering SketchUp React Next.js GSAP"
-          description="Produced a photorealistic urban architectural visualization including buildings, streets, and dynamic lighting, implementing 3D rendering and animation pipelines for client presentations."
-          mainImageURL="https://i.pinimg.com/1200x/b3/a6/28/b3a6287a77b46a1595cb345b8c849c78.jpg"
-          sideImageURLs={[
-            "https://i.pinimg.com/1200x/87/e7/2b/87e72b6f2efc9fb6e78113cbb300b29f.jpg",
-            "https://i.pinimg.com/1200x/13/7c/dc/137cdcd34ae5d90c361a40c890e2cde4.jpg",
-          ]}
+          title="Luxstore Mobile App"
+          date="2025"
+          subTitle="CROSS-PLATFORM APP"
+          marquee="React Native Expo TypeScript Stripe TanStack Query"
+          description="A cross-platform mobile application delivering a native shopping experience on Android and iOS."
+          mainImageURL="/assets/app/android.png"
+          sideImageURLs={["/assets/app/android.png", "/assets/app/android.png"]}
         />
       </div>
     </div>

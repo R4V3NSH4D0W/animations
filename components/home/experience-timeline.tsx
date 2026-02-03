@@ -4,7 +4,7 @@ import { useRef } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { experienceData } from "@/data/site-data";
+import { aboutPageData } from "@/data/site-data";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -112,14 +112,12 @@ export default function ExperienceTimeline() {
         {/* Header */}
         <div ref={headerRef} className="mb-16 sm:mb-20">
           <span className="uppercase text-xs sm:text-sm font-bold text-gray-400 block mb-4">
-            {experienceData.tagline}
+            (Experience)
           </span>
           <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-light leading-tight">
-            {experienceData.heading}
+            Where I've
             <br />
-            <span className="text-gray-400">
-              {experienceData.headingHighlight}
-            </span>
+            <span className="text-gray-400">Worked</span>
           </h2>
         </div>
 
@@ -137,9 +135,9 @@ export default function ExperienceTimeline() {
 
           {/* Experience cards */}
           <div className="space-y-12 md:space-y-0">
-            {experienceData.experiences.map((exp, index) => (
+            {aboutPageData.experiences.map((exp, index) => (
               <div
-                key={exp.id}
+                key={index}
                 ref={(el) => {
                   if (el) experienceRefs.current[index] = el;
                 }}
@@ -163,21 +161,21 @@ export default function ExperienceTimeline() {
                   <div className="p-6 border border-gray-100 hover:border-gray-300 transition-colors duration-300">
                     <div className="flex flex-wrap items-center gap-2 mb-2">
                       <span className="text-xs text-gray-400 uppercase">
-                        {exp.period}
+                        {`${exp.from} - ${exp.to}`}
                       </span>
                     </div>
 
                     <h3 className="text-xl sm:text-2xl font-medium mb-1">
-                      {exp.role}
+                      {exp.position}
                     </h3>
                     <p className="text-gray-500 text-sm mb-4">{exp.company}</p>
 
                     <p className="text-gray-600 text-sm sm:text-base mb-4 leading-relaxed">
-                      {exp.description}
+                      {exp.details}
                     </p>
 
                     <div className="flex flex-wrap gap-2">
-                      {exp.technologies.map((tech) => (
+                      {exp.technologies?.map((tech) => (
                         <span
                           key={tech}
                           className="px-2 py-1 text-xs uppercase border border-gray-200 rounded"

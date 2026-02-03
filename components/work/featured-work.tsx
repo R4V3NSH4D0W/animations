@@ -70,6 +70,7 @@ function FeaturedWork({
                 src={img}
                 fill
                 alt={`Featured` + idx}
+                quality={100}
                 className="object-cover rounded-lg hover:scale-105 transition-transform duration-700"
                 sizes="(min-width: 1024px) 300px, 50vw"
               />

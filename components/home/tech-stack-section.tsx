@@ -139,13 +139,13 @@ export default function TechStackSection() {
         {/* Header */}
         <div ref={headerRef} className="mb-16 sm:mb-20">
           <span className="tagline uppercase text-xs sm:text-sm font-bold text-gray-500 block mb-4">
-            {techStackData.tagline}
+            (Technologies)
           </span>
           <h2 className="title text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-light leading-tight overflow-hidden">
-            {techStackData.heading}
+            Tools & Technologies
           </h2>
           <span className="subtitle text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-light text-gray-400 block mt-2">
-            {techStackData.headingHighlight}
+            I work with
           </span>
         </div>
 
@@ -177,7 +177,9 @@ export default function TechStackSection() {
 
         <div ref={philosophyRef} className="mt-24 sm:mt-32 max-w-3xl">
           <p className="text-lg sm:text-xl md:text-2xl font-light text-gray-600 leading-relaxed">
-            {techStackData.philosophy}
+            I believe in choosing the right tool for the job. Whether it's
+            building a performant web app or a cross-platform mobile experience,
+            I focus on clean architecture and maintainable code.
           </p>
         </div>
       </div>
