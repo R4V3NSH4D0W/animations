@@ -12,20 +12,20 @@ function page() {
           <ViewReveal revealAfter={1} startHidden enableBlur={false}>
             <div className="flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-4">
               <span className="uppercase font-bold text-xs sm:text-sm">
-                (I craft)
+                (Welcome)
               </span>
               <span className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-[68px] leading-tight">
-                Experiences that Move
+                Hello, I'm John Doe
               </span>
             </div>
             <div className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-[68px] leading-tight mt-2">
-              <div>with subtle emotion.</div>
+              <div>Creative Developer.</div>
             </div>
           </ViewReveal>
         </div>
 
         <PhysicsText
-          text="DESIGN"
+          text="PORTFOLIO"
           letterSpacing={10}
           gravity={1}
           enableGyro={true}
@@ -33,7 +33,7 @@ function page() {
           gyroMaxGravity={2}
           startDelay={1300}
           containerWidth="95%"
-          className="max-sm:text-[120px] text-[270px] font-extrabold -mt-[220px] min-h-[calc(100%+140px)]"
+          className="max-sm:text-[120px] text-[180px] md:text-[270px] font-extrabold -mt-[220px] min-h-[calc(100%+140px)]"
           restitution={0.2}
           startPosition={{ x: 0.1, y: 0 }}
         />

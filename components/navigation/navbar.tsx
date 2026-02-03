@@ -1,5 +1,7 @@
 "use client";
 
+import Link from "next/link";
+
 import { useEffect, useRef, useState } from "react";
 import AnimatedClock from "../shared/animated-clock";
 import HoverFlip from "../shared/hover-flip";
@@ -77,7 +79,7 @@ export default function Navbar() {
           opacity: 1,
           duration: 0.6,
           ease: "power3.inOut",
-        }
+        },
       );
 
       // Stagger menu items
@@ -96,7 +98,7 @@ export default function Navbar() {
             stagger: 0.1,
             delay: 0.3,
             ease: "power2.out",
-          }
+          },
         );
       }
     } else {
@@ -134,7 +136,7 @@ export default function Navbar() {
       ref={navContainerRef}
       className="flex fixed top-0 left-0 right-0 z-50 flex-row justify-between items-center p-5 "
     >
-      <div onClick={() => navigate("/")} className="cursor-pointer">
+      <Link href="/" className="cursor-pointer">
         <Shuffle
           text="PORTFOLIO"
           shuffleDirection="right"
@@ -153,7 +155,7 @@ export default function Navbar() {
             fontFamily: "inherit",
           }}
         />
-      </div>
+      </Link>
 
       <div className="hidden lg:block">
         <ViewReveal startHidden revealAfter={0.5} enableBlur={false}>
@@ -162,9 +164,9 @@ export default function Navbar() {
               const active = isActive(item.href);
 
               return (
-                <span
+                <Link
                   key={idx}
-                  onClick={() => navigate(item.href)}
+                  href={item.href}
                   className="relative cursor-pointer inline-block"
                 >
                   <HoverFlip flipDuration={500} className="text-sm">
@@ -175,7 +177,7 @@ export default function Navbar() {
                   {active && (
                     <span className="absolute left-0 -bottom-1 w-full h-px bg-gray-500  rounded-full" />
                   )}
-                </span>
+                </Link>
               );
             })}
           </div>
@@ -229,10 +231,11 @@ export default function Navbar() {
               const active = isActive(item.href);
 
               return (
-                <div
+                <Link
                   key={idx}
-                  onClick={() => handleMobileMenuItemClick(item.href)}
-                  className="relative cursor-pointer"
+                  href={item.href}
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="relative cursor-pointer block"
                 >
                   <div className="text-4xl font-medium text-gray-900 hover:text-gray-600 transition-colors">
                     {item.name}
@@ -240,7 +243,7 @@ export default function Navbar() {
                   {active && (
                     <div className="absolute left-1/2 -translate-x-1/2 -bottom-2 w-12 h-1 bg-gray-900 rounded-full" />
                   )}
-                </div>
+                </Link>
               );
             })}
 

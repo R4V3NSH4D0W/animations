@@ -1,55 +1,69 @@
 "use client";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
+import { usePageTransition } from "@/hooks/use-page-transition";
 
 interface PageTransitionSplashProps {
-  isTransitioning: boolean;
   text?: string;
 }
 
 export default function PageTransitionSplash({
-  isTransitioning,
   text = "Loading...",
 }: PageTransitionSplashProps) {
+  const { isTransitioning, shouldReveal, onTransitionComplete } =
+    usePageTransition();
+  const timelineRef = useRef<gsap.core.Timeline | null>(null);
+
+  // Enter Animation
   useEffect(() => {
     const blackPanel = document.getElementById("transition-splash-black");
     const whitePanel = document.getElementById("transition-splash-white");
 
-    if (!blackPanel || !whitePanel) return;
+    if (!blackPanel || !whitePanel || !isTransitioning) return;
 
-    let tl: gsap.core.Timeline | null = null;
+    // Reset positions for Entry
+    // Start at Top (-100%)
+    gsap.set(whitePanel, { y: "0%", opacity: 1 });
+    gsap.set(blackPanel, { y: "-100%" });
 
-    if (isTransitioning) {
-      // Start: white panel visible immediately to cover content, black panel above viewport
-      gsap.set(whitePanel, { y: "0%", opacity: 1 });
-      gsap.set(blackPanel, { y: "-100%" });
+    const tl = gsap.timeline();
+    timelineRef.current = tl;
 
-      tl = gsap.timeline();
-
-      // Step 1: Black panel slides down immediately over white background
-      tl.to(blackPanel, {
-        y: "0%",
-        duration: 0.4,
-        ease: "power3.inOut",
-      });
-
-      // Step 2: Black panel stays showing quote, then both slide down together
-      tl.to([blackPanel, whitePanel], {
-        y: "100%",
-        duration: 0.8,
-        ease: "power3.inOut",
-        delay: 0.8, // Hold black panel with quote
-      });
-    }
-
-    // Cleanup to prevent memory leaks
-    return () => {
-      if (tl) {
-        tl.kill();
-      }
-    };
+    // Animate to Center (0%)
+    tl.to(blackPanel, {
+      y: "0%",
+      duration: 0.5,
+      ease: "power3.inOut",
+    });
   }, [isTransitioning]);
 
+  // Exit Animation
+  useEffect(() => {
+    const blackPanel = document.getElementById("transition-splash-black");
+    const whitePanel = document.getElementById("transition-splash-white");
+
+    if (!blackPanel || !whitePanel || !isTransitioning || !shouldReveal) return;
+
+    // Only start exit if timeline exists (meaning entry started)
+    const tl = timelineRef.current || gsap.timeline();
+
+    // Animate to Bottom (100%)
+    // Added a small delay to ensure user sees the quote for at least a moment
+    tl.to([blackPanel, whitePanel], {
+      y: "100%",
+      duration: 0.8,
+      ease: "power3.inOut",
+      delay: 0.4, // Min display time
+      onComplete: () => {
+        onTransitionComplete();
+        // Reset timeline
+        timelineRef.current = null;
+      },
+    });
+  }, [shouldReveal, isTransitioning, onTransitionComplete]);
+
+  // Don't render if not transitioning
+  // Note: We keep it rendered *during* the exit phase because isTransitioning is still true until onComplete
   if (!isTransitioning) return null;
 
   return (

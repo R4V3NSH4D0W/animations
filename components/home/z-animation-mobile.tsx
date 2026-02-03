@@ -57,7 +57,7 @@ export default function ZAnimationMobile() {
             textClassName="font-bold text-xs text-center uppercase"
             size="sm"
           >
-            We ARE BRand
+            My Philosophy
           </ScrollReveal>
 
           <div className="mt-6">
@@ -70,7 +70,7 @@ export default function ZAnimationMobile() {
               textClassName="font-light text-center text-3xl"
               size="lg"
             >
-              Social-first, beauty-fluent, influence-led.
+              User-centric, performance-driven, design-led.
             </ScrollReveal>
           </div>
 

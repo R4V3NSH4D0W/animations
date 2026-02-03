@@ -16,20 +16,20 @@ const data = [
   {
     imageURL:
       "https://i.pinimg.com/736x/56/ad/87/56ad87a78a95729abf04f56a14b379eb.jpg",
-    title: "E-Commerce Platform",
-    launch: "Fashion Store Growth",
+    title: "Personal Portfolio",
+    launch: "Web Development",
   },
   {
     imageURL:
       "https://i.pinimg.com/736x/97/da/a0/97daa081bff94a6b032e1538b0407f12.jpg",
-    title: "Fintech Dashboard",
-    launch: "Data Visualization",
+    title: "SaaS Dashboard",
+    launch: "Product Design",
   },
   {
     imageURL:
       "https://i.pinimg.com/1200x/b1/2a/4b/b12a4bd6a36f48c14157e595992d1a46.jpg",
-    title: "Portfolio v1",
-    launch: "Experimental Design",
+    title: "Mobile Application",
+    launch: "App Development",
   },
 ];
 
@@ -54,10 +54,12 @@ function CaseStudies() {
     <section className="flex flex-col mx-4 sm:mx-6 md:mx-8 lg:mx-10 my-8 sm:my-10 md:my-12 lg:my-16">
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 sm:gap-0">
         <span className="text-xs sm:text-sm font-medium uppercase">
-          Recent Works
+          Selected Work
         </span>
         <div className="flex flex-row items-center gap-3 sm:gap-5 cursor-pointer hover:gap-4 sm:hover:gap-6 transition-all">
-          <span className="uppercase text-xs sm:text-sm">View More Work</span>
+          <span className="uppercase text-xs sm:text-sm">
+            View All Projects
+          </span>
           <ArrowRight size={16} className="shrink-0" />
         </div>
       </div>

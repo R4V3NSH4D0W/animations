@@ -1,18 +1,12 @@
 "use client";
-import {
-  createContext,
-  useContext,
-  useState,
-  useCallback,
-  useEffect,
-} from "react";
-import { useRouter, usePathname } from "next/navigation";
+import { createContext, useContext, useState, useEffect } from "react";
+import { useRouter, usePathname, useSearchParams } from "next/navigation";
 import { ScrollSmoother } from "gsap/ScrollSmoother";
 
 interface PageTransitionContextType {
-  isTransitioning: boolean;
-  navigateWithTransition: (href: string) => void;
-  markPageReady: () => void;
+  isTransitioning: boolean; // Are we in the transition lifecycle?
+  shouldReveal: boolean; // Has the route loaded? (Time to play exit animation)
+  onTransitionComplete: () => void; // Reset everything
 }
 
 const PageTransitionContext = createContext<
@@ -25,64 +19,72 @@ export function PageTransitionProvider({
   children: React.ReactNode;
 }) {
   const [isTransitioning, setIsTransitioning] = useState(false);
-  const [isPageReady, setIsPageReady] = useState(false);
-  const [targetPath, setTargetPath] = useState<string | null>(null);
-  const router = useRouter();
+  const [shouldReveal, setShouldReveal] = useState(false);
   const pathname = usePathname();
+  const searchParams = useSearchParams();
+  const router = useRouter();
 
-  const navigateWithTransition = useCallback(
-    (href: string) => {
-      // Prevent multiple rapid navigations
-      if (isTransitioning) {
-        console.log("Navigation already in progress, ignoring");
-        return;
-      }
+  // Watch for route changes to signal 'Ready to Reveal'
+  useEffect(() => {
+    if (isTransitioning) {
+      // New route detected!
+      // Small delay to ensure render painted? Or immediate.
+      setShouldReveal(true);
 
-      console.log("Starting transition to:", href);
-      setIsTransitioning(true);
-      setIsPageReady(false);
-      setTargetPath(href);
-
-      // Scroll to top using ScrollSmoother or fallback to window
+      // Scroll to top logic
       const smoother = ScrollSmoother.get();
       if (smoother) {
-        smoother.scrollTo(0, false); // Instant scroll to top
+        smoother.scrollTo(0, false);
       } else {
         window.scrollTo(0, 0);
       }
-
-      // Navigate immediately - content will be hidden by background
-      router.push(href);
-    },
-    [router, isTransitioning]
-  );
-
-  const markPageReady = useCallback(() => {
-    console.log("Page marked as ready");
-    setIsPageReady(true);
-    // Keep transition active for reveal animation, then reset
-    setTimeout(() => {
-      console.log("Transition complete");
-      setIsTransitioning(false);
-      setTargetPath(null);
-    }, 1700); // Match actual animation duration (0.4 + 0.5 + 0.8 = 1.7s)
-  }, []);
-
-  // Detect when route actually changes and mark page ready
-  useEffect(() => {
-    if (targetPath && pathname === targetPath) {
-      console.log("Route changed to target:", pathname);
-      // Route has changed, wait a bit for content to render
-      const timer = setTimeout(() => {
-        markPageReady();
-      }, 100);
-      return () => clearTimeout(timer);
     }
-  }, [pathname, targetPath, markPageReady]);
+  }, [pathname, searchParams]);
+
+  const onTransitionComplete = () => {
+    setIsTransitioning(false);
+    setShouldReveal(false);
+  };
+
+  useEffect(() => {
+    const handleClick = (e: MouseEvent) => {
+      const target = e.target as HTMLElement;
+      const anchor = target.closest("a");
+
+      if (!anchor) return;
+      if (anchor.target === "_blank") return;
+      if (e.ctrlKey || e.metaKey || e.altKey || e.shiftKey) return;
+
+      const href = anchor.getAttribute("href");
+      if (!href) return;
+
+      // Check if it's a local link
+      if (href.startsWith("/") || href.startsWith(window.location.origin)) {
+        // Prevent default if it's the same page
+        const targetUrl = new URL(href, window.location.origin);
+        if (
+          targetUrl.pathname === window.location.pathname &&
+          targetUrl.search === window.location.search
+        ) {
+          return;
+        }
+
+        // START Transition
+        setShouldReveal(false);
+        setIsTransitioning(true);
+        // Note: We don't preventDefault here anymore.
+        // We let Next.js Link handle the navigation naturally.
+        // Our 'isTransitioning' state will trigger the "Enter" animation immediately.
+      }
+    };
+
+    document.addEventListener("click", handleClick);
+    return () => document.removeEventListener("click", handleClick);
+  }, []);
 
   return (
     <PageTransitionContext.Provider
-      value={{ isTransitioning, navigateWithTransition, markPageReady }}
+      value={{ isTransitioning, shouldReveal, onTransitionComplete }}
     >
       {children}
     </PageTransitionContext.Provider>
@@ -93,7 +95,7 @@ export function usePageTransition() {
   const context = useContext(PageTransitionContext);
   if (!context) {
     throw new Error(
-      "usePageTransition must be used within PageTransitionProvider"
+      "usePageTransition must be used within PageTransitionProvider",
     );
   }
   return context;

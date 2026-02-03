@@ -57,7 +57,7 @@ export default function ZAnimationDesktop() {
         });
       }
     },
-    { scope: containerRef }
+    { scope: containerRef },
   );
 
   return (
@@ -92,8 +92,8 @@ export default function ZAnimationDesktop() {
             />
           </div>
           <p className="p-4 text-xl uppercase border-t-2 border-white">
-            Social, influence, commerce – built to work together, designed to
-            move your brand forward.
+            Design, engineering, and strategy – built to work together, designed
+            to bring your ideas to life.
           </p>
         </div>
 
@@ -121,11 +121,11 @@ export default function ZAnimationDesktop() {
       >
         <div className="text-center py-10">
           <h2 className="uppercase font-bold text-sm">
-            We <br /> ARE BRand
+            My <br /> Philosophy
           </h2>
           <p className="text-center text-[62px] font-light leading-[100%] mt-10">
-            Social-first, beauty-fluent,
-            <br /> influence-led.
+            User-centric, performance-driven,
+            <br /> design-led.
           </p>
           <video
             className="w-full h-fit object-cover p-10"

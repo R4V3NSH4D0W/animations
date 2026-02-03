@@ -14,7 +14,7 @@ import { CursorProvider } from "./wrappers/cursor-wrapper";
 
 function ClientLayoutContent({ children }: { children: React.ReactNode }) {
   const [splashComplete, setSplashComplete] = useState(false);
-  const { isTransitioning, markPageReady } = usePageTransition();
+  const { isTransitioning } = usePageTransition();
   const pathname = usePathname();
 
   // Get page-specific quote based on current route
@@ -45,10 +45,7 @@ function ClientLayoutContent({ children }: { children: React.ReactNode }) {
         <div className="text-white text-6xl font-bold">PORTFOLIO</div>
       </SplashScreen>
 
-      <PageTransitionSplash
-        isTransitioning={isTransitioning}
-        text={getPageQuote()}
-      />
+      <PageTransitionSplash text={getPageQuote()} />
 
       {/* Only render content after splash is complete */}
       {splashComplete && (
