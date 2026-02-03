@@ -56,20 +56,29 @@ function Archive() {
             </div>
           );
 
-          return item.link ? (
-            <Link
-              key={index}
-              href={item.link}
-              target="_blank"
-              className="block w-full h-full"
-            >
-              {content}
-            </Link>
-          ) : (
-            <div key={index} className="w-full h-full">
-              {content}
-            </div>
-          );
+          const href =
+            item.link ||
+            (item.isFeatured && item.id ? `/works/${item.id}` : undefined);
+          const isExternal = !!item.link;
+
+          if (href) {
+            return (
+              <Link
+                key={index}
+                href={href}
+                target={isExternal ? "_blank" : undefined}
+                className="block w-full h-full cursor-pointer"
+              >
+                {content}
+              </Link>
+            );
+          } else {
+            return (
+              <div key={index} className="w-full h-full">
+                {content}
+              </div>
+            );
+          }
         })}
 
         {/* SEE MORE BOX */}

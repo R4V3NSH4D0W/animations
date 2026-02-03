@@ -16,60 +16,56 @@ function FolderStructure() {
   const secondRef = useRef<HTMLDivElement>(null);
   const thirdRef = useRef<HTMLDivElement>(null);
 
+  // Disable pinning completely on mobile to prevent shake and overlap
+  const isDesktop = useMedia("(min-width: 769px)", false);
+
   useGSAP(
     () => {
-      const mm = gsap.matchMedia();
+      // Only run pinning on desktop - mobile will have normal scroll
+      if (!isDesktop) return;
 
-      // Only run pinning on desktop (lg breakpoint = 1024px)
-      mm.add("(min-width: 1024px)", () => {
-        // PINNING THE 3 COLUMNS
-        const scrollTriggerConfig = {
-          trigger: containerRef.current,
-          start: "top top",
-          end: "bottom bottom",
-          scrub: true,
-        };
+      // PINNING THE 3 COLUMNS - all triggered by the container to align at same position
+      const scrollTriggerConfig = {
+        trigger: containerRef.current,
+        start: "top top",
+        end: "bottom bottom",
+        scrub: true,
+      };
 
-        // Pin first element
-        ScrollTrigger.create({
-          ...scrollTriggerConfig,
-          trigger: firstRef.current,
-          start: "top top",
-          end: () => `+=${window.innerHeight * 2}`,
-          pin: true,
-          pinSpacing: false,
-        });
-
-        // Pin second element
-        ScrollTrigger.create({
-          ...scrollTriggerConfig,
-          trigger: secondRef.current,
-          start: "top top",
-          end: () => `+=${window.innerHeight * 1}`,
-          pin: true,
-          pinSpacing: false,
-        });
-
-        // Pin third element
-        ScrollTrigger.create({
-          ...scrollTriggerConfig,
-          trigger: thirdRef.current,
-          start: "top top",
-          pin: true,
-        });
+      // Pin first element
+      ScrollTrigger.create({
+        ...scrollTriggerConfig,
+        trigger: firstRef.current,
+        start: "top 11.8%",
+        end: () => `+=${window.innerHeight * 2}`,
+        pin: true,
+        pinSpacing: false,
       });
 
-      return () => mm.revert();
-    },
-    { scope: containerRef },
-  );
+      // Pin second element
+      ScrollTrigger.create({
+        ...scrollTriggerConfig,
+        trigger: secondRef.current,
+        start: "top 11.8%",
+        end: () => `+=${window.innerHeight * 1}`,
+        pin: true,
+        pinSpacing: false,
+      });
 
+      // Pin third element
+      ScrollTrigger.create({
+        ...scrollTriggerConfig,
+        trigger: thirdRef.current,
+        start: "top 1%",
+        end: () => `+=${window.innerHeight * 0.001}`,
+        pin: true,
+      });
+    },
+    { scope: containerRef, dependencies: [isDesktop] },
+  );
   return (
-    <div
-      ref={containerRef}
-      className="my-10 lg:my-0 flex flex-col gap-20 lg:block"
-    >
-      <div ref={firstRef} className="relative">
+    <div ref={containerRef} className="  my-10 ">
+      <div ref={firstRef}>
         <div className="hidden lg:block">
           <div className=" flex flex-row absolute -top-9  z-1 right-10">
             <div
@@ -94,13 +90,8 @@ function FolderStructure() {
             <DiagonalShape className="w-10 h-10 text-black" />
           </div>
         </div>
-        <div className="w-full h-auto lg:min-h-screen relative z-10 bg-white border-t lg:border-none border-gray-200 lg:pt-0 pt-10">
-          {/* Mobile Label */}
-          <div className="lg:hidden absolute -top-5 left-4 bg-black text-white px-4 py-1 text-xs uppercase font-bold tracking-wider">
-            Featured Work 1
-          </div>
-
-          <div className="hidden lg:flex flex-row absolute -top-9">
+        <div className="w-full h-auto lg:min-h-screen relative z-10 bg-white">
+          <div className=" flex flex-row absolute -top-9">
             <div className=" h-10 w-[300px] lg:w-[400px] flex items-center px-4 lg:justify-center bg-white">
               <span className=" uppercase font-medium">Featured Work 1</span>
             </div>
@@ -122,14 +113,9 @@ function FolderStructure() {
       </div>
       <div
         ref={secondRef}
-        className="w-full h-auto lg:min-h-screen z-20 relative bg-orange-200 lg:pt-0 pt-10"
+        className="w-full h-auto lg:min-h-screen z-20  relative bg-orange-200"
       >
-        {/* Mobile Label */}
-        <div className="lg:hidden absolute -top-5 left-4 bg-orange-500 text-white px-4 py-1 text-xs uppercase font-bold tracking-wider">
-          Featured Work 2
-        </div>
-
-        <div className="hidden lg:flex flex-row absolute -top-9 left-0 lg:left-[25%]">
+        <div className=" flex flex-row absolute -top-9 left-0 lg:left-[25%]">
           <div className=" h-10 w-[300px] lg:w-[400px] flex items-center px-4 lg:justify-center bg-orange-200">
             <span className=" uppercase font-medium">Featured Work 2</span>
           </div>
@@ -150,14 +136,9 @@ function FolderStructure() {
       </div>
       <div
         ref={thirdRef}
-        className="w-full h-auto lg:min-h-screen z-20 relative bg-purple-100 lg:pt-0 pt-10"
+        className="w-full h-auto lg:min-h-screen z-20 relative bg-purple-100"
       >
-        {/* Mobile Label */}
-        <div className="lg:hidden absolute -top-5 left-4 bg-purple-500 text-white px-4 py-1 text-xs uppercase font-bold tracking-wider">
-          Featured Work 3
-        </div>
-
-        <div className="hidden lg:flex flex-row absolute -top-9 left-0 lg:left-[50%]">
+        <div className=" flex flex-row absolute -top-9 left-0 lg:left-[50%]">
           <div className=" h-10 w-[300px] lg:w-[400px] flex items-center px-4 lg:justify-center bg-purple-100">
             <span className=" uppercase font-medium">Featured Work 3</span>
           </div>

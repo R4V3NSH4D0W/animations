@@ -34,7 +34,7 @@ export const servicesData = {
   ],
 };
 
-// Tech Stack Section
+
 export const techStackData = {
   technologies: [
     { name: "React", category: "Frontend" },
@@ -50,76 +50,8 @@ export const techStackData = {
 
 
 // Featured Projects Section
+import { getSelectedProjects } from "./shared-data";
+
 export const homeFeaturedProjects = {
-  projects: [
-    {
-      id: 1,
-      imageURL: "/assets/dashboard/dashboard-product.png",
-      title: "Luxstore Dashboard",
-      description:
-        "A comprehensive ecommerce dashboard application managing global state and providing administration capabilities.",
-      tech: ["Next.js", "TypeScript", "Tailwind CSS", "Shadcn UI", "React Query"],
-      year: "2025",
-      status: "In Development",
-      type: "Personal",
-    },
-    {
-      id: 2,
-      imageURL: "/assets/web/web-all-product.png",
-      title: "Luxstore Web Version",
-      description:
-        "The consumer-facing web storefront offering a premium user experience with smooth scrolling and sophisticated animations.",
-      tech: ["Next.js 16", "TypeScript", "GSAP", "Stripe", "Zustand"],
-      year: "2025",
-      status: "In Development",
-      type: "Personal",
-    },
-    {
-      id: 3,
-      imageURL: "/assets/app/android.png",
-      title: "Luxstore Mobile App",
-      description:
-        "A cross-platform mobile application delivering a native shopping experience on Android and iOS.",
-      tech: ["React Native", "Expo", "TypeScript", "Stripe", "TanStack Query"],
-      year: "2025",
-      status: "In Development",
-      type: "Personal",
-    },
-    {
-      id: 4,
-      imageURL: "/assets/web/rural-heritage.png",
-      title: "Rural Heritage",
-      description:
-        "A premium digital platform for slow travel in the Himalayas, featuring curated heritage stays and immersive cultural journeys.",
-      tech: ["Next.js", "TypeScript", "Tailwind CSS", "Shadcn UI", "React Query"],
-      year: "2025",
-      link: "https://rural-heritage.com/",
-      status: "Live",
-      type: "Corporate",
-    },
-    {
-      id: 5,
-      imageURL: "/assets/web/travelier.png", // Placeholder - swap with Traveleir screenshot
-      title: "Traveleir",
-      description:
-        "A luxury travel booking platform for curated stays and trips in Nepal.",
-      tech: ["Next.js", "Tailwind CSS", "Shadcn UI"],
-      year: "2024",
-      link: "https://staging.traveleir.com/",
-      status: "Beta",
-      type: "Corporate",
-    },
-    {
-      id: 6,
-      imageURL: "/assets/web/zyabba.png", // Placeholder - swap with Zyabaa screenshot
-      title: "Zyabaa",
-      description:
-        "A premium fashion and lifestyle e-commerce marketplace with multi-category shopping.",
-      tech: ["Next.js", "React", "Tailwind CSS"],
-      year: "2024",
-      link: "http://frontend.zyabaa.com/",
-      status: "Beta",
-      type: "Corporate",
-    },
-  ],
+  projects: getSelectedProjects([0,1, 2, 3, 4 ,5]),
 };
