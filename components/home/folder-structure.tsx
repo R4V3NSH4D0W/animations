@@ -62,7 +62,7 @@ function FolderStructure() {
         pin: true,
       });
     },
-    { scope: containerRef, dependencies: [isDesktop] }
+    { scope: containerRef, dependencies: [isDesktop] },
   );
   return (
     <div ref={containerRef} className="  my-10 ">

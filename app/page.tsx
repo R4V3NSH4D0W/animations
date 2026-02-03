@@ -1,8 +1,11 @@
 import AboutSection from "../components/home/about-section";
-import CaseStudies from "../components/home/case-studies";
-import ZAnimation from "../components/home/z-animation";
+import FeaturedProjects from "../components/home/featured-projects";
+import TechStackSection from "../components/home/tech-stack-section";
+import CTASection from "../components/home/cta-section";
+import ServicesSection from "../components/home/services-section";
 import PhysicsText from "../components/shared/physics-text";
 import ViewReveal from "../components/shared/view-reveal";
+import ExperienceTimeline from "@/components/home/experience-timeline";
 
 function page() {
   return (
@@ -12,14 +15,25 @@ function page() {
           <ViewReveal revealAfter={1} startHidden enableBlur={false}>
             <div className="flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-4">
               <span className="uppercase font-bold text-xs sm:text-sm">
-                (Welcome)
+                (Hello, World)
               </span>
               <span className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-[68px] leading-tight">
-                Hello, I'm John Doe
+                I'm Lenish Magar
               </span>
             </div>
             <div className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-[68px] leading-tight mt-2">
-              <div>Creative Developer.</div>
+              <div>Full-Stack Developer.</div>
+            </div>
+            <div className="flex flex-wrap gap-2 sm:gap-3 mt-4 text-xs sm:text-sm font-medium opacity-70">
+              <span>React</span>
+              <span>•</span>
+              <span>Next.js</span>
+              <span>•</span>
+              <span>TypeScript</span>
+              <span>•</span>
+              <span>Node.js</span>
+              <span>•</span>
+              <span>React Native</span>
             </div>
           </ViewReveal>
         </div>
@@ -39,8 +53,10 @@ function page() {
         />
       </div>
       <AboutSection />
-      <ZAnimation />
-      <CaseStudies />
+      <TechStackSection />
+      <ServicesSection />
+      <ExperienceTimeline />
+      <FeaturedProjects />
     </div>
   );
 }

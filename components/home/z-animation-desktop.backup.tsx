@@ -128,67 +128,14 @@ export default function ZAnimationDesktop() {
             <br />
             seamless experiences.
           </p>
-          {/* Code-themed visual section - Full screen */}
-          <div className="w-full h-screen flex items-center justify-center px-4 md:px-10">
-            <div className="bg-[#1e1e1e] rounded-2xl overflow-hidden shadow-2xl w-full max-w-5xl">
-              <div className="flex items-center gap-2 px-6 py-4 bg-[#323232]">
-                <div className="w-4 h-4 rounded-full bg-[#ff5f56]" />
-                <div className="w-4 h-4 rounded-full bg-[#ffbd2e]" />
-                <div className="w-4 h-4 rounded-full bg-[#27ca40]" />
-                <span className="ml-4 text-base text-gray-400 font-mono">
-                  portfolio.tsx
-                </span>
-              </div>
-              <div className="p-8 md:p-12 font-mono text-lg md:text-2xl lg:text-3xl text-left">
-                <pre className="text-gray-300 leading-relaxed">
-                  <code>
-                    <span className="text-[#569cd6]">const</span>{" "}
-                    <span className="text-[#4fc1ff]">developer</span>{" "}
-                    <span className="text-white">=</span> {"{"}
-                    {"\n"}
-                    {"  "}
-                    <span className="text-[#9cdcfe]">name</span>:{" "}
-                    <span className="text-[#ce9178]">
-                      "Lenish Yesmali Magar"
-                    </span>
-                    ,{"\n"}
-                    {"  "}
-                    <span className="text-[#9cdcfe]">role</span>:{" "}
-                    <span className="text-[#ce9178]">
-                      "Full-Stack Developer"
-                    </span>
-                    ,{"\n"}
-                    {"  "}
-                    <span className="text-[#9cdcfe]">skills</span>: [{"\n"}
-                    {"    "}
-                    <span className="text-[#ce9178]">"React"</span>,{" "}
-                    <span className="text-[#ce9178]">"Next.js"</span>,{" "}
-                    <span className="text-[#ce9178]">"TypeScript"</span>,{"\n"}
-                    {"    "}
-                    <span className="text-[#ce9178]">"Node.js"</span>,{" "}
-                    <span className="text-[#ce9178]">"React Native"</span>,{" "}
-                    <span className="text-[#ce9178]">"Expo"</span>
-                    {"\n"}
-                    {"  "}],
-                    {"\n"}
-                    {"  "}
-                    <span className="text-[#9cdcfe]">passion</span>:{" "}
-                    <span className="text-[#ce9178]">
-                      "Building exceptional experiences"
-                    </span>
-                    ,{"\n"}
-                    {"  "}
-                    <span className="text-[#9cdcfe]">available</span>:{" "}
-                    <span className="text-[#569cd6]">true</span>
-                    {"\n"}
-                    {"}"};{"\n\n"}
-                    <span className="text-[#569cd6]">export default</span>{" "}
-                    <span className="text-[#4fc1ff]">developer</span>;
-                  </code>
-                </pre>
-              </div>
-            </div>
-          </div>
+          <video
+            className="w-full h-fit object-cover p-10"
+            loop
+            autoPlay
+            muted
+            playsInline
+            src="/video/Fashion Promo Opener Template - Renderforest (1080p, h264).mp4"
+          />
         </div>
       </div>
     </div>
