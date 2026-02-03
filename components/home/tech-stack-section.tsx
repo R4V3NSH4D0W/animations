@@ -138,13 +138,13 @@ export default function TechStackSection() {
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <div ref={headerRef} className="mb-16 sm:mb-20">
-          <span className="tagline uppercase text-xs sm:text-sm font-bold text-gray-500 block mb-4">
+          <span className="tagline uppercase text-xs sm:text-sm font-bold text-gray-500 block mb-4 opacity-0">
             (Technologies)
           </span>
-          <h2 className="title text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-light leading-tight overflow-hidden">
+          <h2 className="title text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-light leading-tight overflow-hidden opacity-0">
             Tools & Technologies
           </h2>
-          <span className="subtitle text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-light text-gray-400 block mt-2">
+          <span className="subtitle text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-light text-gray-400 block mt-2 opacity-0">
             I work with
           </span>
         </div>
@@ -161,21 +161,21 @@ export default function TechStackSection() {
               ref={(el) => {
                 if (el) itemsRef.current[index] = el;
               }}
-              className="group relative pb-6 cursor-pointer"
+              className="group relative pb-6 cursor-pointer opacity-0"
               style={{ transformStyle: "preserve-3d" }}
             >
-              <span className="category text-xs uppercase text-gray-400 mb-3 block">
+              <span className="category text-xs uppercase text-gray-400 mb-3 block opacity-0">
                 {tech.category}
               </span>
-              <span className="tech-name text-xl sm:text-2xl md:text-3xl font-light block mb-4 group-hover:translate-x-3 transition-transform duration-300">
+              <span className="tech-name text-xl sm:text-2xl md:text-3xl font-light block mb-4 group-hover:translate-x-3 transition-transform duration-300 opacity-0">
                 {tech.name}
               </span>
-              <div className="line absolute bottom-0 left-0 right-0 h-px bg-gray-200 origin-left group-hover:bg-black transition-colors duration-300" />
+              <div className="line absolute bottom-0 left-0 right-0 h-px bg-gray-200 origin-left group-hover:bg-black transition-colors duration-300 scale-x-0" />
             </div>
           ))}
         </div>
 
-        <div ref={philosophyRef} className="mt-24 sm:mt-32 max-w-3xl">
+        <div ref={philosophyRef} className="mt-24 sm:mt-32 max-w-3xl opacity-0">
           <p className="text-lg sm:text-xl md:text-2xl font-light text-gray-600 leading-relaxed">
             I believe in choosing the right tool for the job. Whether it's
             building a performant web app or a cross-platform mobile experience,

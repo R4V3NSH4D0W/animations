@@ -77,14 +77,14 @@ function AboutSection() {
           <div>
             <span
               ref={taglineRef}
-              className="uppercase text-xs sm:text-sm font-bold text-gray-400 block mb-6"
+              className="uppercase text-xs sm:text-sm font-bold text-gray-400 block mb-6 opacity-0"
             >
               (About Me)
             </span>
 
             <h2
               ref={headingRef}
-              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light leading-tight mb-8"
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light leading-tight mb-8 opacity-0"
             >
               Crafting Digital
               <br />
@@ -93,7 +93,7 @@ function AboutSection() {
 
             <p
               ref={textRef}
-              className="text-gray-600 text-lg sm:text-xl leading-relaxed mb-8 max-w-xl"
+              className="text-gray-600 text-lg sm:text-xl leading-relaxed mb-8 max-w-xl opacity-0"
             >
               I'm a Full-Stack Developer passionate about building modern web
               and mobile applications. With expertise in React, Next.js, and
@@ -104,7 +104,7 @@ function AboutSection() {
             <Link
               href="/about"
               ref={linkRef}
-              className="group inline-flex items-center gap-3 text-sm uppercase hover:gap-4 transition-all"
+              className="group inline-flex items-center gap-3 text-sm uppercase hover:gap-4 transition-all opacity-0"
             >
               <span>Read More</span>
               <ArrowRight
@@ -115,7 +115,7 @@ function AboutSection() {
           </div>
 
           {/* Right: Image */}
-          <div ref={imageRef} className="relative">
+          <div ref={imageRef} className="relative opacity-0">
             <div className="relative aspect-4/5 w-full max-w-md mx-auto lg:max-w-none">
               <Image
                 src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=2340&auto=format&fit=crop"

@@ -130,10 +130,10 @@ export default function ServicesSection() {
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <div ref={headerRef} className="mb-16 sm:mb-20">
-          <span className="tagline uppercase text-xs sm:text-sm font-bold text-gray-400 block mb-4">
+          <span className="tagline uppercase text-xs sm:text-sm font-bold text-gray-400 block mb-4 opacity-0">
             (What I Do)
           </span>
-          <h2 className="title text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-light leading-tight">
+          <h2 className="title text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-light leading-tight opacity-0">
             Services
             <br />
             <span className="text-gray-400">& Expertise</span>
@@ -148,20 +148,20 @@ export default function ServicesSection() {
               ref={(el) => {
                 if (el) servicesRef.current[index] = el;
               }}
-              className="group relative"
+              className="group relative opacity-0"
             >
               <div className="flex flex-col md:flex-row md:items-start gap-6 md:gap-10 py-8 sm:py-10">
                 {/* Number */}
-                <span className="service-number text-6xl sm:text-7xl md:text-8xl font-light text-gray-200 group-hover:text-gray-300 transition-colors md:w-32 shrink-0">
+                <span className="service-number text-6xl sm:text-7xl md:text-8xl font-light text-gray-200 group-hover:text-gray-300 transition-colors md:w-32 shrink-0 opacity-0">
                   {service.id}
                 </span>
 
                 {/* Content */}
                 <div className="flex-1">
-                  <h3 className="service-title text-2xl sm:text-3xl md:text-4xl font-light mb-4 group-hover:translate-x-2 transition-transform">
+                  <h3 className="service-title text-2xl sm:text-3xl md:text-4xl font-light mb-4 group-hover:translate-x-2 transition-transform opacity-0">
                     {service.title}
                   </h3>
-                  <p className="service-desc text-gray-500 text-base sm:text-lg mb-6 max-w-xl">
+                  <p className="service-desc text-gray-500 text-base sm:text-lg mb-6 max-w-xl opacity-0">
                     {service.description}
                   </p>
 
@@ -170,7 +170,7 @@ export default function ServicesSection() {
                     {service.features.map((feature) => (
                       <span
                         key={feature}
-                        className="service-feature px-3 py-1 text-xs uppercase border border-gray-200 rounded-full hover:border-black hover:bg-black hover:text-white transition-all duration-300"
+                        className="service-feature px-3 py-1 text-xs uppercase border border-gray-200 rounded-full hover:border-black hover:bg-black hover:text-white transition-all duration-300 opacity-0"
                       >
                         {feature}
                       </span>
@@ -181,7 +181,7 @@ export default function ServicesSection() {
                 {/* Arrow */}
                 <Link
                   href="/services"
-                  className="service-arrow hidden md:flex items-center justify-center w-14 h-14 border border-gray-200 rounded-full group-hover:border-black group-hover:bg-black group-hover:text-white transition-all shrink-0"
+                  className="service-arrow hidden md:flex items-center justify-center w-14 h-14 border border-gray-200 rounded-full group-hover:border-black group-hover:bg-black group-hover:text-white transition-all shrink-0 opacity-0"
                 >
                   <ArrowUpRight
                     size={20}
@@ -191,7 +191,7 @@ export default function ServicesSection() {
               </div>
 
               {/* Separator line */}
-              <div className="service-line h-px bg-gray-200 origin-left" />
+              <div className="service-line h-px bg-gray-200 origin-left scale-x-0" />
             </div>
           ))}
         </div>

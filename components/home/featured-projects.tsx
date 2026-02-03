@@ -167,7 +167,7 @@ function FeaturedProjects() {
                 {/* Status Badge on Image */}
                 {(project as any).status &&
                   (project as any).status !== "Live" && (
-                    <div className="absolute top-4 left-4 bg-black/80 backdrop-blur-md text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider z-10">
+                    <div className="absolute top-2 left-0 px-2 py-1 text-[8px] sm:top-4 sm:left-4 sm:px-3 sm:py-1 sm:text-[10px] bg-black/80 backdrop-blur-md text-white font-bold rounded-full uppercase tracking-wider z-10">
                       {(project as any).status}
                     </div>
                   )}
@@ -229,11 +229,8 @@ function FeaturedProjects() {
                 </div>
 
                 {(project as any).status === "In Development" ? (
-                  <div className="inline-flex items-center gap-2 text-sm uppercase text-gray-400 cursor-not-allowed">
+                  <div className="inline-flex items-center gap-2 text-sm uppercase text-gray-400 cursor-not-allowed opacity-60">
                     <span>In Development</span>
-                    <span className="text-[10px] px-2 py-0.5 border border-gray-300 rounded-full">
-                      Coming Soon
-                    </span>
                   </div>
                 ) : (
                   <Link
