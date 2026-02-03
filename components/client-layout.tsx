@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import { usePathname } from "next/navigation";
 import SplashScreen from "./shared/splash-screen";
 import SmoothScrollWrapper from "./shared/smooth-scroll-wrapper";
@@ -17,7 +17,6 @@ function ClientLayoutContent({ children }: { children: React.ReactNode }) {
   const { isTransitioning } = usePageTransition();
   const pathname = usePathname();
 
-  // Get page-specific quote based on current route
   const getPageQuote = () => {
     switch (pathname) {
       case "/":
@@ -35,19 +34,13 @@ function ClientLayoutContent({ children }: { children: React.ReactNode }) {
     }
   };
 
-  // This effect is no longer needed - route change detection moved to context
-  // The context will call markPageReady() when pathname actually changes
-
   return (
     <>
       <SplashScreen duration={1200} onComplete={() => setSplashComplete(true)}>
-        {/* Optional: Add logo or text on black screen */}
         <div className="text-white text-6xl font-bold">PORTFOLIO</div>
       </SplashScreen>
 
       <PageTransitionSplash text={getPageQuote()} />
-
-      {/* Only render content after splash is complete */}
       {splashComplete && (
         <>
           <CursorProvider>
@@ -58,7 +51,6 @@ function ClientLayoutContent({ children }: { children: React.ReactNode }) {
                   position: "relative",
                 }}
               >
-                {/* Temporary background during transition */}
                 {isTransitioning && (
                   <div
                     className="bg-gray-100"
@@ -86,8 +78,10 @@ export default function ClientLayout({
   children: React.ReactNode;
 }) {
   return (
-    <PageTransitionProvider>
-      <ClientLayoutContent>{children}</ClientLayoutContent>
-    </PageTransitionProvider>
+    <Suspense fallback={null}>
+      <PageTransitionProvider>
+        <ClientLayoutContent>{children}</ClientLayoutContent>
+      </PageTransitionProvider>
+    </Suspense>
   );
 }
