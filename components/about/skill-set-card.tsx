@@ -13,6 +13,7 @@ interface GridListsProps {
   lists: string[];
   ignoreLastBorderB?: boolean;
   columns?: number;
+  itemClassName?: string;
 }
 
 const GridLists = ({
@@ -20,6 +21,7 @@ const GridLists = ({
   lists,
   ignoreLastBorderB = false,
   columns = 2,
+  itemClassName,
 }: GridListsProps) => {
   return (
     <div className="flex flex-col w-full">
@@ -39,6 +41,7 @@ const GridLists = ({
               key={idx}
               className={cn(
                 "p-2 text-sm ",
+                itemClassName,
                 BORDER_CLASSES,
                 idx % columns !== columns - 1 ? "border-r" : "",
                 !isLastRow ? "border-b" : "",
@@ -76,23 +79,11 @@ function SkillSetCard() {
           <CornerDot />
         </div>
         <div className=" flex w-full flex-col">
-          <span
-            className={cn(" border-b p-2 text-2xl md:text-4xl", BORDER_CLASSES)}
-          >
-            Skill Sets
-          </span>
-          {aboutPageData.skills.skillSets.map((skill, idx) => (
-            <div
-              key={idx}
-              className={cn(
-                " p-2 text-xl md:text-3xl border-b",
-                BORDER_CLASSES,
-              )}
-            >
-              <span>{String(idx + 1).padStart(2, "0")}</span>
-              <span className=" ml-4">{skill}</span>
-            </div>
-          ))}
+          <GridLists
+            title="Core Technologies"
+            lists={aboutPageData.skills.skillSets}
+            itemClassName="text-base md:text-lg font-medium"
+          />
           <GridLists title="Software" lists={aboutPageData.skills.software} />
           <GridLists
             title="Languages"

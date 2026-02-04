@@ -22,7 +22,7 @@ function page() {
               </span>
             </div>
             <div className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-[68px] leading-tight mt-2">
-              <div>Full-Stack Developer.</div>
+              <div>Frontend Engineer.</div>
             </div>
             <div className="flex flex-wrap gap-2 sm:gap-3 mt-4 text-xs sm:text-sm font-medium opacity-70">
               <span>React</span>

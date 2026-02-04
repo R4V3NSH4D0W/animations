@@ -19,17 +19,10 @@ export const servicesData = {
     },
     {
       id: "03",
-      title: "UI/UX Design",
+      title: "Full-Stack Architecture",
       description:
-        "Creating intuitive interfaces with a focus on user experience, accessibility, and modern design principles.",
-      features: ["Wireframing", "Prototyping", "Design Systems", "User Testing"],
-    },
-    {
-      id: "04",
-      title: "Consulting",
-      description:
-        "Technical consulting to help you choose the right stack, architecture, and approach for your project.",
-      features: ["Code Review", "Architecture", "Performance", "Best Practices"],
+        "Designing robust, monolithic-style systems with Next.js, Node.js (Hono), and PostgreSQL.",
+      features: ["Monolithic Arch", "Docker", "Database Design", "Hono"],
     },
   ],
 };
@@ -39,12 +32,13 @@ export const techStackData = {
   technologies: [
     { name: "React", category: "Frontend" },
     { name: "Next.js", category: "Frontend" },
-    { name: "TypeScript", category: "Frontend" },
     { name: "React Native", category: "Mobile" },
     { name: "Expo", category: "Mobile" },
+    { name: "TypeScript", category: "Language" },
     { name: "Node.js", category: "Backend" },
-    { name: "Tailwind CSS", category: "Styling" },
-    { name: "GSAP", category: "Animation" },
+    { name: "Hono", category: "Backend" },
+    { name: "PostgreSQL", category: "Database" },
+    // { name: "Docker", category: "Deployment" },
   ],
 };
 

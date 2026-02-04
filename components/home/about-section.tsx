@@ -7,6 +7,7 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ArrowRight } from "lucide-react";
+import { aboutPageData } from "@/data/about-data";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -95,10 +96,7 @@ function AboutSection() {
               ref={textRef}
               className="text-gray-600 text-lg sm:text-xl leading-relaxed mb-8 max-w-xl opacity-0"
             >
-              I'm a Full-Stack Developer passionate about building modern web
-              and mobile applications. With expertise in React, Next.js, and
-              React Native, I transform complex problems into elegant,
-              performant solutions that users love.
+              {aboutPageData.profile.bio[0]}
             </p>
 
             <Link
@@ -130,13 +128,11 @@ function AboutSection() {
           </div>
         </div>
 
-        {/* Stats row */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mt-20 pt-12 border-t border-gray-200">
+        {/* Stats row - Hidden per user request */}
+        {/* <div className="grid grid-cols-2 gap-8 mt-20 pt-12 border-t border-gray-200 max-w-4xl mx-auto">
           {[
-            { value: "3+", label: "Years Experience" },
-            { value: "20+", label: "Projects Delivered" },
-            { value: "15+", label: "Happy Clients" },
-            { value: "99%", label: "Satisfaction Rate" },
+            { value: "4+", label: "Years Experience" },
+            { value: "10+", label: "Projects Delivered" },
           ].map((stat) => (
             <div key={stat.label}>
               <span className="text-3xl sm:text-4xl md:text-5xl font-light">
@@ -147,7 +143,7 @@ function AboutSection() {
               </p>
             </div>
           ))}
-        </div>
+        </div> */}
       </div>
     </section>
   );

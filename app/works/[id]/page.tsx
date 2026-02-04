@@ -3,7 +3,7 @@
 import React, { use } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowLeft, ArrowUpRight } from "lucide-react";
+import { ArrowLeft, ArrowUpRight, Github } from "lucide-react";
 import { notFound } from "next/navigation";
 import { sharedProjects } from "@/data/shared-data";
 import { homeFeaturedProjects } from "@/data/home-data";
@@ -122,10 +122,11 @@ export default function ProjectPage({ params }: PageProps) {
             </div>
 
             {/* Call to Action */}
-            {(project.link || (project as any).status === "Live") && (
-              <div className="pt-8">
+            {/* Call to Action */}
+            <div className="pt-8 flex flex-wrap gap-4">
+              {project.link && (
                 <a
-                  href={project.link || "#"}
+                  href={project.link}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="group inline-flex items-center gap-3 px-8 py-4 bg-neutral-900 text-white rounded-full text-lg font-medium hover:bg-neutral-800 transition-all hover:scale-105"
@@ -133,8 +134,24 @@ export default function ProjectPage({ params }: PageProps) {
                   <span>Visit Live Project</span>
                   <ArrowUpRight className="w-5 h-5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
                 </a>
-              </div>
-            )}
+              )}
+
+              {(project as any).repoUrl && (
+                <a
+                  href={(project as any).repoUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`group inline-flex items-center gap-3 px-8 py-4 rounded-full text-lg font-medium transition-all hover:scale-105 ${
+                    project.link
+                      ? "bg-white border border-neutral-200 text-neutral-900 hover:bg-neutral-50"
+                      : "bg-neutral-900 text-white hover:bg-neutral-800"
+                  }`}
+                >
+                  <span>View Code</span>
+                  <Github className="w-5 h-5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                </a>
+              )}
+            </div>
           </div>
 
           {/* Right Column: Metadata */}

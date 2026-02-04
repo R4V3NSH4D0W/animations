@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowRight, ArrowUpRight } from "lucide-react";
+import { ArrowRight, ArrowUpRight, Github } from "lucide-react";
 import React, { useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
@@ -231,6 +231,20 @@ function FeaturedProjects() {
                       className="group-hover:translate-x-1 transition-transform"
                     />
                   </Link>
+
+                  {(project as any).repoUrl && (
+                    <Link
+                      href={(project as any).repoUrl}
+                      target="_blank"
+                      className="group inline-flex items-center gap-2 text-sm uppercase hover:gap-3 transition-all text-neutral-500 hover:text-black"
+                    >
+                      <span>View Code</span>
+                      <Github
+                        size={14}
+                        className="group-hover:translate-x-1 -translate-y-px group-hover:-translate-y-[3px] transition-transform"
+                      />
+                    </Link>
+                  )}
 
                   {(project as any).link && (
                     <Link

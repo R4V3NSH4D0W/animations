@@ -1,4 +1,4 @@
-import { ArrowRight, ArrowUpRight } from "lucide-react";
+import { ArrowRight, ArrowUpRight, Github } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import Marquee from "react-fast-marquee";
@@ -6,6 +6,7 @@ import Marquee from "react-fast-marquee";
 interface FeaturedWorkProps {
   id: string;
   link?: string | null;
+  repoUrl?: string | null;
   title: string;
   date: string;
   marquee: string;
@@ -18,6 +19,7 @@ interface FeaturedWorkProps {
 function FeaturedWork({
   id,
   link,
+  repoUrl,
   title,
 
   date,
@@ -64,6 +66,20 @@ function FeaturedWork({
                 className="group-hover:translate-x-1 transition-transform"
               />
             </Link>
+
+            {repoUrl && (
+              <Link
+                href={repoUrl}
+                target="_blank"
+                className="group inline-flex items-center gap-2 text-sm uppercase hover:gap-3 transition-all text-neutral-500 hover:text-black"
+              >
+                <span>View Code</span>
+                <Github
+                  size={16}
+                  className="group-hover:translate-x-1 -translate-y-px group-hover:-translate-y-[3px] transition-transform"
+                />
+              </Link>
+            )}
 
             {link && (
               <Link

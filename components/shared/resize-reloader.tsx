@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from "react";
 
-const ENABLE_RELOAD_ON_RESIZE = false; // Set to false to disable
+const ENABLE_RELOAD_ON_RESIZE = true; // Set to false to disable
 
 export default function ResizeReloader() {
   const lastWidth = useRef(0);

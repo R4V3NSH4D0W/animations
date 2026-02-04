@@ -108,6 +108,7 @@ function FolderStructure() {
             <FeaturedWork
               id={project1.id}
               link={project1.link}
+              repoUrl={(project1 as any).repoUrl}
               title={project1.title}
               date={project1.year}
               subTitle={(project1 as any).type?.toUpperCase() || "PROJECT"}
@@ -135,6 +136,7 @@ function FolderStructure() {
           <FeaturedWork
             id={project2.id}
             link={project2.link}
+            repoUrl={(project2 as any).repoUrl}
             title={project2.title}
             date={project2.year}
             subTitle={(project2 as any).type?.toUpperCase() || "PROJECT"}
@@ -161,6 +163,7 @@ function FolderStructure() {
           <FeaturedWork
             id={project3.id}
             link={project3.link}
+            repoUrl={(project3 as any).repoUrl}
             title={project3.title}
             date={project3.year}
             subTitle={(project3 as any).type?.toUpperCase() || "PROJECT"}

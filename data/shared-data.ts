@@ -1,18 +1,17 @@
-// Personal Information
 export const personalInfo = {
-  name: "Lenish  Magar",
-  title: "Full-Stack Developer",
-  tagline: "Hello, World",
-  email: "lenishmagar@gmail.com",
-  location: "Nepal",
+  name: "Lenish Yesmali Magar",
+  title: "Frontend Engineer",
+  tagline: "Designing the Digital Future",
+  email: "Lenishmagar@gmail.com",
+  location: "Kathmandu, Nepal",
 };
 
 // Social Links
 export const socialLinks = [
-  { name: "Email", href: "mailto:lenishmagar@gmail.com" },
-  { name: "GitHub", href: "https://github.com" },
-  { name: "LinkedIn", href: "https://linkedin.com" },
-  { name: "Resume", href: "/resume.pdf" },
+  { name: "Email", href: "mailto:Lenishmagar@gmail.com" },
+  { name: "GitHub", href: "https://github.com/R4V3NSH4D0W" },
+  { name: "LinkedIn", href: "https://www.linkedin.com/in/lenish-yesmali-magar-a8a980282" },
+  { name: "Instagram", href: "https://instagram.com/lenishmagar" }, // Placeholder handle based on email
 ];
 
 // Footer
@@ -21,7 +20,7 @@ export const footerData = {
   navLinks: [
     { name: "About", href: "/about" },
     { name: "Works", href: "/works" },
-    { name: "Services", href: "/services" },
+    { name: "Expertise", href: "/expertise" },
     { name: "Contact", href: "/contact" },
   ],
 };
@@ -33,7 +32,7 @@ export const sloganData = {
   pageSpecificSlogans: {
     "/about": "Passionate Developer & Creative Problem Solver",
     "/works": "Building Digital Products That Make a Difference",
-    "/services": "Expert Solutions for Modern Web Development",
+    "/expertise": "Expert Solutions for Modern Web Development",
   },
   ctaText: "Start a Project",
   ctaLink: "/contact",
@@ -43,86 +42,64 @@ export const sloganData = {
 
 export const sharedExperiences = [
     {
-      from: "Jan 2024",
+      from: "Apr 2025",
       to: "Present",
-      company: "R4V3N Technologies",
-      position: "Frontend Engineer",
+      company: "Curves 'n Colors",
+      position: "Next.js Developer",
       image:
-        "https://i.pinimg.com/736x/11/50/10/1150106db13b0cae280f5165a8632b71.jpg",
+        "https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=2670&auto=format&fit=crop", // Agency vibe
       details:
-        "Developed scalable React applications, mentored junior developers, and implemented CI/CD pipelines.",
-      technologies: ["React", "TypeScript", "CI/CD", "Next.js"],
+        "Specializing in building scalable, high-performance web applications using Next.js and React.",
+      technologies: ["Next.js", "React", "TypeScript", "Tailwind CSS"],
     },
     {
-      from: "Jul 2022",
+      from: "Dec 2023",
+      to: "Apr 2024",
+      company: "Machnet Technology",
+      position: "React Native Developer",
+      image:
+        "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2670&auto=format&fit=crop", // Fintech vibe
+      details:
+        "Built and updated mobile apps (Aidemoney, Transfaypay, Equator). Collaborated with design teams and integrated animations for better UX.",
+      technologies: ["React Native", "iOS", "Android", "JavaScript", "Animation"],
+    },
+    {
+      from: "Sept 2023",
       to: "Dec 2023",
-      company: "NextGen Solutions",
-      position: "UI/UX Designer",
+      company: "Machnet Technology",
+      position: "React Native Intern",
       image:
-        "https://i.pinimg.com/736x/d1/3c/7e/d13c7ef085a3c777ad3dc2949a9aec81.jpg",
+        "https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=2670&auto=format&fit=crop",
       details:
-        "Created design systems, conducted user research, and collaborated with development teams.",
-      technologies: ["Figma", "Adobe XD", "User Research", "Prototyping"],
-    },
-    {
-      from: "Mar 2021",
-      to: "Jun 2022",
-      company: "Tech Innovations Pvt Ltd",
-      position: "Full Stack Developer",
-      image:
-        "https://i.pinimg.com/736x/5c/30/6e/5c306e71eea40ad8729d3545bb69b8c4.jpg",
-      details:
-        "Worked with Node.js, React, and PostgreSQL to deliver full-stack solutions.",
-      technologies: ["Node.js", "React", "PostgreSQL", "Express"],
-    },
-    {
-      from: "Jul 2020",
-      to: "Feb 2021",
-      company: "Creative Labs",
-      position: "Intern Developer",
-      image:
-        "https://i.pinimg.com/736x/ae/1f/15/ae1f15afb031ef0eb771a81eb5c77e28.jpg",
-      details:
-        "Assisted in web development projects and learned industry best practices.",
-      technologies: ["HTML", "CSS", "JavaScript", "React"],
-    },
-    {
-      from: "Jan 2019",
-      to: "Jun 2020",
-      company: "Startup Hub",
-      position: "Junior Frontend Engineer",
-      image:
-        "https://i.pinimg.com/736x/0f/6c/c8/0f6cc807ab60aa6b0bfad6eb44b0c930.jpg",
-      details:
-        "Built responsive user interfaces using HTML, CSS, JavaScript, and React.",
-      technologies: ["Frontend", "UI Development", "JavaScript"],
+        "Assisted in development of mobile apps, bug fixing, and code reviews while learning industry best practices.",
+      technologies: ["React Native", "JavaScript", "Git"],
     },
 ];
 
 export const sharedSkills = {
     skillSets: [
-      "JavaScript",
-      "TypeScript",
       "React",
       "Next.js",
+      "React Native",
+      "TypeScript",
+      "JavaScript",
       "Node.js",
-      "Express",
-      "MongoDB",
-      "GraphQL",
+      "Hono",
+      "PostgreSQL",
+      "Docker",
+      "Prisma",
+      "Tailwind CSS",
+      "Git & Github",
     ],
     software: [
-      "Adobe Photoshop",
+      "VS Code",
       "Figma",
-      "Visual Studio Code",
-      "GitHub",
-      "Slack",
-      "Jira",
-      "Notion",
       "Postman",
-      "Docker",
-      "Microsoft Excel",
+      "Docker Desktop",
+      "Android Studio",
+      "Xcode",
     ],
-    languages: ["English", "Hindi", "Nepali", "Spanish"],
+    languages: ["English", "Nepali"],
   };
 
 export const sharedProjects = [
@@ -131,13 +108,17 @@ export const sharedProjects = [
       src: "/assets/dashboard/dashboard-product.png",
       imageURL: "/assets/dashboard/dashboard-product.png",
       title: "Luxstore Dashboard",
+      tagline: "The Command Center for Store Operations",
+      role: "Lead Full-Stack Engineer",
+      client: "Personal Project (Enterprise Scale)",
       description:
-        "A comprehensive ecommerce dashboard application managing global state and providing administration capabilities.",
-      tech: ["Next.js", "TypeScript", "Tailwind CSS", "Shadcn UI", "React Query"],
+        "A comprehensive admin interface featuring CMS, Marketing engines, and Analytics. Built with Next.js 16 and Recharts, it serves as the operational heart of the headless ecosystem.",
+      tech: ["Next.js 16", "TypeScript", "Tailwind CSS", "Shadcn UI", "Recharts", "dnd-kit", "Zod"],
       year: "2025",
       status: "In Development",
       type: "Personal",
       link: null,
+      repoUrl: "https://github.com/R4V3NSH4D0W/Ecommerce-dashboard",
       isFeatured: true,
       sideImageURLs: [
         "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2670&auto=format&fit=crop", // Dashboard Analytics
@@ -150,13 +131,17 @@ export const sharedProjects = [
       src: "/assets/web/web-all-product.png",
       imageURL: "/assets/web/web-all-product.png",
       title: "Luxstore Web Version",
+      tagline: "High-End Aesthetics meets Headless Commerce",
+      role: "Lead Frontend Engineer",
+      client: "Personal Project",
       description:
-        "The consumer-facing web storefront offering a premium user experience with smooth scrolling and sophisticated animations.",
-      tech: ["Next.js 16", "TypeScript", "GSAP", "Stripe", "Zustand"],
+        "The primary customer-facing interface, focusing on 'scrollytelling' and premium UX. Powered by Next.js 16, GSAP, and Lenis for fluid interactions, consuming the centralized Hono API.",
+      tech: ["Next.js 16", "TypeScript", "GSAP", "Lenis", "TanStack Query", "Stripe"],
       year: "2025",
       status: "In Development",
       type: "Personal",
       link: null,
+      repoUrl: "https://github.com/R4V3NSH4D0W/luxstore-web-version",
       isFeatured: true,
     },
     {
@@ -164,14 +149,35 @@ export const sharedProjects = [
       src: "/assets/app/android.png",
       imageURL: "/assets/app/android.png",
       title: "Luxstore Mobile App",
+      tagline: "Native Commerce on the Go",
+      role: "Mobile Engineer",
+      client: "Personal Project",
       description:
-        "A cross-platform mobile application delivering a native shopping experience on Android and iOS.",
-      tech: ["React Native", "Expo", "TypeScript", "Stripe", "TanStack Query"],
+        "A native mobile experience built with Expo and React Native. Features tab-based navigation, haptics, and secure storage, sharing the same consistent data layer as the web store.",
+      tech: ["React Native", "Expo Router", "TypeScript", "Secure Store", "TanStack Query"],
       year: "2025",
       status: "In Development",
       type: "Personal",
       link: null,
+      repoUrl: "https://github.com/R4V3NSH4D0W/luxstore_app",
       isFeatured: true,
+    },
+    {
+      id: "luxstore-backend",
+      src: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=2670&auto=format&fit=crop",
+      imageURL: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=2670&auto=format&fit=crop",
+      title: "Luxstore Backend",
+      tagline: "The Nerve Center of the Ecosystem",
+      role: "Backend Architect",
+      client: "Personal Project",
+      description: "A high-performance Hono REST API managing all business logic. Implements Service-Repository pattern, background workers, and granular RBAC. Integrates Gemini AI and Meilisearch.",
+      tech: ["Hono", "TypeScript", "Redis", "Meilisearch", "Zod", "Gemini AI", "Prisma"],
+      year: "2025",
+      link: null,
+      repoUrl: "https://github.com/R4V3NSH4D0W/Hono-server",
+      status: "In Development",
+      type: "Personal",
+      isFeatured: false,
     },
     {
       id: "rural-heritage",
@@ -280,26 +286,14 @@ export const sharedProjects = [
       type: "Personal",
       isFeatured: false,
     },
-    {
-      id: "luxstore-backend",
-      src: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=2564&auto=format&fit=crop",
-      imageURL: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=2564&auto=format&fit=crop",
-      title: "Luxstore Backend",
-      description: "High-performance backend API for the Luxstore e-commerce ecosystem, built with Hono.",
-      tech: ["Hono", "TypeScript", "Cloudflare Workers"],
-      year: "2025",
-      link: "https://github.com/R4V3NSH4D0W/Hono-server",
-      status: "In Development",
-      type: "Personal",
-      isFeatured: false,
-    },
+   
     {
       id: "travel-ideas-ai",
       src: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=2564&auto=format&fit=crop",
       imageURL: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=2564&auto=format&fit=crop",
       title: "Travel Ideas AI",
-      description: "An AI-powered application generating personalized travel itineraries using Gemini.",
-      tech: ["React", "Gemini API", "Tailwind CSS"],
+      description: "Final Year Project: A smart travel planner utilizing Gemini Vision for landmark recognition and i18n for multi-language support.",
+      tech: ["React", "Gemini AI", "Google Vision", "i18n"],
       year: "2024",
       link: "https://github.com/R4V3NSH4D0W/Travel-Ideas-AI",
       status: "Archived",

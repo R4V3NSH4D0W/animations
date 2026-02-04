@@ -3,16 +3,16 @@ import { sharedExperiences, sharedSkills } from "./shared-data";
 // About Page Data
 export const aboutPageData = {
   profile: {
-    name: "R4V3NSH4DOW",
+    name: "Lenish Yesmali Magar",
     image:
-      "https://i.pinimg.com/736x/26/76/bc/2676bccd41d36f4b45af4872ccebc360.jpg",
+      "https://i.pinimg.com/736x/26/76/bc/2676bccd41d36f4b45af4872ccebc360.jpg", // Keep existing placeholder or ask for one
     bio: [
-      "I am a passionate Frontend Engineer who enjoys turning ideas into clean, functional, and visually engaging digital experiences. I love working at the intersection of design and technology—crafting interfaces that feel intuitive, fast, and delightful to use.",
-      "Over the years, I've gained experience in modern frontend ecosystems, building scalable UI systems, and writing maintainable, high-quality code. I enjoy solving problems, exploring new technologies, and continuously refining my craft. When I'm not coding, I'm learning, experimenting, and working on personal projects that inspire me.",
-      "I believe good design brings clarity, and good code brings reliability. My goal is to create products that are not only beautiful, but also meaningful, accessible, and impactful.",
+      "I am a dynamic and accomplished Frontend Engineer specializing in React Native and Next.js. With a passion for shaping the digital landscape, I bring a wealth of creativity and technical expertise to drive success in diverse projects.",
+      "Currently, I work as a Next.js Developer at Curves 'n Colors, focusing on frontend performance and scalability. Beyond the frontend, I leverage strong backend capabilities in Node.js (Hono, PostgreSQL, Docker) to architect complete solutions for personal projects like Luxstore.",
+      "My journey includes significant experience in FinTech mobile app development, where I prioritized performance and user engagement. I am committed to continuous learning, excellence, and bridging the gap between elegant design and robust engineering.",
     ],
     email: "Lenishmagar@gmail.com",
-    instagram: "@Lenishmagar",
+    instagram: "@Lenishmagar", // Placeholder based on name
     linkedin: {
       text: "linkedin.com/in/lenish-yesmali-magar",
       href: "https://www.linkedin.com/in/lenish-yesmali-magar-a8a980282/",
@@ -22,83 +22,65 @@ export const aboutPageData = {
   experiences: sharedExperiences,
   education: [
     {
+      from: "2019",
+      to: "2024",
+      school: "Kantipur City College",
+      degree: "Bachelor's in Computer Application",
+      image:
+        "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=2670&auto=format&fit=crop",
+      details:
+        "Kathmandu, Nepal. Focused on Software Engineering and Application Development.",
+    },
+    {
       from: "2016",
-      to: "2020",
-      school: "Kathmandu University",
-      degree: "Bachelor of Computer Engineering",
+      to: "2018",
+      school: "Pinnacle Academy",
+      degree: "Higher Secondary Education (+2)",
       image:
-        "https://i.pinimg.com/736x/56/99/4a/56994a0411c3d74c82f5d97152eae0e5.jpg",
+        "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?q=80&w=2700&auto=format&fit=crop",
       details:
-        "Studied data structures, algorithms, software engineering, and web technologies. GPA: 3.8/4.0",
+        "Completed Higher Secondary Education.",
     },
     {
-      from: "2014",
+      from: "2006",
       to: "2016",
-      school: "St. Xavier's College, Kathmandu",
-      degree: "Higher Secondary Education (Science)",
+      school: "Tamorvalley Secondary Boarding School",
+      degree: "Secondary Education (SLC)",
       image:
-        "https://i.pinimg.com/736x/00/df/0e/00df0e280c5d81c8c38d7689ccd9991f.jpg",
+        "https://images.unsplash.com/photo-1509062522246-37559cc79276?q=80&w=2700&auto=format&fit=crop",
       details:
-        "Completed higher secondary education with physics, chemistry, and mathematics.",
-    },
-    {
-      from: "2012",
-      to: "2014",
-      school: "Greenfield Secondary School",
-      degree: "Secondary Education (Science)",
-      image:
-        "https://i.pinimg.com/736x/e5/de/c7/e5dec7aa2453bc7cbd9abd9a8bcd64fa.jpg",
-      details:
-        "Completed secondary education with distinction in science subjects.",
+        "Completed School Leaving Certificate (SLC) with excellence.",
     },
   ],
   achievements: [
     {
-      year: "2024",
-      title: "Best Innovation Award",
-      organization: "Tech Summit Asia",
+      year: "2025",
+      title: "Full-Stack Architecture",
+      organization: "Personal Project",
       image:
-        "https://i.pinimg.com/736x/c4/c0/2a/c4c02ada4728b3baf4cd4bda92dfbedd.jpg",
+        "https://images.unsplash.com/photo-1555421689-d68471e189f2?q=80&w=2670&auto=format&fit=crop",
       details:
-        "Developed an AI-powered tool that improved productivity by 40% across teams.",
-    },
-    {
-      year: "2023",
-      title: "Outstanding Developer of the Year",
-      organization: "Dev Community Nepal",
-      image:
-        "https://i.pinimg.com/736x/fb/22/c5/fb22c5f9594bdbfabc9c10d742e97b47.jpg",
-      details:
-        "Awarded for contributions to open source and mentoring junior developers.",
-    },
+        "Successfully architected 'Luxstore', a monolithic-style e-commerce ecosystem using Hono, Next.js, and Docker.",
+    }
   ],
   recognitions: [
     {
       year: "2024",
-      award: "Top Contributor Badge",
+      award: "YOLO Badge",
       issuedBy: "GitHub",
       image:
-        "https://i.pinimg.com/736x/67/d5/de/67d5deb0a676fc6467ec67c51e27d2a1.jpg",
+        "https://images.unsplash.com/photo-1544551763-77ef2d0cfc6c?q=80&w=2670&auto=format&fit=crop",
       details:
-        "Contributed to over 50 open source projects with 1000+ commits in 2024.",
+        "Merged a pull request without code review. Because sometimes you just have to trust your gut.",
     },
     {
       year: "2023",
-      award: "Certificate of Excellence",
-      issuedBy: "Frontend Masters",
+      award: "Pull Shark",
+      issuedBy: "GitHub",
       image:
-        "https://i.pinimg.com/736x/f1/8b/d1/f18bd1dbf886fbb72dd77b2434c436ee.jpg",
+        "https://images.unsplash.com/photo-1560275619-4662e36fa65c?q=80&w=2600&auto=format&fit=crop",
       details:
-        "Mastered advanced React patterns, TypeScript, and performance optimization.",
-    },
-    {
-      year: "2021",
-      award: "Outstanding Volunteer",
-      issuedBy: "Tech For Good Nepal",
-      image:
-        "https://i.pinimg.com/736x/ef/c1/ad/efc1ad0d7e01cc39246ca7c539d769b4.jpg",
-      details:
-        "Volunteered 200+ hours building tech solutions for non-profit organizations.",
+        "Opened pull requests that were merged. A true predator of the codebase.",
     },
   ],
 };
