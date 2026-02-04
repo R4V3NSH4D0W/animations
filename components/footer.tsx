@@ -4,6 +4,7 @@ import { Copyright } from "lucide-react";
 import { ArrowRight } from "lucide-react";
 import { useGsapLineReveal } from "@/components/shared/useGsapLineReveal";
 import Slogan from "./work/slogan";
+import HoverFlip from "@/components/shared/hover-flip";
 
 function Footer() {
   const lineRef = useGsapLineReveal({
@@ -30,81 +31,68 @@ function Footer() {
         ref={firstLineRef}
         className="w-full border-[0.2px] border-black my-6 md:my-10"
       />
-      <Link href="/" className="mt-3 md:mt-5 cursor-pointer">
-        Home
-      </Link>
-      <span className="mt-6 md:mt-10 text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-tight">
-        Don&apos;t Miss A Thing <br /> With R4V3NSH4D0W
-      </span>
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-0 my-6 md:my-10">
-        <div className="flex flex-col">
-          <div className="relative w-full lg:w-2/3">
-            <label className="text-xs font-semibold">
-              EXPERT INSIGHTS DIRECT TO YOUR INBOX
+      <div className="flex flex-col lg:flex-row justify-between gap-12 lg:gap-20 mt-10 mb-10">
+        <div className="flex flex-col gap-8 lg:gap-12">
+          <span className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl leading-[0.9] font-serif italic">
+            Based in Kathmandu, <br />
+            working worldwide.
+          </span>
+          <div className="flex flex-col">
+            <label className="text-xs uppercase font-bold tracking-widest text-neutral-500 mb-2">
+              (Get in touch)
             </label>
-            <div className="relative">
-              <input
-                type="text"
-                placeholder="Enter your email"
-                className="mt-2 p-2 w-full pr-10 focus:outline-none bg-transparent"
-                style={{ border: "none" }}
-              />
-              <div
-                ref={inputLineRef}
-                className="absolute left-0 right-0 bottom-0 h-[0.5px] bg-black overflow-hidden"
-              />
-              <span className="absolute right-2 top-1/2 -translate-y-1/2 text-black">
-                <ArrowRight size={20} />
-              </span>
-            </div>
-          </div>
-          <div className="flex flex-col mt-6 md:mt-10">
-            <label className="text-xs uppercase font-semibold">
-              get in touch
-            </label>
-            <span className="mt-2 text-lg sm:text-xl break-all">
+            <a
+              href="mailto:lenishmagar@gmail.com"
+              className="text-xl sm:text-2xl hover:opacity-50 transition-opacity"
+            >
               lenishmagar@gmail.com
-            </span>
+            </a>
           </div>
         </div>
-        <div className="flex flex-row justify-between sm:justify-start sm:gap-16 lg:justify-between uppercase mt-0 lg:mt-10">
-          <div className="flex flex-col gap-1">
-            <span className="uppercase font-bold text-xs mb-2">Portfolio</span>
-            <Link href="/about" className="text-sm">
-              About
-            </Link>
-            <Link href="/services" className="text-sm">
-              Services
-            </Link>
-            <Link href="/works" className="text-sm">
-              Work
-            </Link>
-            <Link href="/contact" className="text-sm">
-              Contact
-            </Link>
+
+        <div className="flex flex-row gap-16 sm:gap-24 uppercase text-base font-medium tracking-wide">
+          <div className="flex flex-col gap-2">
+            <span className="text-xs font-bold text-neutral-400 mb-4 block">
+              (Menu)
+            </span>
+            {[
+              { name: "About", href: "/about" },
+              { name: "Expertise", href: "/expertise" },
+              { name: "Works", href: "/works" },
+              { name: "Contact", href: "/contact" },
+            ].map((link) => (
+              <Link key={link.name} href={link.href} className="w-fit">
+                <HoverFlip>{link.name}</HoverFlip>
+              </Link>
+            ))}
           </div>
-          <div className="flex flex-col gap-1">
-            <span className="uppercase font-bold text-xs mb-2">Follow Me</span>
-            <span className="text-sm">Instagram</span>
-            <span className="text-sm">LinkedIn</span>
-            <span className="text-sm">Twitter</span>
-            <span className="text-sm">Facebook</span>
+          <div className="flex flex-col gap-2">
+            <span className="text-xs font-bold text-neutral-400 mb-4 block">
+              (Socials)
+            </span>
+            {["Instagram", "LinkedIn", "Twitter"].map((social) => (
+              <a key={social} href="#" target="_blank" className="w-fit">
+                <HoverFlip>{social}</HoverFlip>
+              </a>
+            ))}
           </div>
         </div>
       </div>
+      <div className="w-full flex justify-center items-center mt-10 md:mt-20 mb-4 overflow-hidden select-none">
+        <h1 className="text-[12.8vw] font-black opacity-[0.08] leading-none tracking-tighter hover:opacity-20 transition-opacity duration-500">
+          R4V3NSH4D0W
+        </h1>
+      </div>
+
       <div
         ref={lineRef}
         className="w-full border-[0.2px] border-black my-6 md:my-10"
       />
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6 md:mb-10">
-        <span className="flex items-center gap-1 text-xs sm:text-sm">
-          <Copyright size={16} className="inline-block shrink-0" />
+        <span className="flex items-center gap-1 text-xs sm:text-sm text-neutral-500">
+          <Copyright size={14} className="inline-block shrink-0" />
           2024 Lenish. All rights reserved.
         </span>
-        <div className="flex flex-col sm:flex-row gap-3 sm:gap-5 uppercase text-xs sm:text-sm">
-          <span>Privacy Policy</span>
-          <span>Terms of Service</span>
-        </div>
       </div>
     </footer>
   );

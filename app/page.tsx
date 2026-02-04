@@ -10,7 +10,7 @@ import ExperienceTimeline from "@/components/home/experience-timeline";
 function page() {
   return (
     <div className="flex flex-col h-full w-full overflow-x-hidden">
-      <div className="relative h-screen  ">
+      <div className="relative h-screen">
         <div className="absolute left-1/2 -translate-x-1/2 md:left-auto md:translate-x-0 md:right-[5%] lg:right-[2%] top-[20%] sm:top-[22%] md:top-[25%] w-[90%] sm:w-[85%] md:w-auto max-w-3xl md:max-w-4xl lg:max-w-5xl xl:max-w-6xl">
           <ViewReveal revealAfter={1} startHidden enableBlur={false}>
             <div className="flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-4">
@@ -47,7 +47,7 @@ function page() {
           gyroMaxGravity={2}
           startDelay={1300}
           containerWidth="95%"
-          className="max-sm:text-[120px] text-[180px] md:text-[270px] font-extrabold -mt-[220px] min-h-[calc(100%+140px)]"
+          className="text-[clamp(6rem,18vw,18rem)] font-extrabold -mt-[220px] min-h-[calc(100%+140px)] opacity-[0.1] pointer-events-none"
           restitution={0.2}
           startPosition={{ x: 0.1, y: 0 }}
         />

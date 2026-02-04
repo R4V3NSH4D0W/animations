@@ -131,12 +131,10 @@ export default function ServicesSection() {
         {/* Header */}
         <div ref={headerRef} className="mb-16 sm:mb-20">
           <span className="tagline uppercase text-xs sm:text-sm font-bold text-gray-400 block mb-4 opacity-0">
-            (What I Do)
+            (Services)
           </span>
           <h2 className="title text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-light leading-tight opacity-0">
-            Services
-            <br />
-            <span className="text-gray-400">& Expertise</span>
+            What I Do
           </h2>
         </div>
 
@@ -180,7 +178,7 @@ export default function ServicesSection() {
 
                 {/* Arrow */}
                 <Link
-                  href="/services"
+                  href="/expertise"
                   className="service-arrow hidden md:flex items-center justify-center w-14 h-14 border border-gray-200 rounded-full group-hover:border-black group-hover:bg-black group-hover:text-white transition-all shrink-0 opacity-0"
                 >
                   <ArrowUpRight

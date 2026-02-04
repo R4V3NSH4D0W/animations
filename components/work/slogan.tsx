@@ -59,7 +59,7 @@ function Slogan() {
         );
       }
     },
-    { scope: containerRef },
+    { scope: containerRef, dependencies: [pathname] },
   );
 
   if (pathname === "/contact") return null;
@@ -98,34 +98,6 @@ function Slogan() {
           className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"
         />
       </Link>
-
-      {/* Social Links + PORTFOLIO text */}
-      <div className="flex flex-col w-full mt-10 sm:mt-14 md:mt-16">
-        {/* Social Links - centered on mobile, spread on desktop */}
-        <div
-          ref={linksRef}
-          className="flex flex-wrap justify-center sm:justify-between gap-3 sm:gap-4 uppercase mx-2 sm:mx-6 md:mx-8 lg:mx-10 items-center text-xs sm:text-sm"
-        >
-          {socialLinks.map((link) => (
-            <a
-              key={link.name}
-              href={link.href}
-              target={link.href.startsWith("http") ? "_blank" : undefined}
-              rel={
-                link.href.startsWith("http") ? "noopener noreferrer" : undefined
-              }
-              className="hover:text-gray-500 transition-colors px-2 py-1"
-            >
-              {link.name}
-            </a>
-          ))}
-        </div>
-
-        {/* PORTFOLIO text - responsive sizing */}
-        <h5 className="w-full mt-4 sm:mt-0 lg:-mt-10 uppercase text-center font-bold text-[14vw]  md:text-[16vw] leading-none select-none overflow-hidden">
-          PORTFOLIO
-        </h5>
-      </div>
     </div>
   );
 }

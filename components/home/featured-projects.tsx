@@ -134,18 +134,10 @@ function FeaturedProjects() {
             >
               {/* Image */}
               <Link
-                href={
-                  (project as any).status === "In Development"
-                    ? "#"
-                    : (project as any).link || `/works/${project.id}`
-                }
+                href={(project as any).link || `/works/${project.id}`}
                 target={(project as any).link ? "_blank" : undefined}
                 className={`project-image relative overflow-hidden group cursor-pointer block ${
                   index % 2 === 1 ? "lg:order-2" : ""
-                } ${
-                  (project as any).status === "In Development"
-                    ? "pointer-events-none cursor-default"
-                    : ""
                 }`}
               >
                 <div className="relative h-[300px] sm:h-[400px] md:h-[500px] w-full overflow-hidden">
@@ -228,34 +220,32 @@ function FeaturedProjects() {
                   ))}
                 </div>
 
-                {(project as any).status === "In Development" ? (
-                  <div className="inline-flex items-center gap-2 text-sm uppercase text-gray-400 cursor-not-allowed opacity-60">
-                    <span>In Development</span>
-                  </div>
-                ) : (
+                <div className="flex flex-col sm:flex-row gap-5 mt-2">
                   <Link
-                    href={(project as any).link || `/works/${project.id}`}
-                    target={(project as any).link ? "_blank" : undefined}
-                    className="group inline-flex items-center gap-2 text-sm uppercase hover:gap-3 transition-all"
+                    href={`/works/${project.id}`}
+                    className="group inline-flex items-center gap-2 text-sm uppercase hover:gap-3 transition-all font-medium"
                   >
-                    <span>
-                      {(project as any).link
-                        ? "Visit Website"
-                        : "View Case Study"}
-                    </span>
-                    {(project as any).link ? (
+                    <span>View Case Study</span>
+                    <ArrowRight
+                      size={14}
+                      className="group-hover:translate-x-1 transition-transform"
+                    />
+                  </Link>
+
+                  {(project as any).link && (
+                    <Link
+                      href={(project as any).link}
+                      target="_blank"
+                      className="group inline-flex items-center gap-2 text-sm uppercase hover:gap-3 transition-all text-neutral-500 hover:text-black"
+                    >
+                      <span>Visit Website</span>
                       <ArrowUpRight
                         size={14}
-                        className="group-hover:translate-x-1 transition-transform"
+                        className="group-hover:translate-x-1 -translate-y-px group-hover:-translate-y-[3px] transition-transform"
                       />
-                    ) : (
-                      <ArrowRight
-                        size={14}
-                        className="group-hover:translate-x-1 transition-transform"
-                      />
-                    )}
-                  </Link>
-                )}
+                    </Link>
+                  )}
+                </div>
               </div>
             </article>
           ))}

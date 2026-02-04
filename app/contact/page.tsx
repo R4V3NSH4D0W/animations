@@ -37,14 +37,13 @@ function Contact() {
       <div className="grid grid-cols-1 lg:grid-cols-[1fr_0.9fr] min-h-screen gap-4 md:gap-8">
         <div className="relative order-2 lg:order-1 h-[200px] md:h-[400px] lg:h-auto">
           <PhysicsText
-            text="HELLO"
-            letterSpacing={5}
-            gravity={0.6}
-            startDelay={1300}
-            containerWidth="100%"
-            className="text-[80px] sm:text-[120px] md:text-[160px] lg:text-[220px] font-extrabold -mt-[80px] sm:-mt-[120px] md:-mt-[160px] lg:-mt-[220px] min-h-[calc(100%+60px)] sm:min-h-[calc(100%+80px)] md:min-h-[calc(100%+100px)] lg:min-h-[calc(100%+140px)]"
+            text="CONTACT"
+            letterSpacing={10}
+            gravity={1}
+            containerWidth="95%"
+            className="text-[clamp(5rem,15vw,17rem)] font-extrabold -mt-[220px] min-h-[calc(100%+140px)] opacity-[0.05] pointer-events-none"
+            dropDelay={200}
             restitution={0.2}
-            allowDrag={isDesktop}
             startPosition={{ x: 0.1, y: 0 }}
           />
         </div>

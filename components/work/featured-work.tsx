@@ -1,7 +1,11 @@
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, ArrowUpRight } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 import Marquee from "react-fast-marquee";
+
 interface FeaturedWorkProps {
+  id: string;
+  link?: string | null;
   title: string;
   date: string;
   marquee: string;
@@ -12,7 +16,10 @@ interface FeaturedWorkProps {
 }
 
 function FeaturedWork({
+  id,
+  link,
   title,
+
   date,
   marquee,
   description,
@@ -42,13 +49,35 @@ function FeaturedWork({
       </div>
       <div className="flex w-full my-6 sm:my-8 md:my-10 border-b border-dashed border-gray-300" />
       <div className="grid grid-cols-1 md:grid-cols-[1fr_1.5fr_1fr] gap-8 w-full mt-6 sm:mt-8 md:mt-10">
-        <div className="flex flex-col gap-4 order-2 md:order-1">
-          <span className="flex uppercase text-sm sm:text-base leading-relaxed text-gray-700">
+        <div className="flex flex-col gap-6 order-2 md:order-1">
+          <span className="flex uppercase text-base sm:text-lg leading-relaxed text-gray-800 font-medium tracking-wide">
             {description}
           </span>
-          <div className="flex flex-row gap-2 items-center cursor-pointer hover:gap-4 transition-all duration-300">
-            <span className="uppercase text-sm font-medium">View Projects</span>
-            <ArrowRight size={16} />
+          <div className="flex flex-row flex-wrap gap-5">
+            <Link
+              href={`/works/${id}`}
+              className="group inline-flex items-center gap-2 text-sm uppercase hover:gap-3 transition-all font-medium"
+            >
+              <span>View Case Study</span>
+              <ArrowRight
+                size={16}
+                className="group-hover:translate-x-1 transition-transform"
+              />
+            </Link>
+
+            {link && (
+              <Link
+                href={link}
+                target="_blank"
+                className="group inline-flex items-center gap-2 text-sm uppercase hover:gap-3 transition-all text-neutral-500 hover:text-black"
+              >
+                <span>Visit Website</span>
+                <ArrowUpRight
+                  size={16}
+                  className="group-hover:translate-x-1 -translate-y-px group-hover:-translate-y-[3px] transition-transform"
+                />
+              </Link>
+            )}
           </div>
         </div>
         <div className="relative w-full h-[300px] sm:h-[400px] md:h-[500px] lg:h-[530px] flex items-center justify-center overflow-hidden rounded-lg order-1 md:order-2">

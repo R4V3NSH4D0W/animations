@@ -8,29 +8,59 @@ import { allProjectsData } from "@/data/site-data";
 
 function Archive() {
   const [visibleCount, setVisibleCount] = useState(15);
-  const totalItems = allProjectsData.items.length;
-  const visibleItems = allProjectsData.items.slice(0, visibleCount);
+  const [activeFilter, setActiveFilter] = useState("All");
+
+  const filteredItems = allProjectsData.items.filter((item) => {
+    if (activeFilter === "All") return true;
+    return (item as any).type === activeFilter;
+  });
+
+  const totalItems = filteredItems.length;
+  const visibleItems = filteredItems.slice(0, visibleCount);
   const hasMore = visibleCount < totalItems;
 
   const handleLoadMore = () => {
     setVisibleCount((prev) => prev + 15);
   };
 
+  const filters = ["All", "Personal", "Corporate"];
+
   return (
     <div
       id="all-projects"
       className="my-6 sm:my-8 md:my-10 mx-4 sm:mx-6 md:mx-8 lg:mx-10"
     >
-      <div className="flex flex-col md:flex-row gap-4 md:gap-0">
-        <span className="text-3xl sm:text-4xl md:text-5xl w-full md:w-[30%] lg:w-[20%] font-medium">
-          {allProjectsData.title}
-        </span>
-        <div className="w-full flex justify-start md:justify-center">
+      <div className="flex flex-col md:flex-row gap-4 md:gap-0 justify-between items-end mb-10">
+        <div className="flex flex-col gap-4 w-full md:w-auto">
+          <span className="text-3xl sm:text-4xl md:text-5xl cursor-pointer font-medium">
+            {allProjectsData.title}
+          </span>
           <span className="text-sm sm:text-base uppercase max-w-lg text-gray-700">
             {allProjectsData.description}
           </span>
         </div>
+
+        {/* Filter Buttons */}
+        <div className="flex flex-wrap gap-3 mt-4 md:mt-0 justify-start md:justify-end w-full md:w-auto">
+          {filters.map((filter) => (
+            <button
+              key={filter}
+              onClick={() => {
+                setActiveFilter(filter);
+                setVisibleCount(15);
+              }}
+              className={`uppercase text-xs font-medium tracking-wider px-5 py-2 rounded-full border transition-all duration-300 ${
+                activeFilter === filter
+                  ? "bg-black text-white border-black"
+                  : "bg-transparent text-neutral-500 border-neutral-300 hover:border-black hover:text-black"
+              }`}
+            >
+              {filter}
+            </button>
+          ))}
+        </div>
       </div>
+
       <div
         className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 
             auto-rows-[150px] sm:auto-rows-[180px] md:auto-rows-[200px] lg:auto-rows-[220px] 
@@ -56,10 +86,8 @@ function Archive() {
             </div>
           );
 
-          const href =
-            item.link ||
-            (item.isFeatured && item.id ? `/works/${item.id}` : undefined);
-          const isExternal = !!item.link;
+          const href = item.id ? `/works/${item.id}` : undefined;
+          const isExternal = false;
 
           if (href) {
             return (

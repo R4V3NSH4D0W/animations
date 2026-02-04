@@ -18,6 +18,10 @@ function ClientLayoutContent({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
 
   const getPageQuote = () => {
+    if (pathname.startsWith("/works/")) {
+      return "Behind the Code";
+    }
+
     switch (pathname) {
       case "/":
         return "Beauty in every detail";
@@ -25,6 +29,8 @@ function ClientLayoutContent({ children }: { children: React.ReactNode }) {
         return "Crafting experiences, building brands";
       case "/works":
         return "Where creativity meets excellence";
+      case "/expertise":
+        return "Mastering the Craft";
       case "/services":
         return "Transforming visions into reality";
       case "/contact":

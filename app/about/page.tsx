@@ -6,6 +6,7 @@ import { gsap } from "gsap";
 import DetailSection from "@/components/about/experience/detail-section";
 import { useGSAP } from "@gsap/react";
 import { useMedia } from "react-use";
+import LifeGallery from "@/components/about/life-gallery";
 
 function Page() {
   const experienceRef = React.useRef<HTMLDivElement>(null);
@@ -40,7 +41,7 @@ function Page() {
           duration: 0.8,
           ease: "power3.out",
         },
-        "-=0.4"
+        "-=0.4",
       )
       .to(
         detailRef.current,
@@ -50,7 +51,7 @@ function Page() {
           duration: 0.8,
           ease: "power3.out",
         },
-        "-=0.4"
+        "-=0.4",
       );
   }, []);
 
@@ -165,12 +166,12 @@ function Page() {
   };
 
   return (
-    <main className="py-16 md:py-20 overflow-hidden">
+    <main className="py-16 md:py-20 overflow-x-hidden min-h-screen">
       <div className="flex flex-row mb-6 sm:mb-8 md:mb-10 text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl gap-4 sm:gap-8 md:gap-12 lg:gap-20 mx-4 sm:mx-6 md:mx-8 lg:mx-10">
         <span>About</span>
         <span>Me</span>
       </div>
-      <div className="relative">
+      <div className="relative mb-24 md:mb-32">
         <div
           ref={experienceRef}
           onClick={handleExperienceClick}
@@ -193,6 +194,8 @@ function Page() {
           <DetailSection />
         </div>
       </div>
+
+      <LifeGallery />
     </main>
   );
 }

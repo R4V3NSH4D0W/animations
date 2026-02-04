@@ -125,8 +125,8 @@ function AboutSection() {
               />
             </div>
             {/* Decorative element */}
-            <div className="absolute -bottom-4 -left-4 w-24 h-24 border border-gray-200 hidden lg:block" />
-            <div className="absolute -top-4 -right-4 w-24 h-24 bg-gray-100 hidden lg:block" />
+            <div className="absolute -bottom-4 -left-4 w-24 h-24 border border-gray-200 " />
+            <div className="absolute -top-4 -right-4 w-24 h-24 bg-gray-100 " />
           </div>
         </div>
 

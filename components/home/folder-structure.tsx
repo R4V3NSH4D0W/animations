@@ -7,6 +7,7 @@ import DiagonalShape from "@/lib/diagonal-shape";
 import { ArrowRight } from "lucide-react";
 import FeaturedWork from "../work/featured-work";
 import { useMedia } from "react-use";
+import { sharedProjects } from "@/data/shared-data";
 
 gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
@@ -63,6 +64,12 @@ function FolderStructure() {
     },
     { scope: containerRef, dependencies: [isDesktop] },
   );
+  // Get first 3 featured projects
+  const featuredProjects = sharedProjects
+    .filter((p) => p.isFeatured)
+    .slice(0, 3);
+  const [project1, project2, project3] = featuredProjects;
+
   return (
     <div ref={containerRef} className="  my-10 ">
       <div ref={firstRef}>
@@ -97,18 +104,21 @@ function FolderStructure() {
             </div>
             <DiagonalShape className="w-10 h-10 text-white " />
           </div>
-          <FeaturedWork
-            title="Luxstore Dashboard"
-            date="2025"
-            subTitle="ECOMMERCE ADMIN"
-            marquee="Next.js TypeScript Tailwind Shadcn React Query"
-            description="A comprehensive ecommerce dashboard application managing global state and providing administration capabilities."
-            mainImageURL="/assets/dashboard/dashboard-home.png"
-            sideImageURLs={[
-              "/assets/dashboard/collection-dashboard.png",
-              "/assets/dashboard/dashboard-product.png",
-            ]}
-          />
+          {project1 && (
+            <FeaturedWork
+              id={project1.id}
+              link={project1.link}
+              title={project1.title}
+              date={project1.year}
+              subTitle={(project1 as any).type?.toUpperCase() || "PROJECT"}
+              marquee={project1.tech.join(" ")}
+              description={project1.description}
+              mainImageURL={project1.src || ""}
+              sideImageURLs={
+                (project1 as any).sideImageURLs || [project1.src, project1.src]
+              }
+            />
+          )}
         </div>
       </div>
       <div
@@ -121,18 +131,21 @@ function FolderStructure() {
           </div>
           <DiagonalShape className="w-10 h-10 text-orange-200 " />
         </div>
-        <FeaturedWork
-          title="Luxstore Web Version"
-          date="2025"
-          subTitle="CONSUMER STOREFRONT"
-          marquee="Next.js 16 TypeScript GSAP Stripe Zustand"
-          description="The consumer-facing web storefront offering a premium user experience with smooth scrolling and sophisticated animations."
-          mainImageURL="/assets/web/web-home.png"
-          sideImageURLs={[
-            "/assets/web/web-all-product.png",
-            "/assets/web/Screenshot 2026-02-03 at 3.27.54 PM.png",
-          ]}
-        />
+        {project2 && (
+          <FeaturedWork
+            id={project2.id}
+            link={project2.link}
+            title={project2.title}
+            date={project2.year}
+            subTitle={(project2 as any).type?.toUpperCase() || "PROJECT"}
+            marquee={project2.tech.join(" ")}
+            description={project2.description}
+            mainImageURL={project2.src || ""}
+            sideImageURLs={
+              (project2 as any).sideImageURLs || [project2.src, project2.src]
+            }
+          />
+        )}
       </div>
       <div
         ref={thirdRef}
@@ -144,15 +157,21 @@ function FolderStructure() {
           </div>
           <DiagonalShape className="w-10 h-10 text-purple-100 " />
         </div>
-        <FeaturedWork
-          title="Luxstore Mobile App"
-          date="2025"
-          subTitle="CROSS-PLATFORM APP"
-          marquee="React Native Expo TypeScript Stripe TanStack Query"
-          description="A cross-platform mobile application delivering a native shopping experience on Android and iOS."
-          mainImageURL="/assets/app/android.png"
-          sideImageURLs={["/assets/app/android.png", "/assets/app/android.png"]}
-        />
+        {project3 && (
+          <FeaturedWork
+            id={project3.id}
+            link={project3.link}
+            title={project3.title}
+            date={project3.year}
+            subTitle={(project3 as any).type?.toUpperCase() || "PROJECT"}
+            marquee={project3.tech.join(" ")}
+            description={project3.description}
+            mainImageURL={project3.src || ""}
+            sideImageURLs={
+              (project3 as any).sideImageURLs || [project3.src, project3.src]
+            }
+          />
+        )}
       </div>
     </div>
   );

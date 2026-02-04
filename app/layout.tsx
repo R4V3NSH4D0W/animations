@@ -3,6 +3,7 @@ import "./globals.css";
 import { recklessNeue } from "../lib/fonts";
 import ClientLayout from "../components/client-layout";
 import { Caveat, Lora } from "next/font/google";
+import ResizeReloader from "../components/shared/resize-reloader";
 
 export const metadata: Metadata = {
   title: "Portfolio - R4V3NSH4DOW",
@@ -29,6 +30,7 @@ export default function RootLayout({
       <body
         className={`${recklessNeue.variable} ${caveat.variable} ${lora.variable} antialiased`}
       >
+        <ResizeReloader />
         <ClientLayout>{children}</ClientLayout>
       </body>
     </html>

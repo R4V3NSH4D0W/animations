@@ -15,7 +15,7 @@ import gsap from "gsap/all";
 const navItems = [
   { name: "About", href: "/about" },
   // { name: "Services", href: "/services" },
-  { name: "Experties", href: "/experties" },
+  { name: "Expertise", href: "/expertise" },
   { name: "Works", href: "/works" },
   { name: "Contact", href: "/contact" },
 ];
